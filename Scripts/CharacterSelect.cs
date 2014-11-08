@@ -10,6 +10,7 @@ public class CharacterSelect : MonoBehaviour {
 	public Transform small_green;
 	public Transform small_blue;
 	public Transform small_pink;
+	public Transform fire;
 
 	//public IList characters = new IList<string>();
 	// Use this for initialization
@@ -19,7 +20,8 @@ public class CharacterSelect : MonoBehaviour {
 	bool done = false;
 
 	void Start () {
-		Instantiate(charSelect, new Vector3(0,0,-1), Quaternion.identity);// these initialize each character.
+		Instantiate(charSelect, new Vector3(0,0,-1), Quaternion.identity);
+		Instantiate (fire, new Vector3 (0, 0, 0), Quaternion.identity);// these initialize each character.
 	}
 
 	void AddCharacter(string color)
