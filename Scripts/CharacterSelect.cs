@@ -21,7 +21,7 @@ public class CharacterSelect : MonoBehaviour {
 
 	void Start () {
 		Instantiate(charSelect, new Vector3(0,0,-1), Quaternion.identity);
-		Instantiate (fire, new Vector3 (0, 0, 0), Quaternion.identity);// these initialize each character.
+		//Instantiate (fire, new Vector3 (0, 0, 0), Quaternion.identity);// these initialize each character.
 	}
 
 	void AddCharacter(string color)
@@ -135,13 +135,16 @@ public class CharacterSelect : MonoBehaviour {
 
 	void GoToCombat()
 	{
-		while (numSelected<3) {
-			characterList.Add("Empty");
-			numSelected++;
-				}
+		if(numSelected!=0)
+		{
+			while (numSelected<3) {
+				characterList.Add("Empty");
+				numSelected++;
+					}
 
-		GameObject.Find ("Home").GetComponent<PlayerClass> ().initialize (characterList);
-		done = true;
+			GameObject.Find ("Home").GetComponent<PlayerClass> ().initialize (characterList);
+			done = true;
+		}
 	}
 	
 	// Update is called once per frame

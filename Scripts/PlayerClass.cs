@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerClass : MonoBehaviour {
-
+	#region Character Classes
 	class Combat_Character
 	{
 		#region Global Character Variables
@@ -64,8 +64,47 @@ public class PlayerClass : MonoBehaviour {
 		//make constructor that can get and set our private variables.
 	}
 
+	class Enemy_Character
+	{
+		#region Global Character Variables
+		public string Name;
+		public int Health;
+		public int Power;
+		public int Defense;		
+		public int Magic;
+		public int Speed;
+		#endregion
+
+		public bool Ready;
+		public float time_passed;
+		public float startTime = 0.0f;
+		//bool combat_timer;
+		//ToDo: Some form of list of attacks, damages and possible targets
+		
+		//make constructor that can get and set our private variables.
+	}
+
+	#endregion
+
+
+	class CombatData
+	{
+		public string team;//either "pro" or "ant"
+		//List<string> names; // names of attackers
+		public string attacker;
+		public string defender;
+		public string type_of_move;
+	}
 
 	List<Combat_Character> Characters = new List<Combat_Character> ();
+	List<Enemy_Character> Enemies = new List<Enemy_Character> ();
+	List<string> readyCharacters = new List<string>();
+
+	List<CombatData> CombatBuffer = new List<CombatData> ();
+
+	string readyClicked;
+
+
 	//int speed = 5;
 	bool ready = false;
 	int state = 0;
@@ -83,11 +122,77 @@ public class PlayerClass : MonoBehaviour {
 	public Transform small_yellow;
 	public Transform small_pink;
 
+	public Transform enemy;
+	public Transform small_enemy;
+	public Transform attack_select;
 	public Transform background;
 	public Transform bar;
 
+	int attackStep = 1;
+	CombatData currentAttack = new CombatData();
+
+	void ProAttackSelect()
+	{
+		string name;
+		bool selected = false;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Physics2D.Raycast (ray.origin, ray.direction))
+		{
+			name = Physics2D.Raycast (ray.origin, ray.direction).collider.gameObject.name;
+		}
+		else
+		{
+			name = "nothing";
+		}
+
+		Debug.Log (name);
+
+		if (attackStep == 1)
+		{
+			if(Input.GetMouseButtonDown(0)&&(name=="Attack"||name=="Magic"||name=="Defend"))
+			{
+				selected=true;
+			}
+			if(selected == true)
+			{
+				currentAttack.type_of_move = name;
+				attackStep = 2;
+				Destroy(GameObject.Find("Attack Select(Clone)"));//.GetComponent<SpriteRenderer>().enabled = false;
+			}
+
+		}
+		else if (attackStep == 2)
+		{
+			//if(Input.GetMouseButtonDown(0))
+			//{
+				foreach (Enemy_Character e in Enemies)
+				{
+					if(e.Name+ "(Clone)" == name&&Input.GetMouseButtonDown(0))
+					{
+						currentAttack.defender = e.Name;
+						CombatBuffer.Add(currentAttack);
+						state = 1;
+						attackStep = 1;
+					}
+				}
+			//}
+
+		}
+	}
+
+	#region initialize and start
 	public void initialize(List<string> list_of_characters)
 	{
+		//This is where we need to instantiate the enemies
+		Instantiate(enemy, new Vector3(5, 0, 0), Quaternion.identity);
+		Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
+		Enemy_Character Enemy = new Enemy_Character ();
+		Enemy.Name = "Enemy";
+		Enemy.Speed = 300;
+		Enemy.Ready = false;
+		Enemies.Add (Enemy);
+
+		// enemies here ( or after )
 		foreach (string character in list_of_characters) {
 
 			Destroy ( GameObject.Find("Small " + character + " Character(Clone)"));
@@ -202,6 +307,13 @@ public class PlayerClass : MonoBehaviour {
 		//GameObject red = GameObject.Instantiate*/
 	}
 
+	#endregion
+
+	void EnemyAttackSelect()
+	{
+
+	}
+
 	void countDown()
 	{
 		//string message = "";
@@ -218,17 +330,36 @@ public class PlayerClass : MonoBehaviour {
 			current_name = "nothing";
 		}
 
-		foreach (Combat_Character i in Characters)
+		foreach (Enemy_Character i in Enemies)
 		{
-			Debug.Log(i.Name);
-			if(current_name == i.Name+" Character(Clone)" && Input.GetMouseButtonDown(0)&& i.Ready == true)
+			if(i.Ready == false)
 			{
+				i.time_passed+=(t-i.startTime);
+				if(Mathf.Floor(i.time_passed)>=i.Speed)
+				{
+					GameObject.Find ("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f,3.5f, 0.0f);
+					i.Ready = true;
+				}
+				else
+				{
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*7)/i.Speed)), 0.0f);
+				}
+			}
+			else if(i.Ready == true)
+			{
+				//EnemyAttackSelect();  i.select
 				i.time_passed = 0.0f;
 				i.startTime = Time.time;
 				i.Ready = false;
-				
-				//if this happens, switch to state number two ( attack select );
+
+
 			}
+
+		}
+
+		foreach (Combat_Character i in Characters)
+		{
+			Debug.Log(i.Name);
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
 				i.time_passed+=(t-i.startTime);
@@ -237,7 +368,7 @@ public class PlayerClass : MonoBehaviour {
 					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
 					//message = "Ready";
 					i.Ready = true;
-
+					
 				}
 				else
 				{
@@ -246,25 +377,33 @@ public class PlayerClass : MonoBehaviour {
 				}
 				//GameObject.Find (i.Name + " Text").GetComponent<TextMesh>().text= message;
 			}
+			else if(current_name == i.Name+" Character(Clone)" && Input.GetMouseButtonDown(0)&& i.Ready == true)
+			{
+				state = 2;
+				readyClicked = i.Name;
+				i.time_passed = 0.0f;
+				i.startTime = Time.time;
+				i.Ready = false;
+
+				Instantiate(attack_select, new Vector3(0, 0, 0), Quaternion.identity);
+				currentAttack.attacker = i.Name;
+				currentAttack.team = "pro";
+
+				//if this happens, switch to state number two ( attack select );
+			}
 		}
-	}
-
-	void SelectCharacters()
-	{
-		/*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
-		Debug.Log (hit.collider.name);*/
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (state == 0) {
-			SelectCharacters();
-		}
+		if (state == 0) {}
 		else if (state == 1)
 		{
 			countDown ();
+		}
+		else if (state == 2)
+		{
+			ProAttackSelect();
 		}
 
 
