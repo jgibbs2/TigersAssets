@@ -40,6 +40,7 @@ public class SpriteController : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D col) 
 	{
 		if (col.gameObject.tag == "House")
-		  Debug.Log("I just hit a house!");
+		  //Debug.Log("I just hit a house!");
+		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 }
