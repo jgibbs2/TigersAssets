@@ -17,30 +17,11 @@ public class SpriteController : MonoBehaviour
 		float v = Input.GetAxis("Vertical") * speed;
 		transform.Translate(Vector2.right * h * Time.deltaTime);
 		transform.Translate(Vector2.up * v * Time.deltaTime);
-
-		/*if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-		}
-
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-		{
-		}
-
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-		}
-
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-		}*/	
-
-
 	}
 
 	void OnCollisionEnter2D(Collision2D col) 
 	{
-		if (col.gameObject.tag == "House")
-		  //Debug.Log("I just hit a house!");
-		Application.LoadLevel(Application.loadedLevel + 1);
+		if (col.gameObject.tag == "Enemy")
+		  Application.LoadLevel(Application.loadedLevel + 1);
 	}
 }
