@@ -94,6 +94,7 @@ public class PlayerClass : MonoBehaviour {
 		public string attacker;
 		public string defender;
 		public string type_of_move;
+		public string target_group;//allies, enemies
 	}
 
 	List<Combat_Character> Characters = new List<Combat_Character> ();
@@ -101,6 +102,9 @@ public class PlayerClass : MonoBehaviour {
 	List<string> readyCharacters = new List<string>();
 
 	List<CombatData> CombatBuffer = new List<CombatData> ();
+
+	float timeElapsed = 1.0f;
+	float timer = 0.0f;//Time.time;
 
 	string readyClicked;
 
@@ -127,10 +131,12 @@ public class PlayerClass : MonoBehaviour {
 	public Transform attack_select;
 	public Transform background;
 	public Transform bar;
+	public Transform DamageDisplay;
 
 	int attackStep = 1;
 	CombatData currentAttack = new CombatData();
 
+	#region offensice attack select
 	void ProAttackSelect()
 	{
 		string name;
@@ -145,14 +151,22 @@ public class PlayerClass : MonoBehaviour {
 			name = "nothing";
 		}
 
-		Debug.Log (name);
+		//Debug.Log (name);
 
 		if (attackStep == 1)
 		{
-			if(Input.GetMouseButtonDown(0)&&(name=="Attack"||name=="Magic"||name=="Defend"))
+			if(Input.GetMouseButtonDown(0)&&(name=="Attack"||name=="Magic"))
 			{
 				selected=true;
+				currentAttack.target_group = "enemies";
 			}
+			else if(Input.GetMouseButtonDown(0)&&name=="Defend")
+			{
+				selected = true;
+				currentAttack.target_group = "allies";
+			}
+
+
 			if(selected == true)
 			{
 				currentAttack.type_of_move = name;
@@ -163,8 +177,8 @@ public class PlayerClass : MonoBehaviour {
 		}
 		else if (attackStep == 2)
 		{
-			//if(Input.GetMouseButtonDown(0))
-			//{
+			if(currentAttack.target_group == "enemies")//if(Input.GetMouseButtonDown(0))
+			{
 				foreach (Enemy_Character e in Enemies)
 				{
 					if(e.Name+ "(Clone)" == name&&Input.GetMouseButtonDown(0))
@@ -175,10 +189,24 @@ public class PlayerClass : MonoBehaviour {
 						attackStep = 1;
 					}
 				}
-			//}
+			}
+			else
+			{
+				foreach (Combat_Character c in Characters)
+				{
+					if(c.Name+ " Character(Clone)" == name&&Input.GetMouseButtonDown(0))
+					{
+						currentAttack.defender = c.Name;
+						CombatBuffer.Add(currentAttack);
+						state = 1;
+						attackStep = 1;
+					}
+				}
+			}
 
 		}
 	}
+	#endregion
 
 	#region initialize and start
 	public void initialize(List<string> list_of_characters)
@@ -188,7 +216,7 @@ public class PlayerClass : MonoBehaviour {
 		Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
 		Enemy_Character Enemy = new Enemy_Character ();
 		Enemy.Name = "Enemy";
-		Enemy.Speed = 300;
+		Enemy.Speed = 4;
 		Enemy.Ready = false;
 		Enemies.Add (Enemy);
 
@@ -203,48 +231,48 @@ public class PlayerClass : MonoBehaviour {
 				case "Red":
 					Combat_Character Red = new Combat_Character ();
 					Red.Name = "Red";
-					Red.Speed = 200;
+					Red.Speed = 2;
 					Red.Ready = false;
 					Characters.Add (Red);
 					break;
 				case "Orange":
 					Combat_Character Orange = new Combat_Character ();
 					Orange.Name = "Orange";
-					Orange.Speed = 200;
+					Orange.Speed = 3;
 					Orange.Ready = false;
 					Characters.Add (Orange);
 					break;
 				case "Yellow":
 					Combat_Character Yellow = new Combat_Character ();
 					Yellow.Name = "Yellow";
-					Yellow.Speed = 200;
+					Yellow.Speed = 4;
 					Yellow.Ready = false;
 					Characters.Add (Yellow);
 					break;
 				case "Green":
 					Combat_Character Green = new Combat_Character ();
 					Green.Name = "Green";
-					Green.Speed = 200;
+					Green.Speed = 5;
 					Green.Ready = false;
 					Characters.Add (Green);
 					break;
 				case "Blue":
 					Combat_Character Blue = new Combat_Character ();
 					Blue.Name = "Blue";
-					Blue.Speed = 200;
+					Blue.Speed = 6;
 					Blue.Ready = false;
 					Characters.Add (Blue);
 					break;
 				case "Pink":
 					Combat_Character Pink = new Combat_Character ();
 					Pink.Name = "Pink";
-					Pink.Speed = 200;
+					Pink.Speed = 7;
 					Pink.Ready = false;
 					Characters.Add (Pink);
 					break;
 			}
 		}
-		Debug.Log ("poopy");
+
 		//disable the other script
 		GameObject.Find ("Home").GetComponent<CharacterSelect> ().enabled = false;
 		Destroy(GameObject.Find ("Character Select(Clone)"));
@@ -313,11 +341,11 @@ public class PlayerClass : MonoBehaviour {
 	{
 
 	}
-
+	#region Countdown
 	void countDown()
 	{
 		//string message = "";
-		float t = Time.time;
+		float t = timeElapsed;//?
 		string current_name;
 		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -332,9 +360,11 @@ public class PlayerClass : MonoBehaviour {
 
 		foreach (Enemy_Character i in Enemies)
 		{
+			//i.startTime = Time.time;
 			if(i.Ready == false)
 			{
-				i.time_passed+=(t-i.startTime);
+				//t = Time.time;
+				i.time_passed=(t-i.startTime);
 				if(Mathf.Floor(i.time_passed)>=i.Speed)
 				{
 					GameObject.Find ("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f,3.5f, 0.0f);
@@ -349,20 +379,21 @@ public class PlayerClass : MonoBehaviour {
 			{
 				//EnemyAttackSelect();  i.select
 				i.time_passed = 0.0f;
-				i.startTime = Time.time;
+				i.startTime = timeElapsed;
 				i.Ready = false;
 
 
 			}
 
+
 		}
 
 		foreach (Combat_Character i in Characters)
 		{
-			Debug.Log(i.Name);
+
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
-				i.time_passed+=(t-i.startTime);
+				i.time_passed=(t-i.startTime);
 				if(Mathf.Floor(i.time_passed)>=i.Speed)
 				{
 					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
@@ -382,7 +413,7 @@ public class PlayerClass : MonoBehaviour {
 				state = 2;
 				readyClicked = i.Name;
 				i.time_passed = 0.0f;
-				i.startTime = Time.time;
+				i.startTime = timeElapsed;
 				i.Ready = false;
 
 				Instantiate(attack_select, new Vector3(0, 0, 0), Quaternion.identity);
@@ -391,21 +422,90 @@ public class PlayerClass : MonoBehaviour {
 
 				//if this happens, switch to state number two ( attack select );
 			}
+			//Debug.Log(i.time_passed);
 		}
+		//timeElapsed += Time.time - timer;?
 	}
+	#endregion
+
+	void PerformAttack()
+	{
+		CombatData data = CombatBuffer [0];
+		//attacking animation ( need carter here )
+
+			//wait till done
+
+		//actual animation of the attack (not too hard, but the thing should last only as long as the animation of the attack)
+
+			// wait till done
+
+		//calculate damage here
+
+		//display of damage dealt
+			if( data.target_group== "allies")
+			{
+				foreach(Combat_Character c in Characters)
+				{
+					if(data.defender==c.Name)
+					{
+						Debug.Log("poopy");
+						GameObject go = GameObject.Find(data.defender + "(Clone)");
+						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
+						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = "damageee";
+					}
+				}
+			}
+			else// attack is directed at the enemies
+			{
+				foreach(Enemy_Character e in Enemies)
+				{
+					if(data.defender==e.Name)
+					{
+						Debug.Log("poopy");
+						GameObject go = GameObject.Find(data.defender + "(Clone)");
+						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
+						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = "damageee";
+					}
+				}
+			}
+
+		//finished with this attack
+		//state = 1;
+		//CombatBuffer.Remove(CombatBuffer[0]);
+	}
+
+	float timerStart = 0.0f;
 
 	// Update is called once per frame
 	void Update () {
+		if(CombatBuffer.Count>0)
+		{
+			state=3;
+		}
+
 		if (state == 0) {}
 		else if (state == 1)
 		{
+			timer = Time.time;
+			timeElapsed += (timer-timerStart);
 			countDown ();
+
+			//Debug.Log(timeElapsed);
 		}
 		else if (state == 2)
 		{
 			ProAttackSelect();
 		}
-
-
+		else if(state == 3)
+		{
+			PerformAttack();
+			Debug.Log(CombatBuffer[0].defender);
+			state = 1;
+			//Debug.Log (CombatBuffer.FirstOrDefault().attacker);//);+ " is " + CombatBuffer[1].type_of_move + " at " + CombatBuffer[1].defender);
+			CombatBuffer.Remove(CombatBuffer[0]);
+		}
+		timerStart = Time.time;
+		//timerStart = Time.time;
+		//timer = Time.time;
 	}
 }
