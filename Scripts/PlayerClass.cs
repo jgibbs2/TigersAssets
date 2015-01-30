@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,6 +58,7 @@ public class PlayerClass : MonoBehaviour {
 		public bool Ready;
 		public float time_passed;
 		public float startTime = 0.0f;
+
 		//bool combat_timer;
 		//ToDo: Some form of list of attacks, damages and possible targets
 
@@ -78,6 +79,7 @@ public class PlayerClass : MonoBehaviour {
 		public bool Ready;
 		public float time_passed;
 		public float startTime = 0.0f;
+
 		//bool combat_timer;
 		//ToDo: Some form of list of attacks, damages and possible targets
 		
@@ -97,11 +99,14 @@ public class PlayerClass : MonoBehaviour {
 		public string target_group;//allies, enemies
 	}
 
+	CombatData current_data;
+
 	List<Combat_Character> Characters = new List<Combat_Character> ();
 	List<Enemy_Character> Enemies = new List<Enemy_Character> ();
 	List<string> readyCharacters = new List<string>();
 
 	List<CombatData> CombatBuffer = new List<CombatData> ();
+	Random rnd = new Random();
 
 	float timeElapsed = 1.0f;
 	float timer = 0.0f;//Time.time;
@@ -127,6 +132,8 @@ public class PlayerClass : MonoBehaviour {
 	public Transform small_pink;
 
 	public Transform enemy;
+	public Transform john;
+	public Transform small_john;
 	public Transform small_enemy;
 	public Transform attack_select;
 	public Transform background;
@@ -136,7 +143,7 @@ public class PlayerClass : MonoBehaviour {
 	int attackStep = 1;
 	CombatData currentAttack = new CombatData();
 
-	#region offensice attack select
+	#region offensive attack select
 	void ProAttackSelect()
 	{
 		string name;
@@ -212,13 +219,23 @@ public class PlayerClass : MonoBehaviour {
 	public void initialize(List<string> list_of_characters)
 	{
 		//This is where we need to instantiate the enemies
-		Instantiate(enemy, new Vector3(5, 0, 0), Quaternion.identity);
-		Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
+		//Instantiate(enemy, new Vector3(5, 0, 0), Quaternion.identity);
+		//Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
 		Enemy_Character Enemy = new Enemy_Character ();
 		Enemy.Name = "Enemy";
+		Enemy.Defense = 1;
 		Enemy.Speed = 4;
 		Enemy.Ready = false;
 		Enemies.Add (Enemy);
+
+		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
+		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
+		Enemy_Character John = new Enemy_Character ();
+		John.Name = "John";
+		John.Defense = 2;
+		John.Speed = 3;
+		John.Ready = false;
+		Enemies.Add (John);
 
 		// enemies here ( or after )
 		foreach (string character in list_of_characters) {
@@ -231,6 +248,7 @@ public class PlayerClass : MonoBehaviour {
 				case "Red":
 					Combat_Character Red = new Combat_Character ();
 					Red.Name = "Red";
+					Red.Power = 3;
 					Red.Speed = 2;
 					Red.Ready = false;
 					Characters.Add (Red);
@@ -238,6 +256,7 @@ public class PlayerClass : MonoBehaviour {
 				case "Orange":
 					Combat_Character Orange = new Combat_Character ();
 					Orange.Name = "Orange";
+					Orange.Power = 3;
 					Orange.Speed = 3;
 					Orange.Ready = false;
 					Characters.Add (Orange);
@@ -278,8 +297,42 @@ public class PlayerClass : MonoBehaviour {
 		Destroy(GameObject.Find ("Character Select(Clone)"));
 
 
+
 		int character_number = 1;
 		Vector3 location = new Vector3(0f, 0f, 0f);
+
+		foreach (Enemy_Character E in Enemies)
+		{
+			
+			if(character_number ==1)
+			{
+				location = new Vector3(5,3,0);
+			}
+			else if(character_number == 2)
+			{
+				location = new Vector3 (5, 0, 0);
+			}
+			else{
+				location = new Vector3 (5, -3, 0);
+			}
+
+
+			switch(E.Name)
+			{
+			case "John":
+				Instantiate(john, location, Quaternion.identity);
+				Instantiate(small_john, location, Quaternion.identity);
+				break;
+			case "Enemy":
+	            Instantiate(enemy, location, Quaternion.identity);
+	            Instantiate(small_enemy, location, Quaternion.identity);
+	            break;
+			}
+            character_number++;
+		}
+		
+    	character_number = 1;
+
 		foreach (Combat_Character C in Characters)
 		{
 			if(character_number ==1)
@@ -428,9 +481,58 @@ public class PlayerClass : MonoBehaviour {
 	}
 	#endregion
 
+	int getMod()
+	{
+		int rand = Random.Range(0, 10);
+		if(rand <2)
+		{
+			return 0;
+		}
+		else if (rand >7)
+		{
+			return 2;
+		}
+		else
+			return 1;
+	}
+
+	int CalculateDamage()
+	{
+		int damage = 0;
+		if(current_data.type_of_move == "Attack")
+		{
+			Combat_Character temp = null;
+			foreach (Combat_Character c in Characters)
+			{
+				if (c.Name == current_data.attacker)
+				{
+					temp = c;
+				}
+			}
+
+			int A = temp.Power;
+			Enemy_Character temp2 = null;
+			foreach (Enemy_Character c in Enemies)
+			{
+				if (c.Name == current_data.defender)
+				{
+					temp2 = c;
+				}
+			}
+			int D = temp2.Defense;
+			int Z = Random.Range(225, 255);
+			if ( D ==0)
+				D=1;
+
+			int mod = getMod();
+
+			damage = (((((A * A) / D) * Z) / 255) * mod);
+		}
+		return damage;
+	}
 	void PerformAttack()
 	{
-		CombatData data = CombatBuffer [0];
+		//CombatData data = CombatBuffer [0]; absolete, look at current_data
 		//attacking animation ( need carter here )
 
 			//wait till done
@@ -440,18 +542,19 @@ public class PlayerClass : MonoBehaviour {
 			// wait till done
 
 		//calculate damage here
+		int damage = CalculateDamage ();
 
 		//display of damage dealt
-			if( data.target_group== "allies")
+		if( current_data.target_group== "allies")
 			{
 				foreach(Combat_Character c in Characters)
 				{
-					if(data.defender==c.Name)
+					if(current_data.defender==c.Name)
 					{
 						Debug.Log("poopy");
-						GameObject go = GameObject.Find(data.defender + "(Clone)");
+						GameObject go = GameObject.Find(current_data.defender + "(Clone)");
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
-						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = "damageee";
+						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
 					}
 				}
 			}
@@ -459,12 +562,12 @@ public class PlayerClass : MonoBehaviour {
 			{
 				foreach(Enemy_Character e in Enemies)
 				{
-					if(data.defender==e.Name)
+					if(current_data.defender==e.Name)
 					{
 						Debug.Log("poopy");
-						GameObject go = GameObject.Find(data.defender + "(Clone)");
+						GameObject go = GameObject.Find(current_data.defender + "(Clone)");
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
-						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = "damageee";
+						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
 					}
 				}
 			}
@@ -478,8 +581,10 @@ public class PlayerClass : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		if(CombatBuffer.Count>0)
 		{
+			current_data = CombatBuffer [0];
 			state=3;
 		}
 
