@@ -2,7 +2,27 @@ fileFormatVersion: 2
 guid: 9aeacb452a28ffb429f454d5df7c9b01
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - red: {fileID: 400000, guid: e52cb952c88d18641b0792fdd96cf5dd, type: 2}
+  - green: {fileID: 400000, guid: 20d4f20e48a0ef547b3c5e0e46f816d2, type: 2}
+  - blue: {fileID: 400000, guid: 7dc982b051cfd974fbcbb09bd4e7ca85, type: 2}
+  - orange: {fileID: 400000, guid: c6cae87c2e767e541b0a285a93c7ca29, type: 2}
+  - yellow: {fileID: 400000, guid: ef18e0995d3923146a21c9598a81f3ba, type: 2}
+  - pink: {fileID: 400000, guid: d42a7f13cbc52d84293cb8d8e2aef6e7, type: 2}
+  - small_red: {fileID: 400000, guid: e006f5ce4399eb14890d2fbf7e223176, type: 2}
+  - small_green: {fileID: 400000, guid: dfbcf49d2472cb144819b40ea53333db, type: 2}
+  - small_blue: {fileID: 400000, guid: 5371effa60a5bf045989e98b43f461a1, type: 2}
+  - small_orange: {fileID: 400000, guid: 18754f993c3ffa548902e3cdac3c680f, type: 2}
+  - small_yellow: {fileID: 400000, guid: b8ea29496718f27408ef99daa481cdfa, type: 2}
+  - small_pink: {fileID: 400000, guid: 7c9cf5ea3d05ddd4c859e99340fc4b24, type: 2}
+  - enemy: {fileID: 400000, guid: 0b1cb92171260e144ab39f2670ecf110, type: 2}
+  - john: {fileID: 429936, guid: adfb0fd997146204fb94a4bbe2e57ccc, type: 2}
+  - small_john: {fileID: 431562, guid: a6e1094606d2c9a4689fbfbd6f4c740c, type: 2}
+  - small_enemy: {fileID: 400000, guid: c8427a050b036c440956be604f884766, type: 2}
+  - attack_select: {fileID: 400006, guid: 2602b15cb9b8ab240b9e929390b9b064, type: 2}
+  - background: {fileID: 400000, guid: 1898050319a5dbb4a86caa3b7a749e1f, type: 2}
+  - bar: {fileID: 400000, guid: 911a10d98f63ee24bac779a6c307f39d, type: 2}
+  - DamageDisplay: {fileID: 400000, guid: 915161163a40c5343acafd688394417f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

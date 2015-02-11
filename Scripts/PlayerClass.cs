@@ -16,14 +16,15 @@ public class PlayerClass : MonoBehaviour {
 		}
 
 		private int _health;
-		public int Health
+		public int Health;
+		/*public int Health
 		{
-			get{ return _health;}
+			/*get{ return _health;}
 			set{
 				_health = _health - value;
 				if (_health < 0) {_health = 0;}
 			}
-		}
+		}*/
 
 		private int _power;
 		public int Power
@@ -159,6 +160,7 @@ public class PlayerClass : MonoBehaviour {
 		}
 
 		//Debug.Log (name);
+		//current_data.attacker = name;
 
 		if (attackStep == 1)
 		{
@@ -224,8 +226,10 @@ public class PlayerClass : MonoBehaviour {
 		Enemy_Character Enemy = new Enemy_Character ();
 		Enemy.Name = "Enemy";
 		Enemy.Defense = 1;
+		Enemy.Power = 5;
 		Enemy.Speed = 4;
 		Enemy.Ready = false;
+		Enemy.Health = 10;
 		Enemies.Add (Enemy);
 
 		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
@@ -233,8 +237,10 @@ public class PlayerClass : MonoBehaviour {
 		Enemy_Character John = new Enemy_Character ();
 		John.Name = "John";
 		John.Defense = 2;
+		John.Power = 10;
 		John.Speed = 3;
 		John.Ready = false;
+		John.Health = 10;
 		Enemies.Add (John);
 
 		// enemies here ( or after )
@@ -250,6 +256,7 @@ public class PlayerClass : MonoBehaviour {
 					Red.Name = "Red";
 					Red.Power = 3;
 					Red.Speed = 2;
+					Red.Health = 20;
 					Red.Ready = false;
 					Characters.Add (Red);
 					break;
@@ -258,6 +265,8 @@ public class PlayerClass : MonoBehaviour {
 					Orange.Name = "Orange";
 					Orange.Power = 3;
 					Orange.Speed = 3;
+					Orange.Health = 20;
+					Orange.Magic = 2;
 					Orange.Ready = false;
 					Characters.Add (Orange);
 					break;
@@ -265,6 +274,9 @@ public class PlayerClass : MonoBehaviour {
 					Combat_Character Yellow = new Combat_Character ();
 					Yellow.Name = "Yellow";
 					Yellow.Speed = 4;
+					Yellow.Power = 2;
+					Yellow.Magic = 4;
+					Yellow.Health = 20;
 					Yellow.Ready = false;
 					Characters.Add (Yellow);
 					break;
@@ -272,6 +284,9 @@ public class PlayerClass : MonoBehaviour {
 					Combat_Character Green = new Combat_Character ();
 					Green.Name = "Green";
 					Green.Speed = 5;
+					Green.Power = 2;
+					Green.Magic = 4;
+					Green.Health = 20;
 					Green.Ready = false;
 					Characters.Add (Green);
 					break;
@@ -280,12 +295,18 @@ public class PlayerClass : MonoBehaviour {
 					Blue.Name = "Blue";
 					Blue.Speed = 6;
 					Blue.Ready = false;
+					Blue.Power = 2;
+					Blue.Magic = 4;
+					Blue.Health = 20;
 					Characters.Add (Blue);
 					break;
 				case "Pink":
 					Combat_Character Pink = new Combat_Character ();
 					Pink.Name = "Pink";
 					Pink.Speed = 7;
+					Pink.Power = 2;
+					Pink.Magic = 4;
+					Pink.Health = 20;
 					Pink.Ready = false;
 					Characters.Add (Pink);
 					break;
@@ -390,8 +411,26 @@ public class PlayerClass : MonoBehaviour {
 
 	#endregion
 
-	void EnemyAttackSelect()
+	void EnemyAttackSelect(string enemyName)
 	{
+		int attack_choice = 0;//Random.Range(0, 2);
+		if(attack_choice == 0)//if we choose attack
+		{
+			int thing = Random.Range(0, Characters.Count);
+			currentAttack.attacker = enemyName;
+			currentAttack.defender = Characters[thing].Name;
+			currentAttack.target_group = "allies";
+			currentAttack.type_of_move = "Attack";
+		}
+		else if(attack_choice == 1)// if we choose magic
+		{
+
+		}
+		else // we have chosen defense
+		{
+
+		}
+		CombatBuffer.Add(currentAttack);
 
 	}
 	#region Countdown
@@ -430,7 +469,7 @@ public class PlayerClass : MonoBehaviour {
 			}
 			else if(i.Ready == true)
 			{
-				//EnemyAttackSelect();  i.select
+				EnemyAttackSelect(i.Name);//  i.select
 				i.time_passed = 0.0f;
 				i.startTime = timeElapsed;
 				i.Ready = false;
@@ -484,7 +523,7 @@ public class PlayerClass : MonoBehaviour {
 	int getMod()
 	{
 		int rand = Random.Range(0, 10);
-		if(rand <2)
+		if(rand <1)
 		{
 			return 0;
 		}
@@ -501,31 +540,62 @@ public class PlayerClass : MonoBehaviour {
 		int damage = 0;
 		if(current_data.type_of_move == "Attack")
 		{
-			Combat_Character temp = null;
-			foreach (Combat_Character c in Characters)
+			int A = 0;// = temp.Power;
+			int D = 0;// = temp2.Defense;
+			if(current_data.target_group == "enemies")
 			{
-				if (c.Name == current_data.attacker)
+				Combat_Character temp = null;
+				foreach (Combat_Character c in Characters)
 				{
-					temp = c;
+					if (c.Name == current_data.attacker)
+					{
+						A = c.Power;
+						//temp = c;
+					}
+				}
+
+				
+				Enemy_Character temp2 = null;
+				foreach (Enemy_Character c in Enemies)
+				{
+					if (c.Name == current_data.defender)
+					{
+						D = c.Defense;
+						//temp2 = c;
+					}
+				}
+			}
+			else
+			{
+				//Combat_Character temp2 = null;
+				foreach (Combat_Character c in Characters)
+				{
+					if (c.Name == current_data.defender)
+					{
+						D = c.Defense;
+						//temp2 = c;
+					}
+				}
+				
+				
+				//Enemy_Character temp = null;
+				foreach (Enemy_Character c in Enemies)
+				{
+					if (c.Name == current_data.attacker)
+					{
+						A = c.Power;
+							//temp = c;
+					}
 				}
 			}
 
-			int A = temp.Power;
-			Enemy_Character temp2 = null;
-			foreach (Enemy_Character c in Enemies)
-			{
-				if (c.Name == current_data.defender)
-				{
-					temp2 = c;
-				}
-			}
-			int D = temp2.Defense;
+
 			int Z = Random.Range(225, 255);
 			if ( D ==0)
 				D=1;
 
 			int mod = getMod();
-
+			//Debug.Log ("A * A = " + A + " & D = " + D + " & mod = " + mod);
 			damage = (((((A * A) / D) * Z) / 255) * mod);
 		}
 		return damage;
@@ -551,10 +621,20 @@ public class PlayerClass : MonoBehaviour {
 				{
 					if(current_data.defender==c.Name)
 					{
-						Debug.Log("poopy");
-						GameObject go = GameObject.Find(current_data.defender + "(Clone)");
+						//Debug.Log("poopy");
+						GameObject go = GameObject.Find(current_data.defender + " Character(Clone)");
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
 						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
+						Debug.Log("health = " + c.Health + " & damage = " + damage);
+						c.Health = c.Health - damage;
+						Debug.Log("c.health = " + c.Health);
+						if(c.Health<=0)
+						{
+							Characters.Remove(c);
+							Destroy(GameObject.Find(c.Name + " Character(Clone)"));
+							Destroy(GameObject.Find("Small " + c.Name + " Character(Clone)"));
+							break;
+						}
 					}
 				}
 			}
@@ -564,13 +644,25 @@ public class PlayerClass : MonoBehaviour {
 				{
 					if(current_data.defender==e.Name)
 					{
-						Debug.Log("poopy");
+						
+						//Debug.Log("poopy");
 						GameObject go = GameObject.Find(current_data.defender + "(Clone)");
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
 						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
+						e.Health = e.Health-damage;
+						if(e.Health<=0)
+						{
+							Enemies.Remove(e);
+							Destroy(GameObject.Find(e.Name + "(Clone)"));
+							Destroy(GameObject.Find("Small " + e.Name + " Character(Clone)"));
+							break;
+						}
 					}
+					//Debug.Log(e.Name);
 				}
 			}
+
+
 
 		//finished with this attack
 		//state = 1;
@@ -581,6 +673,10 @@ public class PlayerClass : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(Enemies.Count==0)
+		{
+			//Debug.Log("you win!");
+		}
 
 		if(CombatBuffer.Count>0)
 		{
@@ -604,7 +700,7 @@ public class PlayerClass : MonoBehaviour {
 		else if(state == 3)
 		{
 			PerformAttack();
-			Debug.Log(CombatBuffer[0].defender);
+			//Debug.Log(CombatBuffer[0].defender);
 			state = 1;
 			//Debug.Log (CombatBuffer.FirstOrDefault().attacker);//);+ " is " + CombatBuffer[1].type_of_move + " at " + CombatBuffer[1].defender);
 			CombatBuffer.Remove(CombatBuffer[0]);
