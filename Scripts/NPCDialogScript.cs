@@ -20,7 +20,7 @@ public class NPCDialogScript : MonoBehaviour {
 
 	void OnGUI()
 	{
-	  GUILayout.BeginArea(new Rect(620, 490, 400, 400));
+	  GUILayout.BeginArea(new Rect(310, 0, 400, 400));
 
 	  if(DisplayDialog && !ActivateQuest)
 	  {
