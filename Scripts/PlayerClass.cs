@@ -673,11 +673,6 @@ public class PlayerClass : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Enemies.Count==0)
-		{
-			//Debug.Log("you win!");
-		}
-
 		if(CombatBuffer.Count>0)
 		{
 			current_data = CombatBuffer [0];
@@ -687,6 +682,10 @@ public class PlayerClass : MonoBehaviour {
 		if (state == 0) {}
 		else if (state == 1)
 		{
+			if(Enemies.Count==0||Characters.Count==0)
+			{
+				Application.LoadLevel(2);
+			}
 			timer = Time.time;
 			timeElapsed += (timer-timerStart);
 			countDown ();
