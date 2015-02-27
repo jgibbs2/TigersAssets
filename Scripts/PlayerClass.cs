@@ -8,62 +8,50 @@ public class PlayerClass : MonoBehaviour {
 	class Combat_Character
 	{
 		#region Global Character Variables
-		private string _name;
-		public string Name
-		{
-			get{return _name;}
-			set{_name = value;}
-		}
-
-		private int _health;
+		public string Name;
 		public int Health;
-		/*public int Health
-		{
-			/*get{ return _health;}
-			set{
-				_health = _health - value;
-				if (_health < 0) {_health = 0;}
-			}
-		}*/
 
-		private int _power;
-		public int Power
-		{
-			get{return _power;}
-			set{_power = value;}
-		}
+		public int HP;
+		public int MP;
+		public string Element;
+		
+		public int Attack;
+		public int Defense;
+		public int Magic;
+		public int Attack_Boost;
+		public int Magic_Boost;
+		public float Speed;
 
-		private int _defense;
-		public int Defense
-		{
-			get{return _defense;}
-			set{_defense = value;}
-		}
-
-		private int _magic;
-		public int Magic
-		{
-			get{return _magic;}
-			set{_magic = value;}
-		}
-
-		private int _speed;
-		public int Speed
-		{
-			get{return _speed;}
-			set{_speed = value;}
-		}
 		#endregion
-		//make official the stuff below this.
-		//operational things
+
+		public bool down;
+		public bool defending;
 		public bool Ready;
 		public float time_passed;
 		public float startTime = 0.0f;
 
-		//bool combat_timer;
-		//ToDo: Some form of list of attacks, damages and possible targets
-
-		//make constructor that can get and set our private variables.
+		public float getSpeed()
+		{
+			if(down == true)
+			{
+				return Speed * .7f;
+			}
+			else
+			{
+				return Speed;
+			}
+		}
+		public int getDefense()
+		{
+			if(down == true)
+			{
+				return (int)(Defense*.7);
+			}
+			else
+			{
+				return Defense;
+			}
+		}
 	}
 
 	class Enemy_Character
@@ -71,15 +59,46 @@ public class PlayerClass : MonoBehaviour {
 		#region Global Character Variables
 		public string Name;
 		public int Health;
-		public int Power;
-		public int Defense;		
+		
+		public int HP;
+		public int MP;
+		public string Element;
+
+		public int Attack;
+		public int Defense;
 		public int Magic;
-		public int Speed;
+		public int Attack_Boost;
+		public int Magic_Boost;
+		public float Speed;
+		
 		#endregion
 
+		public bool down;
 		public bool Ready;
 		public float time_passed;
 		public float startTime = 0.0f;
+
+		public void knockDown()
+		{
+			this.down = true;
+			//transition to down animation
+		}
+		public void getUp()
+		{
+			this.down = false;
+			//switch to regular idle animation
+		}
+		public int getDefense()
+		{
+			if(down == true)
+			{
+				return (int)(Defense*.7);
+			}
+			else
+			{
+				return Defense;
+			}
+		}
 
 		//bool combat_timer;
 		//ToDo: Some form of list of attacks, damages and possible targets
@@ -225,22 +244,28 @@ public class PlayerClass : MonoBehaviour {
 		//Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
 		Enemy_Character Enemy = new Enemy_Character ();
 		Enemy.Name = "Enemy";
-		Enemy.Defense = 1;
-		Enemy.Power = 5;
-		Enemy.Speed = 4;
+		Enemy.Defense = 35;
+		Enemy.Attack = 40;
+		Enemy.Speed = 4.0f;
 		Enemy.Ready = false;
-		Enemy.Health = 10;
+		Enemy.Health = 100;
+		Enemy.Element = "Water";
+		Enemy.down = false;
+
 		Enemies.Add (Enemy);
 
 		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
 		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
 		Enemy_Character John = new Enemy_Character ();
 		John.Name = "John";
-		John.Defense = 2;
-		John.Power = 10;
-		John.Speed = 3;
+		John.Defense = 35;
+		John.Attack = 40;
+		John.Speed = 3.0f;
 		John.Ready = false;
-		John.Health = 10;
+		John.Health = 100;
+		John.Element = "Wind";
+		John.down = false;
+
 		Enemies.Add (John);
 
 		// enemies here ( or after )
@@ -254,37 +279,47 @@ public class PlayerClass : MonoBehaviour {
 				case "Red":
 					Combat_Character Red = new Combat_Character ();
 					Red.Name = "Red";
-					Red.Power = 3;
-					Red.Speed = 2;
-					Red.Health = 20;
+					Red.Attack = 50;//40-50-60 base
+					Red.Magic = 60;//50-60-70 base
+					Red.Defense = 30;//25-30-35 bases
+					Red.Speed = 4.0f;
+					Red.Health = 100;
 					Red.Ready = false;
+					Red.down = false;
+					Red.Element = "Fire";
 					Characters.Add (Red);
 					break;
 				case "Orange":
 					Combat_Character Orange = new Combat_Character ();
 					Orange.Name = "Orange";
-					Orange.Power = 3;
-					Orange.Speed = 3;
-					Orange.Health = 20;
-					Orange.Magic = 2;
+					Orange.Attack = 60;//40-50-60 base
+					Orange.Magic = 45;//45?-60-70 base
+					Orange.Defense = 35;//25-30-35 bases
+					Orange.Speed = 5.0f;
+					Orange.Health = 100;
 					Orange.Ready = false;
+					Orange.down = false;
+					Orange.Element = "None";
 					Characters.Add (Orange);
 					break;
 				case "Yellow":
 					Combat_Character Yellow = new Combat_Character ();
 					Yellow.Name = "Yellow";
-					Yellow.Speed = 4;
-					Yellow.Power = 2;
-					Yellow.Magic = 4;
-					Yellow.Health = 20;
+					Yellow.Attack = 40;//40-50-60 base
+					Yellow.Magic = 70;//45?-60-70 base
+					Yellow.Defense = 35;//25-30-35 bases
+					Yellow.Speed = 3.0f;
+					Yellow.Health = 100;
 					Yellow.Ready = false;
+					Yellow.down = false;
+					Yellow.Element = "Water";
 					Characters.Add (Yellow);
 					break;
 				case "Green":
 					Combat_Character Green = new Combat_Character ();
 					Green.Name = "Green";
-					Green.Speed = 5;
-					Green.Power = 2;
+					Green.Speed = 5.0f;
+					Green.Attack = 2;
 					Green.Magic = 4;
 					Green.Health = 20;
 					Green.Ready = false;
@@ -293,9 +328,9 @@ public class PlayerClass : MonoBehaviour {
 				case "Blue":
 					Combat_Character Blue = new Combat_Character ();
 					Blue.Name = "Blue";
-					Blue.Speed = 6;
+					Blue.Speed = 6.0f;
 					Blue.Ready = false;
-					Blue.Power = 2;
+					Blue.Attack = 2;
 					Blue.Magic = 4;
 					Blue.Health = 20;
 					Characters.Add (Blue);
@@ -303,8 +338,8 @@ public class PlayerClass : MonoBehaviour {
 				case "Pink":
 					Combat_Character Pink = new Combat_Character ();
 					Pink.Name = "Pink";
-					Pink.Speed = 7;
-					Pink.Power = 2;
+					Pink.Speed = 7.0f;
+					Pink.Attack = 2;
 					Pink.Magic = 4;
 					Pink.Health = 20;
 					Pink.Ready = false;
@@ -534,13 +569,108 @@ public class PlayerClass : MonoBehaviour {
 		else
 			return 1;
 	}
+	float Effective(string alpha_E, string beta_E)//water -> fire -> wind -> elec
+	{
+		if (alpha_E == "None" || beta_E == "None") {
+						return 1.0f;
+				} else if (alpha_E == "Fire") {
+						if (beta_E == "Wind") {
+								return 1.4f;
+						} else if (beta_E == "Water") {
+								return .65f;
+						} else {
+								return 1.0f;
+						}
+				} else if (alpha_E == "Water") {
+						if (beta_E == "Fire") {//if effective
+								return 1.4f;
+						} else if (beta_E == "Elec") {//if not
+								return .65f;
+						} else {
+								return 1.0f;
+						}
+				} else if (alpha_E == "Elec") {
+						if (beta_E == "Water") {//if effective
+								return 1.4f;
+						} else if (beta_E == "Wind") {//if not
+								return .65f;
+						} else {
+								return 1.0f;
+						}
+				} else if (alpha_E == "Wind") {
+						if (beta_E == "Elec") {//if effective
+								return 1.4f;
+						} else if (beta_E == "Fire") {//if not
+								return .65f;
+						} else {
+								return 1.0f;
+						}
+				} else
+						return 1.0f;
+	}
 
-	int CalculateDamage()
+	int CalculateMagicDamage ()
+	{
+		int A = 0, A_boost = 0, D = 0, D_boost = 0;;
+		string alpha_E = "", beta_E = "";//elements of each character.
+
+		if(current_data.target_group == "enemies")
+		{
+			Combat_Character temp = null;
+			foreach (Combat_Character c in Characters)
+			{
+				if (c.Name == current_data.attacker)
+				{
+					A = c.Magic;
+					A_boost = c.Attack_Boost;
+				}
+			}
+			Enemy_Character temp2 = null;
+			foreach (Enemy_Character c in Enemies)
+			{
+				if (c.Name == current_data.defender)
+				{
+					D = c.getDefense();
+					//temp2 = c;
+				}
+			}
+		}
+		else
+		{
+			//Combat_Character temp2 = null;
+			foreach (Combat_Character c in Characters)
+			{
+				if (c.Name == current_data.defender)
+				{
+					D = c.getDefense();
+					//temp2 = c;
+				}
+			}
+			//Enemy_Character temp = null;
+			foreach (Enemy_Character c in Enemies)
+			{
+				if (c.Name == current_data.attacker)
+				{
+					A = c.Attack;
+					//temp = c;
+				}
+			}
+		}
+		int Z = Random.Range(204, 255);
+		int mod = getMod();
+		float E = Effective(alpha_E, beta_E);
+		float damage  = (A*E*Z)/255 - D;
+		//if the magic type is effective or ineffective, we want to multiply the A.
+		//int damage = A - 
+		return (int)damage;
+	}
+
+	int CalculateAttackDamage()
 	{
 		int damage = 0;
 		if(current_data.type_of_move == "Attack")
 		{
-			int A = 0;// = temp.Power;
+			int A = 0;// = temp.Attack;
 			int D = 0;// = temp2.Defense;
 			if(current_data.target_group == "enemies")
 			{
@@ -549,7 +679,7 @@ public class PlayerClass : MonoBehaviour {
 				{
 					if (c.Name == current_data.attacker)
 					{
-						A = c.Power;
+						A = c.Attack;
 						//temp = c;
 					}
 				}
@@ -583,20 +713,22 @@ public class PlayerClass : MonoBehaviour {
 				{
 					if (c.Name == current_data.attacker)
 					{
-						A = c.Power;
+						A = c.Attack;
 							//temp = c;
 					}
 				}
 			}
 
 
-			int Z = Random.Range(225, 255);
+			int Z = Random.Range(204, 255);
 			if ( D ==0)
 				D=1;
 
 			int mod = getMod();
 			//Debug.Log ("A * A = " + A + " & D = " + D + " & mod = " + mod);
-			damage = (((((A * A) / D) * Z) / 255) * mod);
+			damage  = ((A*mod*Z)/255) - D;//= (((((A * A) / D) * Z) / 255) * mod);
+			if(damage<0)
+				damage = 0;
 		}
 		return damage;
 	}
@@ -612,7 +744,16 @@ public class PlayerClass : MonoBehaviour {
 			// wait till done
 
 		//calculate damage here
-		int damage = CalculateDamage ();
+		int damage = 0;
+		if(current_data.type_of_move == "Attack")
+		{
+			damage = CalculateAttackDamage ();
+		}
+		else if(current_data.type_of_move == "Magic")
+		{
+			damage = CalculateMagicDamage();
+		}
+		
 
 		//display of damage dealt
 		if( current_data.target_group== "allies")
@@ -684,7 +825,7 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(Enemies.Count==0||Characters.Count==0)
 			{
-				Application.LoadLevel(2);
+				Application.LoadLevel(1);
 			}
 			timer = Time.time;
 			timeElapsed += (timer-timerStart);
