@@ -146,9 +146,7 @@ public class CharacterSelect : MonoBehaviour {
 			done = true;
 		}
 	}
-	void OnGUI() {
-		GUI.Label(new Rect(0, 0, 2, 2), "Hello Frat");
-	}
+
 	// Update is called once per frame
 	void Update () {
 		if ( done == false)
