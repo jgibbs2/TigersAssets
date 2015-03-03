@@ -34,11 +34,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(down == true)
 			{
-				return Speed * .7f;
+				return Speed * 1.4f;
 			}
 			else if(defending == true)
 			{
-				return Speed * 1.4f;
+				return Speed * .7f;
 			}
 			else
 			{
@@ -53,7 +53,7 @@ public class PlayerClass : MonoBehaviour {
 			}
 			else if(defending == true)
 			{
-				return (int)(Defense*2.0);
+				return (int)(Defense*1.4);
 			}
 			else
 			{
@@ -146,6 +146,8 @@ public class PlayerClass : MonoBehaviour {
 	float timer = 0.0f;//Time.time;
 
 	string readyClicked;
+	string temp_var;
+
 
 
 	//int speed = 5;
@@ -202,6 +204,7 @@ public class PlayerClass : MonoBehaviour {
 				if(c.Name+ " Character(Clone)" == name)
 				{
 					GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Pause";
+					temp_var = c.Name;
 				}
 			}
 			if(Input.GetMouseButtonDown(0)&&(name=="Attack"||name=="Magic"))
@@ -214,10 +217,10 @@ public class PlayerClass : MonoBehaviour {
 				state = 1;
 				currentAttack.type_of_move = "Defend";
 				currentAttack.target_group = "allies";
-				currentAttack.attacker = name;
+				currentAttack.attacker = readyClicked;
 				CombatBuffer.Add(currentAttack);
 				Destroy(GameObject.Find("Attack Select(Clone)"));
-//***********				GameObject.Find(name).GetComponent<CharacterAnimationScript>().action = "Resume";
+				GameObject.Find(readyClicked + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Resume";
 			}
 
 
@@ -561,18 +564,18 @@ public class PlayerClass : MonoBehaviour {
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
 				i.time_passed=(t-i.startTime);
-				if(Mathf.Floor(i.time_passed)>=i.Speed)
+				if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
 					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
 					//message = "Ready";
 					i.Ready = true;
 					i.down = false;
-					GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
+					//GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 					
 				}
 				else
 				{
-					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, (-3.5f+((i.time_passed*7)/i.Speed)), 0.0f);
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, (-3.5f+((i.time_passed*7)/i.getSpeed())), 0.0f);
 					//message = Mathf.Floor(i.time_passed).ToString();
 				}
 				//GameObject.Find (i.Name + " Text").GetComponent<TextMesh>().text= message;
@@ -583,6 +586,7 @@ public class PlayerClass : MonoBehaviour {
 				i.defending = false;
 
 				state = 2;
+				//temp_var = i.Name;
 				readyClicked = i.Name;
 				i.time_passed = 0.0f;
 				i.startTime = timeElapsed;
@@ -754,6 +758,8 @@ public class PlayerClass : MonoBehaviour {
 				{
 					D = c.getDefense();
 					beta_E = c.Element;
+					defending = c.defending;
+					Debug.Log(defending);
 					//temp2 = c;
 
 					foreach (Enemy_Character e in Enemies)
@@ -762,7 +768,7 @@ public class PlayerClass : MonoBehaviour {
 						{
 							A = e.Magic;
 							alpha_E = e.Element;
-							defending = e.defending;
+
 
 							E = Effective(alpha_E, beta_E, defending);
 							if(E>1.0f)
@@ -770,6 +776,7 @@ public class PlayerClass : MonoBehaviour {
 								c.down = true;
 								GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 							}
+
 						}
 					}
 				}
@@ -777,7 +784,13 @@ public class PlayerClass : MonoBehaviour {
 		}
 		int Z = Random.Range(204, 255);
 		//int mod = getMod();
-		float damage = (A*E*Z)/255; //- D;
+		Debug.Log ("A = " + A + ", E = " + E);
+
+		float damage = (A*E*Z)/255 - D;
+		if(damage <0)
+		{
+			damage = 0;
+		}
 		//if the magic type is effective or ineffective, we want to multiply the A.
 		//int damage = A - 
 		return (int)damage;
@@ -856,7 +869,9 @@ public class PlayerClass : MonoBehaviour {
 			//Debug.Log ("A * A = " + A + " & D = " + D + " & mod = " + mod);
 			damage  = ((A*mod*Z)/255) - D;//= (((((A * A) / D) * Z) / 255) * mod);
 			if(damage<0)
+			{
 				damage = 0;
+			}
 		}
 		return damage;
 	}
@@ -892,11 +907,15 @@ public class PlayerClass : MonoBehaviour {
 		}
 		else if(current_data.type_of_move == "Defend")
 		{
+			//Debug.Log("hitting");
 			foreach(Combat_Character c in Characters)
 			{
+				Debug.Log(c.Name + " == " + current_data.attacker);
 				if(c.Name == current_data.attacker)
 				{
+					Debug.Log("things");
 					c.defending = true;
+					return;
 				}
 			}
 		}
