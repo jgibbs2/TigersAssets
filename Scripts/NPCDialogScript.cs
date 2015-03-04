@@ -7,6 +7,7 @@ public class NPCDialogScript : MonoBehaviour {
 	public string[] Questions;
 	bool DisplayDialog = false;
 	bool ActivateQuest = false;
+	bool inTrigger = false;
 
 	// Use this for initialization
 	void Start () 
@@ -16,6 +17,8 @@ public class NPCDialogScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+	  if (inTrigger && Input.GetKeyDown(KeyCode.Space)) 
+	    DisplayDialog = true;	  
 	}
 
 	void OnGUI()
@@ -50,11 +53,12 @@ public class NPCDialogScript : MonoBehaviour {
 
 	void OnTriggerEnter2D()
 	{
-      DisplayDialog = true;
+	  inTrigger = true;
 	}
 
 	void OnTriggerExit2D()
 	{
+	  inTrigger = false;
 	  DisplayDialog = false;
 	}
 }

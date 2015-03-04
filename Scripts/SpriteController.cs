@@ -22,6 +22,12 @@ public class SpriteController : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D col) 
 	{
 		if (col.gameObject.tag == "Enemy")
-		  Application.LoadLevel(0);
+		  Application.LoadLevel("TestScene");
+
+		if (col.gameObject.tag == "House")
+			Application.LoadLevel("Overworld");
+		
+		if (col.gameObject.tag == "Back")
+			Application.LoadLevel("Parade");
 	}
 }

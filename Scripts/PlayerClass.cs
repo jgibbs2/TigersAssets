@@ -987,7 +987,7 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(Enemies.Count==0||Characters.Count==0)
 			{
-				Application.LoadLevel(1);
+				Application.LoadLevel("Parade");
 			}
 			timer = Time.time;
 			timeElapsed += (timer-timerStart);
