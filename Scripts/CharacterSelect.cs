@@ -30,7 +30,7 @@ public class CharacterSelect : MonoBehaviour {
 		if (numSelected < 3) // ensure that we haven't already selected our three characters.
 		{
 			GameObject.Find(color + " Character").GetComponent<SpriteRenderer>().enabled = false;
-			GameObject.Find(color + " Character").transform.collider2D.enabled = false;//.GetComponent<t>().enabled = false;
+			GameObject.Find(color + " Character").transform.GetComponent<Collider2D>().enabled = false;//.GetComponent<t>().enabled = false;
 
 			if(characterList.Contains("Empty"))
 			{
@@ -128,7 +128,7 @@ public class CharacterSelect : MonoBehaviour {
 
 			Destroy(GameObject.Find("Small " + color + " Character(Clone)"));
 			GameObject.Find(color + " Character").GetComponent<SpriteRenderer>().enabled = true;
-			GameObject.Find(color + " Character").transform.collider2D.enabled = true;
+			GameObject.Find(color + " Character").transform.GetComponent<Collider2D>().enabled = true;
 			numSelected--;
 		}
 	}

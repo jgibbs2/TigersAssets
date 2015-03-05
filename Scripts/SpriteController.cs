@@ -13,10 +13,13 @@ public class SpriteController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		float hor = Input.GetAxis ("Horizontal");
+		float ver = Input.GetAxis ("Vertical");
+		Debug.Log ("hor = " + hor + ", ver = " + ver);
 		float h = Input.GetAxis("Horizontal") * speed;
 		float v = Input.GetAxis("Vertical") * speed;
-		transform.Translate(Vector2.right * h * Time.deltaTime);
-		transform.Translate(Vector2.up * v * Time.deltaTime);
+			transform.Translate(Vector2.right * h * Time.deltaTime);
+			transform.Translate(Vector2.up * v * Time.deltaTime);
 	}
 
 	void OnCollisionEnter2D(Collision2D col) 
