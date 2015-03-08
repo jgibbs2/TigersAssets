@@ -32,5 +32,20 @@ public class SpriteController : MonoBehaviour
 		
 		if (col.gameObject.tag == "Back")
 			Application.LoadLevel("Parade");
+
+		if (col.gameObject.tag == "Orange")
+			Application.LoadLevel("Orange");
+
+		if (col.gameObject.tag == "Yellow")
+			Application.LoadLevel("Yellow");
+
+		if (col.gameObject.tag == "Green")
+			Application.LoadLevel("Green");
+
+		if (col.gameObject.tag == "Blue")
+			Application.LoadLevel("Blue");
+
+		if (col.gameObject.tag == "Indigo")
+			Application.LoadLevel("Indigo");
 	}
 }
