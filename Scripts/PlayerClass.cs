@@ -759,7 +759,7 @@ public class PlayerClass : MonoBehaviour {
 					D = c.getDefense();
 					beta_E = c.Element;
 					defending = c.defending;
-					Debug.Log(defending);
+					//Debug.Log(defending);
 					//temp2 = c;
 
 					foreach (Enemy_Character e in Enemies)
@@ -774,6 +774,7 @@ public class PlayerClass : MonoBehaviour {
 							if(E>1.0f)
 							{
 								c.down = true;
+								Debug.Log ("down");
 								GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 							}
 
@@ -784,7 +785,7 @@ public class PlayerClass : MonoBehaviour {
 		}
 		int Z = Random.Range(204, 255);
 		//int mod = getMod();
-		Debug.Log ("A = " + A + ", E = " + E);
+		//Debug.Log ("A = " + A + ", E = " + E);
 
 		float damage = (A*E*Z)/255 - D;
 		if(damage <0)
@@ -848,6 +849,7 @@ public class PlayerClass : MonoBehaviour {
 								if(mod>1)
 								{
 									c.down = true;
+									Debug.Log("down");
 									GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 								}
 							}
@@ -910,10 +912,10 @@ public class PlayerClass : MonoBehaviour {
 			//Debug.Log("hitting");
 			foreach(Combat_Character c in Characters)
 			{
-				Debug.Log(c.Name + " == " + current_data.attacker);
+				//Debug.Log(c.Name + " == " + current_data.attacker);
 				if(c.Name == current_data.attacker)
 				{
-					Debug.Log("things");
+					//Debug.Log("things");
 					c.defending = true;
 					return;
 				}

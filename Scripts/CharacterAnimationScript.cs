@@ -19,7 +19,7 @@ public class CharacterAnimationScript : MonoBehaviour {
 		//Debug.Log (animator.speed);
 		//set = 0;
 
-
+		//Debug.Log (action);
 		if(action == "Attack")
 		{
 			animator.SetInteger("State", 1);
@@ -37,7 +37,9 @@ public class CharacterAnimationScript : MonoBehaviour {
 		}
 		else if(action == "Down")
 		{
+			Debug.Log(animator.GetInteger("State"));
 			animator.SetInteger("State", 4);
+			Debug.Log(animator.GetInteger("State"));
 			action = "";
 		}
 		else if(action == "Up")
