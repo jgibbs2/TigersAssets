@@ -37,9 +37,7 @@ public class CharacterAnimationScript : MonoBehaviour {
 		}
 		else if(action == "Down")
 		{
-			Debug.Log(animator.GetInteger("State"));
 			animator.SetInteger("State", 4);
-			Debug.Log(animator.GetInteger("State"));
 			action = "";
 		}
 		else if(action == "Up")

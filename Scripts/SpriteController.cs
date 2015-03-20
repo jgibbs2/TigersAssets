@@ -8,6 +8,7 @@ public class SpriteController : MonoBehaviour
 	public Texture2D down;
 	public Texture2D left;
 	public Texture2D right;
+	public Texture2D x;
 
 	// Use this for initialization
 	void Start () 
@@ -32,17 +33,21 @@ public class SpriteController : MonoBehaviour
 	{
 		float h = 0;
 		float v = 0;
-		if (GUI.RepeatButton(new Rect (100, 800, 100, 100), up, GUIStyle.none)) {
+		if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
 			v = 1.0f * speed;
 		}
-		if (GUI.RepeatButton(new Rect (100, 1000, 100, 100), down, GUIStyle.none)) {
+		if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
 			v = -1.0f * speed;
 		}
-		if (GUI.RepeatButton(new Rect (0, 900, 100, 100), left, GUIStyle.none)) {
+		if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
 			h = -1.0f * speed;
 		}
-		if (GUI.RepeatButton(new Rect (200, 900, 100, 100), right, GUIStyle.none)) {
+		if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
 			h = 1.0f * speed;
+		}
+
+		if (GUI.RepeatButton(new Rect (1000, 725, 200, 200), x, GUIStyle.none)) {
+			Debug.Log("Pressed");
 		}
 		transform.Translate(Vector2.right * h * Time.deltaTime);
 		transform.Translate(Vector2.up * v * Time.deltaTime);
@@ -50,28 +55,30 @@ public class SpriteController : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D col) 
 	{
-		if (col.gameObject.tag == "Enemy")
+		string t = col.gameObject.name;
+
+		if (t.Contains("Enemy"))
 		  Application.LoadLevel("TestScene");
 
-		if (col.gameObject.tag == "House")
+		if (t == "House")
 			Application.LoadLevel("Overworld");
-		
-		if (col.gameObject.tag == "Back")
+
+		if (t.Contains("Exit"))
 			Application.LoadLevel("Parade");
 
-		if (col.gameObject.tag == "Orange")
+		if (t == "Orange_Tent_Collider")
 			Application.LoadLevel("Orange");
 
-		if (col.gameObject.tag == "Yellow")
+		if (t == "Yellow_Tent_Collider")
 			Application.LoadLevel("Yellow");
 
-		if (col.gameObject.tag == "Green")
+		if (t == "Green_Tent_Collider")
 			Application.LoadLevel("Green");
 
-		if (col.gameObject.tag == "Blue")
+		if (t == "Blue_Tent_Collider")
 			Application.LoadLevel("Blue");
 
-		if (col.gameObject.tag == "Indigo")
+		if (t == "Indigo_Tent_Collider")
 			Application.LoadLevel("Indigo");
 	}
 }
