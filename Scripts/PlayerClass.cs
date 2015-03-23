@@ -203,7 +203,7 @@ public class PlayerClass : MonoBehaviour {
 			{
 				if(c.Name+ " Character(Clone)" == name)
 				{
-					GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Pause";
+					//GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Pause";
 					temp_var = c.Name;
 				}
 			}
@@ -220,7 +220,7 @@ public class PlayerClass : MonoBehaviour {
 				currentAttack.attacker = readyClicked;
 				CombatBuffer.Add(currentAttack);
 				Destroy(GameObject.Find("Attack Select(Clone)"));
-				GameObject.Find(readyClicked + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Resume";
+				GameObject.Find(temp_var + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Defend";
 			}
 
 
@@ -351,31 +351,40 @@ public class PlayerClass : MonoBehaviour {
 				case "Green":
 					Combat_Character Green = new Combat_Character ();
 					Green.Name = "Green";
-					Green.Speed = 5.0f;
-					Green.Attack = 2;
-					Green.Magic = 4;
-					Green.Health = 20;
+					Green.Attack = 40;//40-50-60 base
+					Green.Magic = 70;//45?-60-70 base
+					Green.Defense = 30;//25-30-35 bases
+					Green.Speed = 3.0f;
+					Green.Health = 100;
 					Green.Ready = false;
+					Green.down = false;
+					Green.Element = "Wind";
 					Characters.Add (Green);
 					break;
 				case "Blue":
 					Combat_Character Blue = new Combat_Character ();
 					Blue.Name = "Blue";
-					Blue.Speed = 6.0f;
+					Blue.Attack = 40;//40-50-60 base
+					Blue.Magic = 70;//45?-60-70 base
+					Blue.Defense = 30;//25-30-35 bases
+					Blue.Speed = 3.0f;
+					Blue.Health = 100;
 					Blue.Ready = false;
-					Blue.Attack = 2;
-					Blue.Magic = 4;
-					Blue.Health = 20;
+					Blue.down = false;
+					Blue.Element = "Elec";
 					Characters.Add (Blue);
 					break;
 				case "Pink":
 					Combat_Character Pink = new Combat_Character ();
 					Pink.Name = "Pink";
-					Pink.Speed = 7.0f;
-					Pink.Attack = 2;
-					Pink.Magic = 4;
-					Pink.Health = 20;
+					Pink.Attack = 40;//40-50-60 base
+					Pink.Magic = 70;//45?-60-70 base
+					Pink.Defense = 30;//25-30-35 bases
+					Pink.Speed = 3.0f;
+					Pink.Health = 100;
 					Pink.Ready = false;
+					Pink.down = false;
+					Pink.Element = "None";
 					Characters.Add (Pink);
 					break;
 			}
