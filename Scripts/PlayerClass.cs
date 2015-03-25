@@ -287,9 +287,9 @@ public class PlayerClass : MonoBehaviour {
 
 		Enemies.Add (Enemy);
 
-		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
-		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
-		/*Enemy_Character John = new Enemy_Character ();
+		Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
+		Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
+		Enemy_Character John = new Enemy_Character ();
 		John.Name = "John";
 		John.Defense = 35;
 		John.Attack = 40;
@@ -299,7 +299,7 @@ public class PlayerClass : MonoBehaviour {
 		John.Element = "Wind";
 		John.down = false;
 
-		Enemies.Add (John);*/
+		Enemies.Add (John);
 
 		// enemies here ( or after )
 		foreach (string character in list_of_characters) {
@@ -338,7 +338,7 @@ public class PlayerClass : MonoBehaviour {
 				case "Yellow":
 					Combat_Character Yellow = new Combat_Character ();
 					Yellow.Name = "Yellow";
-					Yellow.Attack = 40;//40-50-60 base
+					Yellow.Attack = 50;//40-50-60 base
 					Yellow.Magic = 70;//45?-60-70 base
 					Yellow.Defense = 35;//25-30-35 bases
 					Yellow.Speed = 3.0f;
@@ -351,7 +351,7 @@ public class PlayerClass : MonoBehaviour {
 				case "Green":
 					Combat_Character Green = new Combat_Character ();
 					Green.Name = "Green";
-					Green.Attack = 40;//40-50-60 base
+					Green.Attack = 50;//40-50-60 base
 					Green.Magic = 70;//45?-60-70 base
 					Green.Defense = 30;//25-30-35 bases
 					Green.Speed = 3.0f;
@@ -364,7 +364,7 @@ public class PlayerClass : MonoBehaviour {
 				case "Blue":
 					Combat_Character Blue = new Combat_Character ();
 					Blue.Name = "Blue";
-					Blue.Attack = 40;//40-50-60 base
+					Blue.Attack = 50;//40-50-60 base
 					Blue.Magic = 70;//45?-60-70 base
 					Blue.Defense = 30;//25-30-35 bases
 					Blue.Speed = 3.0f;
@@ -377,7 +377,7 @@ public class PlayerClass : MonoBehaviour {
 				case "Pink":
 					Combat_Character Pink = new Combat_Character ();
 					Pink.Name = "Pink";
-					Pink.Attack = 40;//40-50-60 base
+					Pink.Attack = 50;//40-50-60 base
 					Pink.Magic = 70;//45?-60-70 base
 					Pink.Defense = 30;//25-30-35 bases
 					Pink.Speed = 3.0f;
@@ -490,7 +490,7 @@ public class PlayerClass : MonoBehaviour {
 
 	void EnemyAttackSelect(string enemyName)
 	{
-		int attack_choice = 1;//Random.Range(0, 2);
+		int attack_choice = Random.Range(0, 2);
 		if(attack_choice == 0)//if we choose attack
 		{
 			int thing = Random.Range(0, Characters.Count);
@@ -619,10 +619,10 @@ public class PlayerClass : MonoBehaviour {
 		{
 			return 0;
 		}
-		else if (rand >7)
+		/*else if (rand >7)
 		{
 			return 2;
-		}
+		}*/
 		else
 			return 1;
 	}
