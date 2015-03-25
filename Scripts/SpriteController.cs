@@ -9,6 +9,7 @@ public class SpriteController : MonoBehaviour
 	public Texture2D left;
 	public Texture2D right;
 	public Texture2D x;
+	public bool xButtonPressed = false;
 
 	// Use this for initialization
 	void Start () 
@@ -45,9 +46,8 @@ public class SpriteController : MonoBehaviour
 		if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
 			h = 1.0f * speed;
 		}
-
 		if (GUI.RepeatButton(new Rect (1000, 725, 200, 200), x, GUIStyle.none)) {
-			Debug.Log("Pressed");
+			xButtonPressed = true;
 		}
 		transform.Translate(Vector2.right * h * Time.deltaTime);
 		transform.Translate(Vector2.up * v * Time.deltaTime);

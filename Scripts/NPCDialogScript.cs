@@ -17,7 +17,7 @@ public class NPCDialogScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-	  if (inTrigger && Input.GetKeyDown(KeyCode.Space)) 
+	  if (inTrigger && GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed) 
 	    DisplayDialog = true;	  
 	}
 
@@ -45,20 +45,21 @@ public class NPCDialogScript : MonoBehaviour {
 	    GUILayout.Label(Questions[2]);
 
 		if (GUILayout.Button(answerButtons[2]))
-				DisplayDialog = false;
+		  DisplayDialog = false;
 	  }
 
 	  GUILayout.EndArea();
 	}
 
-	void OnTriggerEnter2D()
+	void OnTriggerEnter2D(Collider2D col)
 	{
 	  inTrigger = true;
 	}
 
-	void OnTriggerExit2D()
+	void OnTriggerExit2D(Collider2D col)
 	{
-	  inTrigger = false;
-	  DisplayDialog = false;
+		inTrigger = false;
+		DisplayDialog = false;
+	    GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 	}
 }
