@@ -30,6 +30,18 @@ public class PlayerClass : MonoBehaviour {
 		public float time_passed;
 		public float startTime = 0.0f;
 
+		public void setHP(int h)
+		{
+			if((HP - h) < 0)
+			{
+				HP = 0;
+			}
+			else
+			{
+				HP -= h;
+			}
+		}
+
 		public float getSpeed()
 		{
 			if(down == true)
@@ -287,7 +299,7 @@ public class PlayerClass : MonoBehaviour {
 
 		Enemies.Add (Enemy);
 
-		Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
+		/*Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
 		Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
 		Enemy_Character John = new Enemy_Character ();
 		John.Name = "John";
@@ -299,7 +311,7 @@ public class PlayerClass : MonoBehaviour {
 		John.Element = "Wind";
 		John.down = false;
 
-		Enemies.Add (John);
+		Enemies.Add (John);*/
 
 		// enemies here ( or after )
 		foreach (string character in list_of_characters) {
@@ -317,6 +329,7 @@ public class PlayerClass : MonoBehaviour {
 					Red.Defense = 30;//25-30-35 bases
 					Red.Speed = 4.0f;
 					Red.Health = 100;
+					Red.HP = Red.Health;
 					Red.Ready = false;
 					Red.down = false;
 					Red.Element = "Fire";
@@ -943,9 +956,11 @@ public class PlayerClass : MonoBehaviour {
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
 						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
 						//Debug.Log("health = " + c.Health + " & damage = " + damage);
-						c.Health = c.Health - damage;
+						GameObject.Find ("Red").GetComponent<HealthSprite>().HP = c.Health;
+						GameObject.Find ("Red").GetComponent<HealthSprite>().LoseHealth(damage);
+						c.setHP(damage);
 						//Debug.Log("c.health = " + c.Health);
-						if(c.Health<=0)
+						if(c.HP<=0)
 						{
 							Characters.Remove(c);
 							Destroy(GameObject.Find(c.Name + " Character(Clone)"));
