@@ -17,8 +17,8 @@ public class NPCDialogScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-	  if (inTrigger && GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed) 
-	    DisplayDialog = true;	  
+	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))) 
+	    DisplayDialog = true;
 	}
 
 	void OnGUI()
