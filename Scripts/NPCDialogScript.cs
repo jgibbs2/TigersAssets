@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NPCDialogScript : MonoBehaviour {
+public class NPCDialogScript : MonoBehaviour
+{
 
 	public string[] answerButtons;
 	public string[] Questions;
 	bool DisplayDialog = false;
 	bool ActivateQuest = false;
-	bool inTrigger = false;
+	public bool inTrigger = false;
 
 	// Use this for initialization
 	void Start () 
