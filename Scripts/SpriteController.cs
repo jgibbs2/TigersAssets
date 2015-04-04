@@ -59,26 +59,39 @@ public class SpriteController : MonoBehaviour
 
 		if (t.Contains("Enemy"))
 		  Application.LoadLevel("TestScene");
+		
 
 		if (t == "House")
-			Application.LoadLevel("Overworld");
+			Application.LoadLevel ("Overworld");
+		
 
-		if (t.Contains("Exit"))
-			Application.LoadLevel("Parade");
+		if (t.Contains ("Exit")) {
+			Application.LoadLevel ("Parade");
+		}
 
-		if (t == "Orange_Tent_Collider")
+		if (t == "Orange_Tent_Collider"){
 			Application.LoadLevel("Orange");
+			GameData.access.Save();
+		}
 
-		if (t == "Yellow_Tent_Collider")
+		if (t == "Yellow_Tent_Collider"){
 			Application.LoadLevel("Yellow");
+			GameData.access.Save();
+		}
 
-		if (t == "Green_Tent_Collider")
+		if (t == "Green_Tent_Collider"){
 			Application.LoadLevel("Green");
+			GameData.access.Save();
+		}
 
-		if (t == "Blue_Tent_Collider")
+		if (t == "Blue_Tent_Collider"){
 			Application.LoadLevel("Blue");
+			GameData.access.Save();
+		}
 
-		if (t == "Indigo_Tent_Collider")
+		if (t == "Indigo_Tent_Collider"){
 			Application.LoadLevel("Indigo");
+			GameData.access.Save();
+		}
 	}
 }
