@@ -336,19 +336,69 @@ public class PlayerClass : MonoBehaviour {
 					Characters.Add (Red);
 					break;
 				case "Orange":
-					Characters.Add (initCharacter("Orange", 60 , 45, 35, 5.0f, 100, false, false, "None"));
+					Combat_Character Orange = new Combat_Character ();
+					Orange.Name = "Orange";
+					Orange.Attack = 60;//40-50-60 base
+					Orange.Magic = 45;//45?-60-70 base
+					Orange.Defense = 35;//25-30-35 bases
+					Orange.Speed = 5.0f;
+					Orange.Health = 100;
+					Orange.Ready = false;
+					Orange.down = false;
+					Orange.Element = "None";
+					Characters.Add (Orange);
 					break;
 				case "Yellow":
-					Characters.Add (initCharacter ("Yellow", 50, 70, 35, 3.0f, 100, false, false, "Water"));
+					Combat_Character Yellow = new Combat_Character ();
+					Yellow.Name = "Yellow";
+					Yellow.Attack = 50;//40-50-60 base
+					Yellow.Magic = 70;//45?-60-70 base
+					Yellow.Defense = 35;//25-30-35 bases
+					Yellow.Speed = 3.0f;
+					Yellow.Health = 100;
+					Yellow.Ready = false;
+					Yellow.down = false;
+					Yellow.Element = "Water";
+					Characters.Add (Yellow);
 					break;
 				case "Green":
-					Characters.Add (initCharacter("Green", 50, 70, 30, 3.0f, 100, false, false, "Wind"));
+					Combat_Character Green = new Combat_Character ();
+					Green.Name = "Green";
+					Green.Attack = 50;//40-50-60 base
+					Green.Magic = 70;//45?-60-70 base
+					Green.Defense = 30;//25-30-35 bases
+					Green.Speed = 3.0f;
+					Green.Health = 100;
+					Green.Ready = false;
+					Green.down = false;
+					Green.Element = "Wind";
+					Characters.Add (Green);
 					break;
 				case "Blue":
-					Characters.Add (initCharacter("Blue", 50, 70, 30, 3.0f, 100, false, false, "Elec"));
+					Combat_Character Blue = new Combat_Character ();
+					Blue.Name = "Blue";
+					Blue.Attack = 50;//40-50-60 base
+					Blue.Magic = 70;//45?-60-70 base
+					Blue.Defense = 30;//25-30-35 bases
+					Blue.Speed = 3.0f;
+					Blue.Health = 100;
+					Blue.Ready = false;
+					Blue.down = false;
+					Blue.Element = "Elec";
+					Characters.Add (Blue);
 					break;
 				case "Pink":
-					Characters.Add (initCharacter("Pink", 50, 70, 30, 3.0f, 100, false, false, "None"));
+					Combat_Character Pink = new Combat_Character ();
+					Pink.Name = "Pink";
+					Pink.Attack = 50;//40-50-60 base
+					Pink.Magic = 70;//45?-60-70 base
+					Pink.Defense = 30;//25-30-35 bases
+					Pink.Speed = 3.0f;
+					Pink.Health = 100;
+					Pink.Ready = false;
+					Pink.down = false;
+					Pink.Element = "None";
+					Characters.Add (Pink);
 					break;
 			}
 		}
@@ -364,6 +414,7 @@ public class PlayerClass : MonoBehaviour {
 
 		foreach (Enemy_Character E in Enemies)
 		{
+			
 			if(character_number ==1)
 			{
 				location = new Vector3(5,3,0);
@@ -375,6 +426,7 @@ public class PlayerClass : MonoBehaviour {
 			else{
 				location = new Vector3 (5, -3, 0);
 			}
+
 
 			switch(E.Name)
 			{
@@ -406,59 +458,37 @@ public class PlayerClass : MonoBehaviour {
 				location = new Vector3 (-5, -3, 0);
 			}
 
-			instantiateSprite(C.Name, location);
+			switch(C.Name)
+			{
+			case "Red":
+				Instantiate(red, location, Quaternion.identity);
+				Instantiate (small_red, location, Quaternion.identity);
+				break;
+			case "Orange":
+				Instantiate(orange, location, Quaternion.identity);
+				Instantiate(small_orange, location, Quaternion.identity);
+				break;
+			case "Yellow":
+				Instantiate(yellow, location, Quaternion.identity);
+				Instantiate(small_yellow, location, Quaternion.identity);
+				break;
+			case "Green":
+				Instantiate(green, location, Quaternion.identity);
+				Instantiate(small_green, location, Quaternion.identity);
+				break;
+			case "Blue":
+				Instantiate(blue, location, Quaternion.identity);
+				Instantiate(small_blue, location, Quaternion.identity);
+				break;
+			case "Pink":
+				Instantiate(pink, location, Quaternion.identity);
+				Instantiate(small_pink, location, Quaternion.identity);
+				break;
+			}
 			character_number++;
 		}
 		state = 1;
 		Instantiate (bar, new Vector3 (0f, 0f, 0f), Quaternion.identity);
-	}
-
-	// Creates and returns an initialized Combat Character
-	Combat_Character initCharacter(string name, int attack, int magic, int defense, float speed, int health, bool ready, bool down, string element)
-	{
-		Combat_Character newCombChar = new Combat_Character ();
-		newCombChar.Name = name;
-		newCombChar.Attack = attack;//40-50-60 base
-		newCombChar.Magic = magic;//45?-60-70 base
-		newCombChar.Defense = defense;//25-30-35 bases
-		newCombChar.Speed = speed;
-		newCombChar.Health = health;
-		newCombChar.Ready = ready;
-		newCombChar.down = down;
-		newCombChar.Element = element;
-		return newCombChar;
-	}
-
-	// Take name of character and create sprite
-	void instantiateSprite(string name, Vector3 location)
-	{
-		switch(name)
-		{
-		case "Red":
-			Instantiate(red, location, Quaternion.identity);
-			Instantiate (small_red, location, Quaternion.identity);
-			break;
-		case "Orange":
-			Instantiate(orange, location, Quaternion.identity);
-			Instantiate(small_orange, location, Quaternion.identity);
-			break;
-		case "Yellow":
-			Instantiate(yellow, location, Quaternion.identity);
-			Instantiate(small_yellow, location, Quaternion.identity);
-			break;
-		case "Green":
-			Instantiate(green, location, Quaternion.identity);
-			Instantiate(small_green, location, Quaternion.identity);
-			break;
-		case "Blue":
-			Instantiate(blue, location, Quaternion.identity);
-			Instantiate(small_blue, location, Quaternion.identity);
-			break;
-		case "Pink":
-			Instantiate(pink, location, Quaternion.identity);
-			Instantiate(small_pink, location, Quaternion.identity);
-			break;
-		}
 	}
 
 	// Use this for initialization
@@ -925,10 +955,9 @@ public class PlayerClass : MonoBehaviour {
 						GameObject go = GameObject.Find(current_data.defender + " Character(Clone)");
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
 						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
-						//Debug.Log("health = " + c.Health + " & damage = " + damage)
-
-						//GameObject.Find ("Red").GetComponent<HealthSprite>().HP = c.Health;
-						//GameObject.Find ("Red").GetComponent<HealthSprite>().LoseHealth(damage);
+						//Debug.Log("health = " + c.Health + " & damage = " + damage);
+						GameObject.Find ("Red").GetComponent<HealthSprite>().HP = c.Health;
+						GameObject.Find ("Red").GetComponent<HealthSprite>().LoseHealth(damage);
 						c.setHP(damage);
 						//Debug.Log("c.health = " + c.Health);
 						if(c.HP<=0)
@@ -938,7 +967,6 @@ public class PlayerClass : MonoBehaviour {
 							Destroy(GameObject.Find("Small " + c.Name + " Character(Clone)"));
 							break;
 						}
-
 					}
 				}
 			}
