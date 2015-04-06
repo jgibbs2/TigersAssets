@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 9aeacb452a28ffb429f454d5df7c9b01
+timeCreated: 1427839970
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
@@ -15,6 +17,12 @@ MonoImporter:
   - small_orange: {fileID: 400000, guid: 18754f993c3ffa548902e3cdac3c680f, type: 2}
   - small_yellow: {fileID: 400000, guid: b8ea29496718f27408ef99daa481cdfa, type: 2}
   - small_pink: {fileID: 400000, guid: 7c9cf5ea3d05ddd4c859e99340fc4b24, type: 2}
+  - Red_Health: {fileID: 437048, guid: 589286572710ec84e9e0c3ebde2ae816, type: 2}
+  - Orange_Health: {fileID: 475790, guid: e365bf55d9984b94fbe114e9b76088e6, type: 2}
+  - Yellow_Health: {fileID: 439036, guid: 1e6c12c899147c34cbd2e30a7bf64c18, type: 2}
+  - Green_Health: {fileID: 408974, guid: 79e6081f74059b140a6a37027d178e53, type: 2}
+  - Blue_Health: {fileID: 457888, guid: 7a9e03f116315044689a458289c94386, type: 2}
+  - Pink_Health: {fileID: 493684, guid: b77d328c90b94a14e9c5d0150c599e86, type: 2}
   - enemy: {fileID: 400000, guid: 0b1cb92171260e144ab39f2670ecf110, type: 2}
   - john: {fileID: 429936, guid: adfb0fd997146204fb94a4bbe2e57ccc, type: 2}
   - small_john: {fileID: 431562, guid: a6e1094606d2c9a4689fbfbd6f4c740c, type: 2}
@@ -26,3 +34,5 @@ MonoImporter:
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -76,40 +76,54 @@ public class PlayerClass : MonoBehaviour {
 
 	class Enemy_Character
 	{
-		#region Global Character Variables
 		public string Name;
 		public int Health;
 		
 		public int HP;
 		public int MP;
 		public string Element;
-
+		
 		public int Attack;
 		public int Defense;
 		public int Magic;
 		public int Attack_Boost;
 		public int Magic_Boost;
 		public float Speed;
-		
-		#endregion
 
+		
 		public bool down;
 		public bool defending;
 		public bool Ready;
 		public float time_passed;
 		public float startTime = 0.0f;
-
-		public void knockDown()
+		
+		public void setHP(int h)
 		{
-			this.down = true;
-			//transition to down animation
+			if((HP - h) < 0)
+			{
+				HP = 0;
+			}
+			else
+			{
+				HP -= h;
+			}
 		}
-		public void getUp()
+		
+		public float getSpeed()
 		{
-			this.down = false;
-			//switch to regular idle animation
+			if(down == true)
+			{
+				return Speed * 1.4f;
+			}
+			else if(defending == true)
+			{
+				return Speed * .7f;
+			}
+			else
+			{
+				return Speed;
+			}
 		}
-				
 		public int getDefense()
 		{
 			if(down == true)
@@ -125,7 +139,6 @@ public class PlayerClass : MonoBehaviour {
 				return Defense;
 			}
 		}
-
 		//bool combat_timer;
 		//ToDo: Some form of list of attacks, damages and possible targets
 		
@@ -178,9 +191,15 @@ public class PlayerClass : MonoBehaviour {
 	public Transform small_orange;
 	public Transform small_yellow;
 	public Transform small_pink;
+	public Transform Red_Health;
+	public Transform Orange_Health;
+	public Transform Yellow_Health;
+	public Transform Green_Health;
+	public Transform Blue_Health;
+	public Transform Pink_Health;
 
-	public Transform enemy;
-	public Transform john;
+	public Transform red_enemy;
+	public Transform green_enemy;
 	public Transform small_john;
 	public Transform small_enemy;
 	public Transform attack_select;
@@ -285,33 +304,35 @@ public class PlayerClass : MonoBehaviour {
 		//This is where we need to instantiate the enemies
 		//Instantiate(enemy, new Vector3(5, 0, 0), Quaternion.identity);
 		//Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
-		Enemy_Character Enemy = new Enemy_Character ();
-		Enemy.Name = "Enemy";
-		Enemy.Defense = 35;
-		Enemy.Magic = 50;
-		Enemy.defending = false;
-		Enemy.Attack = 40;
-		Enemy.Speed = 5.0f;
-		Enemy.Ready = false;
-		Enemy.Health = 100;
-		Enemy.Element = "Water";
-		Enemy.down = false;
+		Enemy_Character Red_Enemy = new Enemy_Character ();
+		Red_Enemy.Name = "Red_Enemy";
+		Red_Enemy.Defense = 35;
+		Red_Enemy.Magic = 50;
+		Red_Enemy.defending = false;
+		Red_Enemy.Attack = 40;
+		Red_Enemy.Speed = 5.0f;
+		Red_Enemy.Ready = false;
+		Red_Enemy.Health = 100;
+		Red_Enemy.Element = "Water";
+		Red_Enemy.down = false;
 
-		Enemies.Add (Enemy);
+		Enemies.Add (Red_Enemy);
 
-		/*Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
-		Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
-		Enemy_Character John = new Enemy_Character ();
-		John.Name = "John";
-		John.Defense = 35;
-		John.Attack = 40;
-		John.Speed = 3.0f;
-		John.Ready = false;
-		John.Health = 100;
-		John.Element = "Wind";
-		John.down = false;
+		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
+		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
+		Enemy_Character Green_Enemy = new Enemy_Character ();
+		Green_Enemy.Name = "Green_Enemy";
+		Green_Enemy.Defense = 35;
+		Green_Enemy.Attack = 50;
+		Green_Enemy.Magic = 50;
+		Green_Enemy.defending = false;
+		Green_Enemy.Speed = 3.0f;
+		Green_Enemy.Ready = false;
+		Green_Enemy.Health = 100;
+		Green_Enemy.Element = "Wind";
+		Green_Enemy.down = false;
 
-		Enemies.Add (John);*/
+		Enemies.Add (Green_Enemy);
 
 		// enemies here ( or after )
 		foreach (string character in list_of_characters) {
@@ -343,6 +364,7 @@ public class PlayerClass : MonoBehaviour {
 					Orange.Defense = 35;//25-30-35 bases
 					Orange.Speed = 5.0f;
 					Orange.Health = 100;
+					Orange.HP = Orange.Health;
 					Orange.Ready = false;
 					Orange.down = false;
 					Orange.Element = "None";
@@ -356,6 +378,7 @@ public class PlayerClass : MonoBehaviour {
 					Yellow.Defense = 35;//25-30-35 bases
 					Yellow.Speed = 3.0f;
 					Yellow.Health = 100;
+					Yellow.HP = Yellow.Health;
 					Yellow.Ready = false;
 					Yellow.down = false;
 					Yellow.Element = "Water";
@@ -369,6 +392,7 @@ public class PlayerClass : MonoBehaviour {
 					Green.Defense = 30;//25-30-35 bases
 					Green.Speed = 3.0f;
 					Green.Health = 100;
+					Green.HP = Green.Health;
 					Green.Ready = false;
 					Green.down = false;
 					Green.Element = "Wind";
@@ -382,6 +406,7 @@ public class PlayerClass : MonoBehaviour {
 					Blue.Defense = 30;//25-30-35 bases
 					Blue.Speed = 3.0f;
 					Blue.Health = 100;
+					Blue.HP = Blue.Health;
 					Blue.Ready = false;
 					Blue.down = false;
 					Blue.Element = "Elec";
@@ -395,6 +420,7 @@ public class PlayerClass : MonoBehaviour {
 					Pink.Defense = 30;//25-30-35 bases
 					Pink.Speed = 3.0f;
 					Pink.Health = 100;
+					Pink.HP = Pink.Health;
 					Pink.Ready = false;
 					Pink.down = false;
 					Pink.Element = "None";
@@ -430,12 +456,12 @@ public class PlayerClass : MonoBehaviour {
 
 			switch(E.Name)
 			{
-			case "John":
-				Instantiate(john, location, Quaternion.identity);
+			case "Green_Enemy":
+				Instantiate(green_enemy, location, Quaternion.identity);
 				Instantiate(small_john, location, Quaternion.identity);
 				break;
-			case "Enemy":
-	            Instantiate(enemy, location, Quaternion.identity);
+			case "Red_Enemy":
+				Instantiate(red_enemy, location, Quaternion.identity);
 	            Instantiate(small_enemy, location, Quaternion.identity);
 	            break;
 			}
@@ -463,26 +489,32 @@ public class PlayerClass : MonoBehaviour {
 			case "Red":
 				Instantiate(red, location, Quaternion.identity);
 				Instantiate (small_red, location, Quaternion.identity);
+				Instantiate(Red_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				break;
 			case "Orange":
 				Instantiate(orange, location, Quaternion.identity);
 				Instantiate(small_orange, location, Quaternion.identity);
+				Instantiate(Orange_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				break;
 			case "Yellow":
 				Instantiate(yellow, location, Quaternion.identity);
 				Instantiate(small_yellow, location, Quaternion.identity);
+				Instantiate(Yellow_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				break;
 			case "Green":
 				Instantiate(green, location, Quaternion.identity);
 				Instantiate(small_green, location, Quaternion.identity);
+				Instantiate(Green_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				break;
 			case "Blue":
 				Instantiate(blue, location, Quaternion.identity);
 				Instantiate(small_blue, location, Quaternion.identity);
+				Instantiate(Blue_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				break;
 			case "Pink":
 				Instantiate(pink, location, Quaternion.identity);
 				Instantiate(small_pink, location, Quaternion.identity);
+				Instantiate(Pink_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				break;
 			}
 			character_number++;
@@ -503,7 +535,7 @@ public class PlayerClass : MonoBehaviour {
 
 	void EnemyAttackSelect(string enemyName)
 	{
-		int attack_choice = Random.Range(0, 2);
+		int attack_choice = 0;//Random.Range(0, 2);
 		if(attack_choice == 0)//if we choose attack
 		{
 			int thing = Random.Range(0, Characters.Count);
@@ -546,29 +578,39 @@ public class PlayerClass : MonoBehaviour {
 
 		foreach (Enemy_Character i in Enemies)
 		{
-			if(i.down == true)
-			{
-				i.down = false;
-				GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
-			}
 			//i.startTime = Time.time;
 			if(i.Ready == false)
 			{
 				//t = Time.time;
 				i.time_passed=(t-i.startTime);
-				if(Mathf.Floor(i.time_passed)>=i.Speed)
+				if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
 					GameObject.Find ("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f,3.5f, 0.0f);
 					i.Ready = true;
-
 				}
 				else
 				{
-					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*7)/i.Speed)), 0.0f);
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*7)/i.getSpeed())), 0.0f);
+					//Debug.Log("poopy");
+					if(Mathf.Floor(i.time_passed)>= i.getSpeed())
+					{
+						if(i.down == true)
+						{
+							i.down = false;
+							GameObject.Find(i.Name + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
+						}
+					}
 				}
 			}
 			else if(i.Ready == true)
 			{
+				//Debug.Log(i.down);
+				if(i.down == true)
+				{
+					//Debug.Log("poasdfh");
+					i.down = false;
+					GameObject.Find(i.Name + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
+				}
 				EnemyAttackSelect(i.Name);//  i.select
 				i.time_passed = 0.0f;
 				i.startTime = timeElapsed;
@@ -764,7 +806,9 @@ public class PlayerClass : MonoBehaviour {
 							E = Effective(alpha_E, beta_E, defending);
 							if(E>1.0f)
 							{
-								//GameObject.Find(e.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
+								e.down = true;
+								//Debug.Log(e.down);
+								GameObject.Find(e.Name + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 							}
 						}
 					}
@@ -796,7 +840,7 @@ public class PlayerClass : MonoBehaviour {
 							if(E>1.0f)
 							{
 								c.down = true;
-								Debug.Log ("down");
+								//Debug.Log ("down");
 								GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 							}
 
@@ -871,7 +915,7 @@ public class PlayerClass : MonoBehaviour {
 								if(mod>1)
 								{
 									c.down = true;
-									Debug.Log("down");
+									//Debug.Log("down");
 									GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 								}
 							}
@@ -899,16 +943,37 @@ public class PlayerClass : MonoBehaviour {
 		}
 		return damage;
 	}
+
+
+	void CreateAttackSprite()
+	{
+
+	}
+
 	void PerformAttack()
 	{
 		//CombatData data = CombatBuffer [0]; absolete, look at current_data
 		//attacking animation ( need carter here )
 
+		/*if(perform_state == 1)
+		{
+			perform_state = 2;
+		}
+		else if(perform_state == 2)
+		{
+
+		}
+		else if(perform_state == 3)
+		{
+
+		}*/
+
+
 			//wait till done
 
 		//actual animation of the attack (not too hard, but the thing should last only as long as the animation of the attack)
 
-			// wait till done
+
 
 		//calculate damage here
 		int damage = 0;
@@ -918,7 +983,12 @@ public class PlayerClass : MonoBehaviour {
 			if(current_data.target_group == "enemies")
 			{
 				GameObject.Find(current_data.attacker + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
-
+				//yield 
+			}
+			else
+			{
+				Debug.Log(current_data.attacker);
+				GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
 			}
 		}
 		else if(current_data.type_of_move == "Magic")
@@ -927,6 +997,10 @@ public class PlayerClass : MonoBehaviour {
 			if(current_data.target_group == "enemies")
 			{
 				GameObject.Find(current_data.attacker + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Magic";
+			}
+			else
+			{
+				GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Magic";
 			}
 		}
 		else if(current_data.type_of_move == "Defend")
@@ -956,8 +1030,8 @@ public class PlayerClass : MonoBehaviour {
 						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
 						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
 						//Debug.Log("health = " + c.Health + " & damage = " + damage);
-						GameObject.Find ("Red").GetComponent<HealthSprite>().HP = c.Health;
-						GameObject.Find ("Red").GetComponent<HealthSprite>().LoseHealth(damage);
+						GameObject.Find (c.Name + "_Health(Clone)").GetComponentInChildren<HealthSprite>().HP = c.Health;
+						GameObject.Find (c.Name + "_Health(Clone)").GetComponentInChildren<HealthSprite>().LoseHealth(damage);
 						c.setHP(damage);
 						//Debug.Log("c.health = " + c.Health);
 						if(c.HP<=0)
@@ -965,6 +1039,7 @@ public class PlayerClass : MonoBehaviour {
 							Characters.Remove(c);
 							Destroy(GameObject.Find(c.Name + " Character(Clone)"));
 							Destroy(GameObject.Find("Small " + c.Name + " Character(Clone)"));
+							Destroy(GameObject.Find (c.Name + "_Health(Clone)"));
 							break;
 						}
 					}

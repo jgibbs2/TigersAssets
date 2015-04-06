@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: f15a3e237804cbb43b6b3957ac610a97
+timeCreated: 1427951067
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: blueEnemy_0
+    21300002: blueEnemy_1
+    21300004: blueEnemy_2
+    21300006: blueEnemy_3
+    21300008: blueEnemy_4
+    21300010: blueEnemy_5
+    21300012: blueEnemy_6
+    21300014: blueEnemy_7
+    21300016: blueEnemy_8
+    21300018: blueEnemy_9
+    21300020: blueEnemy_10
+    21300022: blueEnemy_11
+    21300024: blueEnemy_12
+    21300026: blueEnemy_13
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: blueEnemy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_3
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_4
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_5
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_6
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_7
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_8
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_9
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_10
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_11
+      rect:
+        serializedVersion: 2
+        x: 7040
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_12
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blueEnemy_13
+      rect:
+        serializedVersion: 2
+        x: 8320
+        y: 92
+        width: 640
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
