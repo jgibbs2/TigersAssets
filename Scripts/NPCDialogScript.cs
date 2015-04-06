@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NPCDialogScript : MonoBehaviour {
+public class NPCDialogScript : MonoBehaviour
+{
 
 	public string[] answerButtons;
 	public string[] Questions;
 	bool DisplayDialog = false;
 	bool ActivateQuest = false;
-	bool inTrigger = false;
+	public bool inTrigger = false;
 
 	// Use this for initialization
 	void Start () 
@@ -17,8 +18,8 @@ public class NPCDialogScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-	  if (inTrigger && GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed) 
-	    DisplayDialog = true;	  
+	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))) 
+	    DisplayDialog = true;
 	}
 
 	void OnGUI()
