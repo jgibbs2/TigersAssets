@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9aeacb452a28ffb429f454d5df7c9b01
-timeCreated: 1427839970
+timeCreated: 1428293930
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -23,8 +23,8 @@ MonoImporter:
   - Green_Health: {fileID: 408974, guid: 79e6081f74059b140a6a37027d178e53, type: 2}
   - Blue_Health: {fileID: 457888, guid: 7a9e03f116315044689a458289c94386, type: 2}
   - Pink_Health: {fileID: 493684, guid: b77d328c90b94a14e9c5d0150c599e86, type: 2}
-  - enemy: {fileID: 400000, guid: 0b1cb92171260e144ab39f2670ecf110, type: 2}
-  - john: {fileID: 429936, guid: adfb0fd997146204fb94a4bbe2e57ccc, type: 2}
+  - red_enemy: {fileID: 449158, guid: e160fa03f29715445b3d35d32507838c, type: 2}
+  - green_enemy: {fileID: 453428, guid: c7777a3a6f454e04da7b81ee92433dde, type: 2}
   - small_john: {fileID: 431562, guid: a6e1094606d2c9a4689fbfbd6f4c740c, type: 2}
   - small_enemy: {fileID: 400000, guid: c8427a050b036c440956be604f884766, type: 2}
   - attack_select: {fileID: 400006, guid: 2602b15cb9b8ab240b9e929390b9b064, type: 2}
