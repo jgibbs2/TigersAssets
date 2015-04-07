@@ -20,7 +20,7 @@ public class OnTentEntranceScript : MonoBehaviour
 	{
 	  if (!hasVisitedTrigger)
 	  {
-	    if (!GameObject.FindGameObjectWithTag("NPC").GetComponentInChildren<NPCDialogScript>().inTrigger)
+	    if (!GameObject.FindGameObjectWithTag("NPCPrimary").GetComponentInChildren<NPCDialogScript>().inTrigger)
 	    {
 		  transform.Translate(Vector2.up * Time.deltaTime);
 		}
