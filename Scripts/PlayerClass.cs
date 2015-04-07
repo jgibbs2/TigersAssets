@@ -779,7 +779,7 @@ public class PlayerClass : MonoBehaviour {
 
 	int CalculateMagicDamage ()
 	{
-		int A = 0, A_boost = 0, D = 0, D_boost = 0;;
+		int A = 0, A_boost = 0, D = 0, D_boost = 0;
 		string alpha_E = "", beta_E = "";//elements of each character.
 		bool defending = false;
 		float E = 1.0f;
