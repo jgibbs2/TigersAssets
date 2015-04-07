@@ -12,7 +12,7 @@ public class OnTentEntranceScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-	
+
 	}
 	
 	// Update is called once per frame
@@ -23,10 +23,10 @@ public class OnTentEntranceScript : MonoBehaviour
 	    if (!GameObject.FindGameObjectWithTag("NPC").GetComponentInChildren<NPCDialogScript>().inTrigger)
 	    {
 		  transform.Translate(Vector2.up * Time.deltaTime);
-	    }
+		}
 
-	    else
-	    {
+		else
+		{
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = true;
 		  hasVisitedTrigger = true;
 	    }
