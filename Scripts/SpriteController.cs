@@ -10,10 +10,12 @@ public class SpriteController : MonoBehaviour
 	public Texture2D right;
 	public Texture2D x;
 	public bool xButtonPressed = false;
+	public bool player_controlled = true;
 
 	// Use this for initialization
 	void Start () 
 	{
+
 	}
 
 	// Update is called once per frame
@@ -22,10 +24,14 @@ public class SpriteController : MonoBehaviour
 		//float hor = Input.GetAxis ("Horizontal");
 		//float ver = Input.GetAxis ("Vertical");
 		//Debug.Log ("hor = " + hor + ", ver = " + ver);
-		float h = Input.GetAxis("Horizontal") * speed;
-		float v = Input.GetAxis("Vertical") * speed;
+		if(player_controlled == true)
+		{
+			float h = Input.GetAxis("Horizontal") * speed;
+			float v = Input.GetAxis("Vertical") * speed;
 			transform.Translate(Vector2.right * h * Time.deltaTime);
 			transform.Translate(Vector2.up * v * Time.deltaTime);
+		}
+
 
 
 	}
@@ -35,16 +41,28 @@ public class SpriteController : MonoBehaviour
 		float h = 0;
 		float v = 0;
 		if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
+			if(player_controlled == true)
+			{
 			v = 1.0f * speed;
+			}
 		}
 		if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
+			if(player_controlled == true)
+			{
 			v = -1.0f * speed;
+			}
 		}
 		if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
+			if(player_controlled == true)
+			{
 			h = -1.0f * speed;
+			}
 		}
 		if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
+			if(player_controlled == true)
+			{
 			h = 1.0f * speed;
+			}
 		}
 		if (GUI.RepeatButton(new Rect (1000, 725, 200, 200), x, GUIStyle.none)) {
 			xButtonPressed = true;

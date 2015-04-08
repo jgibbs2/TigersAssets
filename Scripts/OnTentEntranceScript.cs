@@ -12,7 +12,7 @@ public class OnTentEntranceScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
+		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +29,7 @@ public class OnTentEntranceScript : MonoBehaviour
 		{
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = true;
 		  hasVisitedTrigger = true;
+		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 	    }
 	  }
 	}
