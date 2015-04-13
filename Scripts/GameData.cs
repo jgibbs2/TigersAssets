@@ -3,8 +3,7 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-
-
+using System.Collections.Generic;
 /*
  * Maintains data across scene transitions
  * 
@@ -24,6 +23,10 @@ public class GameData : MonoBehaviour {
 	float bobbyX_parade;
 	float bobbyY_parade;
 
+	List<QuestItem> playerInventory;
+
+
+
 	public float getBobbyX_parade(){
 		return bobbyX_parade;
 	}
@@ -39,6 +42,13 @@ public class GameData : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 			access = this;
 			Load ();
+
+			playerInventory = defaultQuestItems();
+			
+			foreach(QuestItem item in playerInventory){
+				Debug.Log(item.ToString());
+			}
+
 		} else {
 			// If a GameData already exists, don't make a new one
 			Destroy(gameObject);
@@ -82,10 +92,46 @@ public class GameData : MonoBehaviour {
 			file.Close ();
 		} else {
 			bobbyX_parade = 0;
-			bobbyY_parade = 0;
+			bobbyY_parade = 0;																
 		}
 	}
+
+	private List<QuestItem> defaultQuestItems(){
+
+		List<QuestItem> defaultInventory = new List<QuestItem>();
+
+		defaultInventory.Add(new QuestItem(
+			"Test", 																// Name
+			"This is a test item", 													// Description
+			Resources.Load<Sprite>("UI/url.png"),	// Image 
+			false));																// Picked Up?
+
+		return defaultInventory;
+	}
+
+
 }
+
+class QuestItem{
+
+	public string name;
+	public string description;
+	public bool pickedUp;
+	public Sprite image;
+
+	public QuestItem(string name, string description, Sprite image, bool pickedUp){
+		this.name = name;
+		this.description = description;
+		this.image = image;
+		this.pickedUp = pickedUp;
+	}
+
+	public string ToString(){
+		return name + " " + description;
+	}
+}
+
+
 /*
  * This is a data packing class that will be written to the save file 
  * It may as well be a struct. Only used in GameData::Save() and GameData::Load()

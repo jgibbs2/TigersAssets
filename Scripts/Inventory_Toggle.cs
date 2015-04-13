@@ -22,6 +22,7 @@ public class Inventory_Toggle : MonoBehaviour, IPointerClickHandler {
 	
 	}
 
+	// Implementing the pointerClick interface
 	public void OnPointerClick (PointerEventData e){
 		var curState = inventory_Display.enabled;
 		inventory_Display.enabled = !curState;
