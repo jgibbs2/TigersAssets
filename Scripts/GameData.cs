@@ -5,6 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
+
+public enum Item {Bottle, Apple, Poop};
 
 /*
  * Maintains data across scene transitions
@@ -25,8 +28,12 @@ public class GameData : MonoBehaviour {
 	float bobbyX_parade;
 	float bobbyY_parade;
 
-	List<QuestItem> playerInventory;
+
 	Canvas inventory_Display;
+	List<QuestItem> playerInventory;
+	int nextItemSlot;
+	int emptySlot;
+	const string slotName = "Slot";
 
 
 	public float getBobbyX_parade(){
@@ -51,38 +58,29 @@ public class GameData : MonoBehaviour {
 			inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
 
 			playerInventory = defaultQuestItems();
+
 			int row = 0; int col = 0;
 			foreach(QuestItem item in playerInventory){
-				makeNewImage(item, row, col);
 
-				if (col == 2)
-				{
-					row++;
-					col = 0;
-				}else{
-					col++;
-				}
+				makeNewImage(item, row, col);
+				if (col == 2){row++; col = 0;}else{col++;}
 			}
+
+			nextItemSlot = 0;
+			emptySlot = 0;
+
+			// PickUp Item Tests
+			pickUpItem(Item.Apple);
+			pickUpItem(Item.Bottle);
+			pickUpItem(Item.Poop);
+			pickUpItem(Item.Apple);
+			turnIn(Item.Poop);
+			pickUpItem(Item.Bottle);
 
 		} else {
 			// If a GameData already exists, don't make a new one
 			Destroy(gameObject);
 		}
-	}
-
-	private void makeNewImage(QuestItem item, int row, int col){
-
-		// Create a new object from the prefab questItemPic
-		GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
-		newItem.name = item.name;
-		var image = newItem.GetComponent<Image>();
-
-		// Set the properties of the image
-		image.sprite = item.image;
-		image.transform.SetParent(inventory_Display.transform);
-		image.transform.localScale = new Vector3(1,1,1);
-
-		image.transform.localPosition = new Vector3(col * 100, row * 100, 1);
 	}
 
 	// Save all game data to a file
@@ -132,18 +130,90 @@ public class GameData : MonoBehaviour {
 
 		for(int i = 0; i < 9; i++){
 			defaultInventory.Add(new QuestItem(
-				"Test" + i, 																// Name
-				"This is a test item", 													// Description
-				Resources.Load<Sprite>("UI/url"),									    // Image 
-				false));																// Picked Up?
+				slotName + i, 						// Name
+				"This slot is empty", 				// Description
+				Resources.Load<Sprite>("UI/url"),	// Image 
+				false));							// Picked Up?
 		}
 		return defaultInventory;
 	}
 
+	private void makeNewImage(QuestItem item, int row, int col){
+		
+		// Create a new object from the prefab questItemPic
+		GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
+		newItem.name = item.name;
+		var image = newItem.GetComponent<Image>();
+		
+		// Set the properties of the image
+		image.sprite = item.image;
+		image.transform.SetParent(inventory_Display.transform);
+		image.transform.localScale = new Vector3(1,1,1);
+		image.transform.localPosition = new Vector3(col * 100, row * 100, 1);
+	}
 
+	public void pickUpItem(Item item){
+		switch (item){
+
+		case Item.Apple:
+			addItemToBag ("Apple");
+			break;
+
+		case Item.Bottle:
+			addItemToBag("Bottle");
+			break;
+
+		case Item.Poop:
+			addItemToBag("Poop");
+			break;
+		}
+	}
+
+	private void addItemToBag(string name){
+		if(emptySlot == 0){
+			GameObject.Find (slotName + nextItemSlot).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
+			GameObject.Find (slotName + nextItemSlot).name = name;
+			nextItemSlot++;
+		} else {
+			GameObject.Find ("Empty" + emptySlot).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
+			GameObject.Find ("Empty" + emptySlot).name = name;
+			nextItemSlot--;
+		}
+	}
+
+	// Used to try and turn in an Item for a quest
+	// Returns true if the item is in player inventory and was returned
+	// Otherwise it returns false
+	public bool turnIn(Item item){
+		switch (item){
+			
+		case Item.Apple:
+			if (playerInventory.Where( a => a.name == "Apple").ToList() != null){
+				removeItem ("Apple");	return true;}
+			 break;
+
+		case Item.Bottle:
+			if (playerInventory.Where( a => a.name == "Bottle").ToList() != null){
+				removeItem ("Bottle");	return true;}
+			break;
+			
+		case Item.Poop:
+			if (playerInventory.Where( a => a.name == "Poop").ToList() != null){
+				removeItem ("Poop");	return true;}
+			break;
+		}
+
+		return false; // Item not in inventory
+	}
+
+	private void removeItem(string name){
+		GameObject.Find (name).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/url");
+		emptySlot++;
+		GameObject.Find (name).name = "Empty"+emptySlot;
+	}
 }
 
-class QuestItem{
+public class QuestItem{
 
 	public string name;
 	public string description;
