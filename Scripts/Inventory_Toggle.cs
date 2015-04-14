@@ -25,7 +25,7 @@ public class Inventory_Toggle : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick (PointerEventData e){
 		var curState = inventory_Display.enabled;
 		inventory_Display.enabled = !curState;
-		Debug.Log("Button Clicked! Previous state was now " + curState.ToString());
+		//Debug.Log("Button Clicked! Previous state was now " + curState.ToString());
 	}
 
 }

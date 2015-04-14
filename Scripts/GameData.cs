@@ -26,7 +26,7 @@ public class GameData : MonoBehaviour {
 	float bobbyY_parade;
 
 	List<QuestItem> playerInventory;
-
+	Canvas inventory_Display;
 
 
 	public float getBobbyX_parade(){
@@ -41,29 +41,48 @@ public class GameData : MonoBehaviour {
 	{
 		// If another GameData object does not exist
 		if (access == null) {
+
+			// Set Up
 			DontDestroyOnLoad (gameObject);
 			access = this;
 			Load ();
 
 			// Set player inventory to be the Default config
-			var inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
+			inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
 
 			playerInventory = defaultQuestItems();
+			int row = 0; int col = 0;
 			foreach(QuestItem item in playerInventory){
-				GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
+				makeNewImage(item, row, col);
 
-				var image = newItem.GetComponent<Image>();
-				image.sprite = item.image;
-				//SpriteRenderer renderer = newItem.AddComponent<SpriteRenderer>();
-				//renderer.sprite = item.image;
-				image.transform.SetParent(inventory_Display.transform);
-				image.transform.localScale = new Vector3(1,1,1);
+				if (col == 2)
+				{
+					row++;
+					col = 0;
+				}else{
+					col++;
+				}
 			}
 
 		} else {
 			// If a GameData already exists, don't make a new one
 			Destroy(gameObject);
 		}
+	}
+
+	private void makeNewImage(QuestItem item, int row, int col){
+
+		// Create a new object from the prefab questItemPic
+		GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
+		newItem.name = item.name;
+		var image = newItem.GetComponent<Image>();
+
+		// Set the properties of the image
+		image.sprite = item.image;
+		image.transform.SetParent(inventory_Display.transform);
+		image.transform.localScale = new Vector3(1,1,1);
+
+		image.transform.localPosition = new Vector3(col * 100, row * 100, 1);
 	}
 
 	// Save all game data to a file
@@ -111,12 +130,13 @@ public class GameData : MonoBehaviour {
 
 		List<QuestItem> defaultInventory = new List<QuestItem>();
 
-		defaultInventory.Add(new QuestItem(
-			"Test", 																// Name
-			"This is a test item", 													// Description
-			Resources.Load<Sprite>("UI/url"),									// Image 
-			false));																// Picked Up?
-
+		for(int i = 0; i < 9; i++){
+			defaultInventory.Add(new QuestItem(
+				"Test" + i, 																// Name
+				"This is a test item", 													// Description
+				Resources.Load<Sprite>("UI/url"),									    // Image 
+				false));																// Picked Up?
+		}
 		return defaultInventory;
 	}
 
