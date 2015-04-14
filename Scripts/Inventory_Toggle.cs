@@ -7,7 +7,6 @@ public class Inventory_Toggle : MonoBehaviour, IPointerClickHandler {
 
 	Button inventoryButton;
 	UnityEngine.Canvas inventory_Display;
-	UnityEngine.UI.Image testImage;
 
 	// Use this for initialization
 	void Start () {

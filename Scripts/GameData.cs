@@ -4,6 +4,8 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 /*
  * Maintains data across scene transitions
  * 
@@ -43,10 +45,19 @@ public class GameData : MonoBehaviour {
 			access = this;
 			Load ();
 
+			// Set player inventory to be the Default config
+			var inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
+
 			playerInventory = defaultQuestItems();
-			
 			foreach(QuestItem item in playerInventory){
-				Debug.Log(item.ToString());
+				GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
+
+				var image = newItem.GetComponent<Image>();
+				image.sprite = item.image;
+				//SpriteRenderer renderer = newItem.AddComponent<SpriteRenderer>();
+				//renderer.sprite = item.image;
+				image.transform.SetParent(inventory_Display.transform);
+				image.transform.localScale = new Vector3(1,1,1);
 			}
 
 		} else {
@@ -103,7 +114,7 @@ public class GameData : MonoBehaviour {
 		defaultInventory.Add(new QuestItem(
 			"Test", 																// Name
 			"This is a test item", 													// Description
-			Resources.Load<Sprite>("UI/url.png"),	// Image 
+			Resources.Load<Sprite>("UI/url"),									// Image 
 			false));																// Picked Up?
 
 		return defaultInventory;
