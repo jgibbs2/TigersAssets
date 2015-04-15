@@ -346,7 +346,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fb0a99b387f41b1418849066bf25a52a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d0aa8af97c67c447a87d568dc51c0e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1112532725
 GameObject:

@@ -29,7 +29,7 @@ public class NPCDialogScript : MonoBehaviour
 	  if(DisplayDialog && !ActivateQuest)
 	  {
 	    GUILayout.Label(Questions[0]);
-	    GUILayout.Label(Questions[1]);
+	    //GUILayout.Label(Questions[1]);
 
 	    if (GUILayout.Button(answerButtons[0]))
 	    {
@@ -37,8 +37,8 @@ public class NPCDialogScript : MonoBehaviour
 		  DisplayDialog = false;
 	    }
 
-	    if (GUILayout.Button(answerButtons[1]))
-	      DisplayDialog = false;
+	    /*if (GUILayout.Button(answerButtons[1]))
+	      DisplayDialog = false;*/
       }
 
 	  if (DisplayDialog && ActivateQuest)
