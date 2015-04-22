@@ -69,13 +69,6 @@ public class GameData : MonoBehaviour {
 			nextItemSlot = 0;
 			emptySlot = 0;
 
-			// PickUp Item Tests
-			pickUpItem(Item.Apple);
-			pickUpItem(Item.Bottle);
-			pickUpItem(Item.Poop);
-			pickUpItem(Item.Apple);
-			turnIn(Item.Poop);
-			pickUpItem(Item.Bottle);
 
 		} else {
 			// If a GameData already exists, don't make a new one
@@ -170,6 +163,7 @@ public class GameData : MonoBehaviour {
 	}
 
 	private void addItemToBag(string name){
+		Debug.Log (emptySlot);
 		if(emptySlot == 0){
 			GameObject.Find (slotName + nextItemSlot).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
 			GameObject.Find (slotName + nextItemSlot).name = name;

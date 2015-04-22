@@ -26,6 +26,9 @@ public class Inventory_Toggle : MonoBehaviour, IPointerClickHandler {
 		var curState = inventory_Display.enabled;
 		inventory_Display.enabled = !curState;
 		//Debug.Log("Button Clicked! Previous state was now " + curState.ToString());
+
+		var playerMove = GameObject.Find ("Bobby").GetComponent<SpriteController> ().player_controlled;
+		GameObject.Find ("Bobby").GetComponent<SpriteController>().player_controlled = !playerMove;
 	}
 
 }
