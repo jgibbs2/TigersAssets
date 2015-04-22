@@ -332,13 +332,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerButton: 2e2e2e
+  answerButtons:
+  - '...'
+  - '...'
+  - '...'
+  - '...'
+  - '...'
   Questions:
-  - 48656c6c6f2c204920616d207468652048656164204d696e6f746175722e2057656c636f6d6520746f20746865204d696e6f746175722054656e742c20426f6262792e
-  - 41726f756e6420686572652c207765206c696b6520746f206b656570206974206e69636520616e64207761726d2c2068656e636520746861742066697265706c61636520696e2074686520636f726e65722e
-  - 492063616e206a6f696e20796f7520696e20796f75722071756573742c206275742066697273742c20796f75206861766520746f20646f20736f6d657468696e6720666f72206d652e
-  - 43616e20796f752064656c697665722074686973206d65737361676520746f20746865204d696e6f7461757220696e2074686520636f726e65723f
-  - 5468616e6b20796f7520666f722064656c69766572696e6720746865206d6573736167652e2048617665206120676f6f64206461792c20426f626279204275757575726e732e
+  - Hello, I am the Head Minotaur. Welcome to the Minotaur Tent, Bobby.
+  - Around here, we like to keep it nice and warm, hence that fireplace in the corner.
+  - I can join you in your quest, but first, you have to do something for me.
+  - Can you deliver this message to the Minotaur in the corner?Can you deliver this
+    message to the Minotaur in the corner?
+  - Thank you for delivering the message. Have a good day, Bobby Buuuurns.Thank you
+    for delivering the message. Have a good day, Bobby Buuuurns.
+  DisplayDialog: 0000000000
   inTrigger: 0
 --- !u!61 &512470254
 BoxCollider2D:
@@ -1046,7 +1054,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 2, y: 2}
 --- !u!212 &1273842290
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1184,7 +1192,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 2, y: 2}
 --- !u!212 &1346301093
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1642,7 +1650,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 2, y: 2}
 --- !u!212 &1865706150
 SpriteRenderer:
   m_ObjectHideFlags: 0
