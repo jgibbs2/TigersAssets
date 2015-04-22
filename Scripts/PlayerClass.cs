@@ -474,14 +474,14 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(character_number ==1)
 			{
-				location = new Vector3(-5,3,0);
+				location = new Vector3(-5.58f,1.32f,0);
 			}
 			else if(character_number == 2)
 			{
-				location = new Vector3 (-5, 0, 0);
+				location = new Vector3 (-3.08f, -0.72f, 0);
 			}
 			else{
-				location = new Vector3 (-5, -3, 0);
+				location = new Vector3 (-5.35f, -2.79f, 0);
 			}
 
 			switch(C.Name)

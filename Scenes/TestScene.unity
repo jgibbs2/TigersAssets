@@ -87,6 +87,52 @@ NavMeshSettings:
     cellSize: .166666657
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &1148611407
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 21269588, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1300051022
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +327,7 @@ MonoBehaviour:
   small_john: {fileID: 431562, guid: a6e1094606d2c9a4689fbfbd6f4c740c, type: 2}
   small_enemy: {fileID: 400000, guid: c8427a050b036c440956be604f884766, type: 2}
   attack_select: {fileID: 400006, guid: 2602b15cb9b8ab240b9e929390b9b064, type: 2}
-  background: {fileID: 400000, guid: 1898050319a5dbb4a86caa3b7a749e1f, type: 2}
+  background: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
   bar: {fileID: 400000, guid: 911a10d98f63ee24bac779a6c307f39d, type: 2}
   DamageDisplay: {fileID: 400000, guid: 915161163a40c5343acafd688394417f, type: 2}
 --- !u!82 &1662002792
