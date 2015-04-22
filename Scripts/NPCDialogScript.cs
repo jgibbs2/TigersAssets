@@ -4,7 +4,7 @@ using System.Collections;
 public class NPCDialogScript : MonoBehaviour
 {
 
-	public string[] answerButtons;
+	public string answerButton;
 	public string[] Questions;
 	bool DisplayDialog = false;
 	bool ActivateQuest = false;
@@ -28,14 +28,19 @@ public class NPCDialogScript : MonoBehaviour
 
 	  if(DisplayDialog && !ActivateQuest)
 	  {
-	    GUILayout.Label(Questions[0]);
-	    //GUILayout.Label(Questions[1]);
+		for (int i = 0; i < Questions.Length - 1; i++)
+		{
+	      GUILayout.Label(Questions[i]);
 
-	    if (GUILayout.Button(answerButtons[0]))
-	    {
-	      ActivateQuest = true;
-		  DisplayDialog = false;
-	    }
+	      if (GUILayout.Button(answerButton))
+		  {
+		    if (i == Questions.Length - 2)
+			{
+	          ActivateQuest = true;
+		      DisplayDialog = false;
+			}
+	      }
+		}
 
 	    /*if (GUILayout.Button(answerButtons[1]))
 	      DisplayDialog = false;*/
@@ -43,9 +48,9 @@ public class NPCDialogScript : MonoBehaviour
 
 	  if (DisplayDialog && ActivateQuest)
 	  {
-	    GUILayout.Label(Questions[2]);
+	    GUILayout.Label(Questions[Questions.Length - 1]);
 
-		if (GUILayout.Button(answerButtons[2]))
+		if (GUILayout.Button(answerButton))
 		  DisplayDialog = false;
 	  }
 
