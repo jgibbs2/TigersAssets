@@ -46,11 +46,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(down == true)
 			{
-				return Speed * 1.4f;
+				return Speed * .7f;
 			}
 			else if(defending == true)
 			{
-				return Speed * .7f;
+				return Speed * 1.4f;
 			}
 			else
 			{
@@ -113,11 +113,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(down == true)
 			{
-				return Speed * 1.4f;
+				return Speed * .7f;
 			}
 			else if(defending == true)
 			{
-				return Speed * .7f;
+				return Speed *1.4f;
 			}
 			else
 			{
@@ -583,17 +583,19 @@ public class PlayerClass : MonoBehaviour {
 			{
 				//t = Time.time;
 				i.time_passed=(t-i.startTime);
-				if(Mathf.Floor(i.time_passed)>=i.getSpeed())
+				/*if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
 					GameObject.Find ("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f,3.5f, 0.0f);
 					i.Ready = true;
 				}
-				else
+				else*/
 				{
-					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*7)/i.getSpeed())), 0.0f);
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*i.getSpeed())/2)), 0.0f);
 					//Debug.Log("poopy");
-					if(Mathf.Floor(i.time_passed)>= i.getSpeed())
+					if(GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position.y >= 3.5f)
 					{
+						GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, 3.5f, 0.0f);
+						i.Ready = true;
 						if(i.down == true)
 						{
 							i.down = false;
@@ -628,7 +630,7 @@ public class PlayerClass : MonoBehaviour {
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
 				i.time_passed=(t-i.startTime);
-				if(Mathf.Floor(i.time_passed)>=i.getSpeed())
+				/*if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
 					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
 					//message = "Ready";
@@ -637,9 +639,16 @@ public class PlayerClass : MonoBehaviour {
 					//GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 					
 				}
-				else
+				else*/
 				{
-					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, (-3.5f+((i.time_passed*7)/i.getSpeed())), 0.0f);
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, (-3.5f+((i.time_passed*i.getSpeed())/2)), 0.0f);
+
+					if(GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position.y >= 3.5f)
+					{
+						GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
+						i.Ready = true;
+						i.down = false;
+					}
 					//message = Mathf.Floor(i.time_passed).ToString();
 				}
 				//GameObject.Find (i.Name + " Text").GetComponent<TextMesh>().text= message;
