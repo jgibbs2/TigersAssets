@@ -172,6 +172,7 @@ public class PlayerClass : MonoBehaviour {
 
 	string readyClicked;
 	string temp_var;
+	string clicked;
 
 
 
@@ -230,14 +231,15 @@ public class PlayerClass : MonoBehaviour {
 
 		if (attackStep == 1)
 		{
-			foreach (Combat_Character c in Characters)
+			/*foreach (Combat_Character c in Characters)  // don't need this anymore
 			{
 				if(c.Name+ " Character(Clone)" == name)
 				{
 					//GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Pause";
 					temp_var = c.Name;
 				}
-			}
+			}*/
+
 			if(Input.GetMouseButtonDown(0)&&(name=="Attack"||name=="Magic"))
 			{
 				selected=true;
@@ -251,7 +253,8 @@ public class PlayerClass : MonoBehaviour {
 				currentAttack.attacker = readyClicked;
 				CombatBuffer.Add(currentAttack);
 				Destroy(GameObject.Find("Attack Select(Clone)"));
-				GameObject.Find(temp_var + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Defend";
+
+				GameObject.Find(clicked).GetComponent<CharacterAnimationScript>().action = "Defend";
 			}
 
 
@@ -659,6 +662,7 @@ public class PlayerClass : MonoBehaviour {
 				i.defending = false;
 
 				state = 2;
+				clicked = i.Name + " Character(Clone)";
 				//temp_var = i.Name;
 				readyClicked = i.Name;
 				i.time_passed = 0.0f;
@@ -996,7 +1000,7 @@ public class PlayerClass : MonoBehaviour {
 			}
 			else
 			{
-				Debug.Log(current_data.attacker);
+				//Debug.Log(current_data.attacker);
 				GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
 			}
 		}
