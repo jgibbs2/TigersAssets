@@ -46,11 +46,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(down == true)
 			{
-				return Speed * .7f;
+				return Speed * 1.4f;
 			}
 			else if(defending == true)
 			{
-				return Speed * 1.4f;
+				return Speed * .7f;
 			}
 			else
 			{
@@ -113,11 +113,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(down == true)
 			{
-				return Speed * .7f;
+				return Speed * .5f;
 			}
 			else if(defending == true)
 			{
-				return Speed *1.4f;
+				return Speed * 2.0f;
 			}
 			else
 			{
@@ -288,6 +288,7 @@ public class PlayerClass : MonoBehaviour {
 						CombatBuffer.Add(currentAttack);
 						state = 1;
 						attackStep = 1;
+						//GameObject.Find("Small " + e.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, -3.5f, 0.0f);
 					}
 				}
 			}
@@ -329,7 +330,7 @@ public class PlayerClass : MonoBehaviour {
 		Red_Enemy.Element = "Water";
 		Red_Enemy.down = false;
 
-		Enemies.Add (Red_Enemy);
+		//Enemies.Add (Red_Enemy);
 
 		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
 		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
@@ -456,11 +457,11 @@ public class PlayerClass : MonoBehaviour {
 			
 			if(character_number ==1)
 			{
-				location = new Vector3(5,3,0);
+				location = new Vector3(6,1,0);
 			}
 			else if(character_number == 2)
 			{
-				location = new Vector3 (5, 0, 0);
+				location = new Vector3 (3.77f, -1.17f, 0);
 			}
 			else{
 				location = new Vector3 (5, -3, 0);
@@ -471,11 +472,11 @@ public class PlayerClass : MonoBehaviour {
 			{
 			case "Green_Enemy":
 				Instantiate(green_enemy, location, Quaternion.identity);
-				Instantiate(small_john, location, Quaternion.identity);
+				Instantiate(small_john, new Vector3(0.8f, -3.5f, 0.0f), Quaternion.identity);
 				break;
 			case "Red_Enemy":
 				Instantiate(red_enemy, location, Quaternion.identity);
-	            Instantiate(small_enemy, location, Quaternion.identity);
+				Instantiate(small_enemy, new Vector3(0.8f, -3.5f, 0.0f), Quaternion.identity);
 	            break;
 			}
             character_number++;
@@ -501,37 +502,37 @@ public class PlayerClass : MonoBehaviour {
 			{
 			case "Red":
 				Instantiate(red, location, Quaternion.identity);
-				Instantiate (small_red, location, Quaternion.identity);
+				Instantiate (small_red, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
 				Instantiate(Red_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Red_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Orange":
 				Instantiate(orange, location, Quaternion.identity);
-				Instantiate(small_orange, location, Quaternion.identity);
+				Instantiate(small_orange, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
 				Instantiate(Orange_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Orange_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Yellow":
 				Instantiate(yellow, location, Quaternion.identity);
-				Instantiate(small_yellow, location, Quaternion.identity);
+				Instantiate(small_yellow, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
 				Instantiate(Yellow_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Yellow_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Green":
 				Instantiate(green, location, Quaternion.identity);
-				Instantiate(small_green, location, Quaternion.identity);
+				Instantiate(small_green, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
 				Instantiate(Green_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Green_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Blue":
 				Instantiate(blue, location, Quaternion.identity);
-				Instantiate(small_blue, location, Quaternion.identity);
+				Instantiate(small_blue, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
 				Instantiate(Blue_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Blue_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Pink":
 				Instantiate(pink, location, Quaternion.identity);
-				Instantiate(small_pink, location, Quaternion.identity);
+				Instantiate(small_pink, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
 				Instantiate(Pink_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Pink_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
@@ -554,7 +555,14 @@ public class PlayerClass : MonoBehaviour {
 
 	void EnemyAttackSelect(string enemyName)
 	{
-		int attack_choice = 0;//Random.Range(0, 2);
+		foreach(Enemy_Character e in Enemies)
+		{
+			if(e.Name == enemyName && e.defending == true)
+			{
+				e.defending = false;
+			}
+		}
+		int attack_choice = Random.Range(0, 3);
 		if(attack_choice == 0)//if we choose attack
 		{
 			int thing = Random.Range(0, Characters.Count);
@@ -573,20 +581,34 @@ public class PlayerClass : MonoBehaviour {
 		}
 		else // we have chosen defense
 		{
-
+			foreach (Enemy_Character e in Enemies)
+			{
+				if(e.Name == enemyName)
+				{
+					e.defending = true;
+					GameObject.Find(e.Name + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Defend";
+				}
+			}
 		}
 		CombatBuffer.Add(currentAttack);
-
+		GameObject.Find("Small " + enemyName + " Character(Clone)").transform.position = new Vector3(0.8f, -3.5f, 0.0f);
 	}
 	#region Countdown
+	float lastTime = 0.0f;
 	void countDown()
 	{
+		if(lastTime == 0.0f)
+		{
+			lastTime = Time.time;
+		}
+		float currentTime = Time.time;
+		float deltaT = currentTime - lastTime;
 		//string message = "";
 		float t = timeElapsed;
 		string current_name;
 		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if (Physics2D.Raycast (ray.origin, ray.direction))
+		if (Physics2D.Raycast(ray.origin, ray.direction))
 		{
 			current_name = Physics2D.Raycast (ray.origin, ray.direction).collider.gameObject.name;
 		}
@@ -602,6 +624,7 @@ public class PlayerClass : MonoBehaviour {
 			{
 				//t = Time.time;
 				i.time_passed=(t-i.startTime);
+
 				/*if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
 					GameObject.Find ("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f,3.5f, 0.0f);
@@ -609,8 +632,8 @@ public class PlayerClass : MonoBehaviour {
 				}
 				else*/
 				{
-					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*i.getSpeed())/2)), 0.0f);
-					//Debug.Log("poopy");
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position += new Vector3(0.0f, deltaT * i.getSpeed()/2, 0.0f);//deltaT * i.getSpeed(), 0.0f);
+					//GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, (-3.5f+((i.time_passed*i.getSpeed())/2)), 0.0f);
 					if(GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position.y >= 3.5f)
 					{
 						GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(0.8f, 3.5f, 0.0f);
@@ -625,10 +648,8 @@ public class PlayerClass : MonoBehaviour {
 			}
 			else if(i.Ready == true)
 			{
-				//Debug.Log(i.down);
 				if(i.down == true)
 				{
-					//Debug.Log("poasdfh");
 					i.down = false;
 					GameObject.Find(i.Name + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 				}
@@ -649,6 +670,7 @@ public class PlayerClass : MonoBehaviour {
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
 				i.time_passed=(t-i.startTime);
+
 				/*if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
 					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
@@ -694,6 +716,7 @@ public class PlayerClass : MonoBehaviour {
 			}
 		}
 		//timeElapsed += Time.time - timer;?
+		lastTime = currentTime;
 	}
 	#endregion
 
@@ -945,7 +968,6 @@ public class PlayerClass : MonoBehaviour {
 								if(mod>1)
 								{
 									c.down = true;
-									//Debug.Log("down");
 									GameObject.Find(c.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Down";
 								}
 							}
@@ -964,7 +986,6 @@ public class PlayerClass : MonoBehaviour {
 				D=1;
 
 
-			//Debug.Log ("A * A = " + A + " & D = " + D + " & mod = " + mod);
 			damage  = ((A*mod*Z)/255) - D;//= (((((A * A) / D) * Z) / 255) * mod);
 			if(damage<0)
 			{
@@ -1003,7 +1024,7 @@ public class PlayerClass : MonoBehaviour {
 
 		//actual animation of the attack (not too hard, but the thing should last only as long as the animation of the attack)
 
-		Debug.Log (current_data.attacker);
+		//Debug.Log (current_data.attacker);
 		if(current_data.target_group == "enemies")
 		{
 			GameObject.Find(current_data.attacker + "Glow").GetComponent<PlatformScript>().on = false;
@@ -1145,5 +1166,6 @@ public class PlayerClass : MonoBehaviour {
 		timerStart = Time.time;
 		//timerStart = Time.time;
 		//timer = Time.time;
+		lastTime = Time.time;
 	}
 }
