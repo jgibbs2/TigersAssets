@@ -263,6 +263,7 @@ public class PlayerClass : MonoBehaviour {
 				CombatBuffer.Add(currentAttack);
 				Destroy(GameObject.Find("Attack Select(Clone)"));
 
+				GameObject.Find(readyClicked+"Glow").GetComponent<PlatformScript>().on = false;
 				GameObject.Find(clicked).GetComponent<CharacterAnimationScript>().action = "Defend";
 			}
 
@@ -508,26 +509,31 @@ public class PlayerClass : MonoBehaviour {
 				Instantiate(orange, location, Quaternion.identity);
 				Instantiate(small_orange, location, Quaternion.identity);
 				Instantiate(Orange_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
+				Instantiate(Orange_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Yellow":
 				Instantiate(yellow, location, Quaternion.identity);
 				Instantiate(small_yellow, location, Quaternion.identity);
 				Instantiate(Yellow_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
+				Instantiate(Yellow_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Green":
 				Instantiate(green, location, Quaternion.identity);
 				Instantiate(small_green, location, Quaternion.identity);
 				Instantiate(Green_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
+				Instantiate(Green_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Blue":
 				Instantiate(blue, location, Quaternion.identity);
 				Instantiate(small_blue, location, Quaternion.identity);
 				Instantiate(Blue_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
+				Instantiate(Blue_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Pink":
 				Instantiate(pink, location, Quaternion.identity);
 				Instantiate(small_pink, location, Quaternion.identity);
 				Instantiate(Pink_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
+				Instantiate(Pink_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			}
 			character_number++;
