@@ -296,7 +296,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Magic
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110168346}
@@ -314,7 +314,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: green_up
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110157318}
@@ -332,7 +332,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Down
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110123702}
@@ -350,7 +350,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110193166}
@@ -371,7 +371,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Fall
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110163026}
@@ -389,7 +389,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Attack
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110184200}
@@ -424,7 +424,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: green_defend
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110165256}

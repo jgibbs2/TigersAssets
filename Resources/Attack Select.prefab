@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 465314}
   - 212: {fileID: 21268976}
+  - 114: {fileID: 11457574}
   m_Layer: 0
   m_Name: Color
   m_TagString: Untagged
@@ -126,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.44000006, y: -.239999995, z: 0}
   m_LocalScale: {x: 1.14999998, y: 1.14999998, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -186,6 +187,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
+--- !u!114 &11457574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3de9d5131ec9049852047e6f71b054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 21300000, guid: 7490edcaa8ac740479c816d2b7c3c2cb, type: 3}
+  orange: {fileID: 21300000, guid: 47b1d6f3904c5c744a8e01a1006b8fdb, type: 3}
+  yellow: {fileID: 21300000, guid: aa18099f194b6684898f0d49733d14bc, type: 3}
+  green: {fileID: 21300000, guid: 9a12e249812a8ec44a410d747bf0f720, type: 3}
+  blue: {fileID: 21300000, guid: cf07f54cc1650f04e9a8a9002e2e5617, type: 3}
+  pink: {fileID: 21300000, guid: ca8e1ce0573785a458ed032bcb7f7709, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -314,7 +332,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 87c0bd945741d17438cc8ec2b1980108, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7490edcaa8ac740479c816d2b7c3c2cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

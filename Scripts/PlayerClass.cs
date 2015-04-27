@@ -172,7 +172,7 @@ public class PlayerClass : MonoBehaviour {
 
 	string readyClicked;
 	string temp_var;
-	string clicked;
+
 
 
 
@@ -192,12 +192,20 @@ public class PlayerClass : MonoBehaviour {
 	public Transform small_orange;
 	public Transform small_yellow;
 	public Transform small_pink;
+
 	public Transform Red_Health;
 	public Transform Orange_Health;
 	public Transform Yellow_Health;
 	public Transform Green_Health;
 	public Transform Blue_Health;
 	public Transform Pink_Health;
+
+	public Transform Red_Platform;
+	public Transform Orange_Platform;
+	public Transform Yellow_Platform;
+	public Transform Green_Platform;
+	public Transform Blue_Platform;
+	public Transform Pink_Platform;
 
 	public Transform red_enemy;
 	public Transform green_enemy;
@@ -207,6 +215,7 @@ public class PlayerClass : MonoBehaviour {
 	public Transform background;
 	public Transform bar;
 	public Transform DamageDisplay;
+	public string clicked;
 
 	int attackStep = 1;
 	CombatData currentAttack = new CombatData();
@@ -493,6 +502,7 @@ public class PlayerClass : MonoBehaviour {
 				Instantiate(red, location, Quaternion.identity);
 				Instantiate (small_red, location, Quaternion.identity);
 				Instantiate(Red_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
+				Instantiate(Red_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
 			case "Orange":
 				Instantiate(orange, location, Quaternion.identity);
@@ -650,6 +660,7 @@ public class PlayerClass : MonoBehaviour {
 					{
 						GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
 						i.Ready = true;
+						GameObject.Find(i.Name+"Glow").GetComponent<PlatformScript>().on = true;
 						i.down = false;
 					}
 					//message = Mathf.Floor(i.time_passed).ToString();
@@ -986,8 +997,12 @@ public class PlayerClass : MonoBehaviour {
 
 		//actual animation of the attack (not too hard, but the thing should last only as long as the animation of the attack)
 
-
-
+		Debug.Log (current_data.attacker);
+		if(current_data.target_group == "enemies")
+		{
+			GameObject.Find(current_data.attacker + "Glow").GetComponent<PlatformScript>().on = false;
+			//GameObject.Find(current_data.attacker + "Glow").GetComponent<SpriteRenderer>().sprite = "None";
+		}
 		//calculate damage here
 		int damage = 0;
 		if(current_data.type_of_move == "Attack")

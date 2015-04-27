@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9aeacb452a28ffb429f454d5df7c9b01
-timeCreated: 1428293930
+timeCreated: 1430092612
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -23,12 +23,18 @@ MonoImporter:
   - Green_Health: {fileID: 408974, guid: 79e6081f74059b140a6a37027d178e53, type: 2}
   - Blue_Health: {fileID: 457888, guid: 7a9e03f116315044689a458289c94386, type: 2}
   - Pink_Health: {fileID: 493684, guid: b77d328c90b94a14e9c5d0150c599e86, type: 2}
+  - Red_Platform: {fileID: 452056, guid: 039b9584e18fc954b8ef8b5053edf02e, type: 2}
+  - Orange_Platform: {fileID: 402562, guid: 05a7ad292263fe741b9905d3c3d56744, type: 2}
+  - Yellow_Platform: {fileID: 401202, guid: dcea8aca319893a4a9dc2cfffec965c3, type: 2}
+  - Green_Platform: {fileID: 459050, guid: 267197ce004db394489600cfcf62acf6, type: 2}
+  - Blue_Platform: {fileID: 449856, guid: dc12d41b8c3aea64f8778ec6ef49f372, type: 2}
+  - Pink_Platform: {fileID: 478796, guid: 9e9db2b814206794087229cd50f018e4, type: 2}
   - red_enemy: {fileID: 449158, guid: e160fa03f29715445b3d35d32507838c, type: 2}
   - green_enemy: {fileID: 453428, guid: c7777a3a6f454e04da7b81ee92433dde, type: 2}
   - small_john: {fileID: 431562, guid: a6e1094606d2c9a4689fbfbd6f4c740c, type: 2}
   - small_enemy: {fileID: 400000, guid: c8427a050b036c440956be604f884766, type: 2}
   - attack_select: {fileID: 400006, guid: 2602b15cb9b8ab240b9e929390b9b064, type: 2}
-  - background: {fileID: 400000, guid: 1898050319a5dbb4a86caa3b7a749e1f, type: 2}
+  - background: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
   - bar: {fileID: 400000, guid: 911a10d98f63ee24bac779a6c307f39d, type: 2}
   - DamageDisplay: {fileID: 400000, guid: 915161163a40c5343acafd688394417f, type: 2}
   executionOrder: 0
