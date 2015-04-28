@@ -2654,10 +2654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8947ae06ca3df4fcc9786140c1d86f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  target: {fileID: 1041869253}
-  smoothTime: 0
-=======
 --- !u!1001 &2123738262
 Prefab:
   m_ObjectHideFlags: 0
@@ -2708,4 +2704,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
   m_IsPrefabParent: 0
->>>>>>> origin/Debugging
