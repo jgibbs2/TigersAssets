@@ -50,66 +50,66 @@ public class CharacterSelect : MonoBehaviour {
 				case 0:
 					switch(color){
 						case "Red":
-							Instantiate(small_red, new Vector3(0.6f,3.7f,0f), Quaternion.identity);
+							Instantiate(small_red, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
 							break;
 						case "Orange":
-							Instantiate(small_orange, new Vector3(0.6f,3.7f,0f), Quaternion.identity);
+							Instantiate(small_orange, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
 							break;
 						case "Yellow":
-							Instantiate(small_yellow, new Vector3(0.6f,3.7f,0f), Quaternion.identity);
+							Instantiate(small_yellow, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
 							break;
 						case "Green":
-							Instantiate(small_green, new Vector3(0.6f,3.7f,0f), Quaternion.identity);
+							Instantiate(small_green, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
 							break;
 						case "Blue":
-							Instantiate(small_blue, new Vector3(0.6f,3.7f,0f), Quaternion.identity);
+							Instantiate(small_blue, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
 							break;
 						case "Pink":
-							Instantiate(small_pink, new Vector3(0.6f,3.7f,0f), Quaternion.identity);
+							Instantiate(small_pink, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
 							break;
 					}
 					break;
 				case 1:
 					switch(color){
 					case "Red":
-						Instantiate(small_red, new Vector3(1.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_red, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Orange":
-						Instantiate(small_orange, new Vector3(1.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_orange, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Yellow":
-						Instantiate(small_yellow, new Vector3(1.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_yellow, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Green":
-						Instantiate(small_green, new Vector3(1.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_green, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Blue":
-						Instantiate(small_blue, new Vector3(1.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_blue, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Pink":
-						Instantiate(small_pink, new Vector3(1.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_pink, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					}
 					break;
 				case 2:
 					switch(color){
 					case "Red":
-						Instantiate(small_red, new Vector3(2.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_red, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Orange":
-						Instantiate(small_orange, new Vector3(2.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_orange, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Yellow":
-						Instantiate(small_yellow, new Vector3(2.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_yellow, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Green":
-						Instantiate(small_green, new Vector3(2.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_green, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Blue":
-						Instantiate(small_blue, new Vector3(2.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_blue, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					case "Pink":
-						Instantiate(small_pink, new Vector3(2.6f,3.7f,0f), Quaternion.identity);
+						Instantiate(small_pink, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
 						break;
 					}
 					break;
@@ -142,7 +142,13 @@ public class CharacterSelect : MonoBehaviour {
 				numSelected++;
 					}
 
+			/*foreach (string s in characterList)
+			{
+				Debug.Log (s);
+				Destroy(GameObject.Find("Small " + s + " Character(Clone)"));
+			}*/
 			GameObject.Find ("Home").GetComponent<PlayerClass> ().initialize (characterList);
+
 			done = true;
 		}
 	}

@@ -46,11 +46,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(down == true)
 			{
-				return Speed * 1.4f;
+				return Speed * 0.5f;
 			}
 			else if(defending == true)
 			{
-				return Speed * .7f;
+				return Speed * 2.0f;
 			}
 			else
 			{
@@ -263,6 +263,15 @@ public class PlayerClass : MonoBehaviour {
 				CombatBuffer.Add(currentAttack);
 				Destroy(GameObject.Find("Attack Select(Clone)"));
 
+				foreach (Combat_Character c in Characters)
+				{
+					if(currentAttack.attacker == c.Name)
+					{
+						GameObject.Find("Small " + c.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, -3.5f, 0.0f);
+						c.defending = true;
+					}
+				}
+
 				GameObject.Find(readyClicked+"Glow").GetComponent<PlatformScript>().on = false;
 				GameObject.Find(clicked).GetComponent<CharacterAnimationScript>().action = "Defend";
 			}
@@ -307,6 +316,19 @@ public class PlayerClass : MonoBehaviour {
 					}
 				}
 			}
+			if(state == 1)
+			{
+				foreach (Combat_Character c in Characters)
+				{
+					if(currentAttack.attacker == c.Name)
+					{
+						if(c.defending == true)
+						{
+							c.defending = false;
+						}
+					}
+				}
+			}
 
 		}
 	}
@@ -330,7 +352,7 @@ public class PlayerClass : MonoBehaviour {
 		Red_Enemy.Element = "Water";
 		Red_Enemy.down = false;
 
-		//Enemies.Add (Red_Enemy);
+		Enemies.Add (Red_Enemy);
 
 		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
 		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
@@ -346,7 +368,7 @@ public class PlayerClass : MonoBehaviour {
 		Green_Enemy.Element = "Wind";
 		Green_Enemy.down = false;
 
-		Enemies.Add (Green_Enemy);
+		//Enemies.Add (Green_Enemy);
 
 		// enemies here ( or after )
 		foreach (string character in list_of_characters) {
@@ -502,7 +524,9 @@ public class PlayerClass : MonoBehaviour {
 			{
 			case "Red":
 				Instantiate(red, location, Quaternion.identity);
+				Destroy(GameObject.Find("Small Red Character(Clone)"));
 				Instantiate (small_red, new Vector3(-0.8f, -3.5f, 0.0f), Quaternion.identity);
+
 				Instantiate(Red_Health, new Vector2(location.x - .85f, location.y - 1.3f), Quaternion.identity);
 				Instantiate(Red_Platform, new Vector2(location.x - .1f, location.y - .26f), Quaternion.identity);
 				break;
@@ -570,6 +594,7 @@ public class PlayerClass : MonoBehaviour {
 			currentAttack.defender = Characters[thing].Name;
 			currentAttack.target_group = "allies";
 			currentAttack.type_of_move = "Attack";
+			CombatBuffer.Add(currentAttack);
 		}
 		else if(attack_choice == 1)// if we choose magic
 		{
@@ -578,6 +603,7 @@ public class PlayerClass : MonoBehaviour {
 			currentAttack.defender = Characters[thing].Name;
 			currentAttack.target_group = "allies";
 			currentAttack.type_of_move = "Magic";
+			CombatBuffer.Add(currentAttack);
 		}
 		else // we have chosen defense
 		{
@@ -590,7 +616,6 @@ public class PlayerClass : MonoBehaviour {
 				}
 			}
 		}
-		CombatBuffer.Add(currentAttack);
 		GameObject.Find("Small " + enemyName + " Character(Clone)").transform.position = new Vector3(0.8f, -3.5f, 0.0f);
 	}
 	#region Countdown
@@ -665,7 +690,7 @@ public class PlayerClass : MonoBehaviour {
 		}
 
 		foreach (Combat_Character i in Characters)
-		{
+		{	//i.Ready = false; //remove this
 			//GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
@@ -675,15 +700,13 @@ public class PlayerClass : MonoBehaviour {
 				{
 					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
 					//message = "Ready";
-					i.Ready = true;
 					i.down = false;
 					//GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 					
 				}
 				else*/
-				{
-					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, (-3.5f+((i.time_passed*i.getSpeed())/2)), 0.0f);
-
+					//GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, (-3.5f+((i.time_passed*i.getSpeed())/2)), 0.0f);
+					GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position += new Vector3(0.0f, deltaT * i.getSpeed()/2, 0.0f);
 					if(GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position.y >= 3.5f)
 					{
 						GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
@@ -692,13 +715,13 @@ public class PlayerClass : MonoBehaviour {
 						i.down = false;
 					}
 					//message = Mathf.Floor(i.time_passed).ToString();
-				}
 				//GameObject.Find (i.Name + " Text").GetComponent<TextMesh>().text= message;
 			}
 			else if(current_name == i.Name+" Character(Clone)" && Input.GetMouseButtonDown(0)&& i.Ready == true)
 			{
+				//GameObject.Find("Small " + i.Name + " Character(Clone)").transform.position = new Vector3(-0.8f, 3.5f, 0.0f);
 				GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
-				i.defending = false;
+
 
 				state = 2;
 				clicked = i.Name + " Character(Clone)";
@@ -1044,6 +1067,7 @@ public class PlayerClass : MonoBehaviour {
 			{
 				//Debug.Log(current_data.attacker);
 				GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
+
 			}
 		}
 		else if(current_data.type_of_move == "Magic")
@@ -1119,6 +1143,7 @@ public class PlayerClass : MonoBehaviour {
 						}
 					}
 				}
+			GameObject.Find("Small " + current_data.attacker + " Character(Clone)").transform.position = new Vector2(-0.8f, -3.5f);
 			}
 
 
