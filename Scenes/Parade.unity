@@ -200,9 +200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerButton: 
+  answerButtons: []
   Questions:
   - Me Kronk.  Such nice day out.
+  DisplayDialog: 
   inTrigger: 0
 --- !u!61 &88561911
 BoxCollider2D:
@@ -1471,7 +1472,7 @@ GameObject:
   - 212: {fileID: 1159280888}
   - 82: {fileID: 1159280887}
   m_Layer: 0
-  m_Name: sound?
+  m_Name: music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2280,7 +2281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1720714144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2739,3 +2740,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8947ae06ca3df4fcc9786140c1d86f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  smoothTime: .300000012
