@@ -23,10 +23,16 @@ public class NPCDialogScript : MonoBehaviour
 	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))) 
 	  {
 	    if (!ActivateQuest)
+		{
 	      DisplayDialog[0] = true;
+		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+		}
 
 		else
+		{
 		  DisplayDialog[DisplayDialog.Length - 1] = true;
+		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+		}
 	  }
 	}
 
@@ -47,10 +53,12 @@ public class NPCDialogScript : MonoBehaviour
 			  DisplayDialog[i] = false;
 			  ActivateQuest = true;
 			  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
+			  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 			}
 
 			else
 			{
+			  Debug.Log(i);
 			  DisplayDialog[i]     = false;
 			  DisplayDialog[i + 1] = true;
 			}
@@ -58,18 +66,19 @@ public class NPCDialogScript : MonoBehaviour
 		}	  
 	  }
 
-	    if (DisplayDialog[DisplayDialog.Length - 1] && ActivateQuest)
-	    {
-	      GUILayout.Label(Questions[Questions.Length - 1]);
+	  if (DisplayDialog[DisplayDialog.Length - 1] && ActivateQuest)
+	  {
+	    GUILayout.Label(Questions[Questions.Length - 1]);
 
-		  if (GUILayout.Button(answerButtons[answerButtons.Length - 1]))
-		  {
-		    for (int i = 0; i < DisplayDialog.Length; i++)
-			  DisplayDialog[i] = false;
+		if (GUILayout.Button(answerButtons[answerButtons.Length - 1]))
+		{
+          for (int i = 0; i < DisplayDialog.Length; i++)
+		    DisplayDialog[i] = false;
 
-			ActivateQuest = false;
-		  }
-	    }
+		ActivateQuest = false;
+		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
+	  }
+	}
 
 	  GUILayout.EndArea();
 	}
