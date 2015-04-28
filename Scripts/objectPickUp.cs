@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class objectPickUp : MonoBehaviour {
-	public string word;
+	public string objectName;
+	public Item item;
+
 	bool inTrigger;
 	// Use this for initialization
 	void Start () {
@@ -13,8 +15,9 @@ public class objectPickUp : MonoBehaviour {
 	void Update () {
 		if(inTrigger == true && Input.GetKeyDown(KeyCode.Space))
 		{
-			GameData.access.pickUpItem(Item.Apple);
-			Destroy(GameObject.Find(word));
+			GameData.access.pickUpItem(item);
+
+			DestroyImmediate(GameObject.Find(objectName));
 
 		}
 	}

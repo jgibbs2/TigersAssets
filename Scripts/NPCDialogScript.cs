@@ -7,33 +7,36 @@ public class NPCDialogScript : MonoBehaviour
 	public string[] answerButtons;
 	public string[] Questions;
 	public bool[] DisplayDialog;
-	bool ActivateQuest = false;
+	private bool ActivateQuest = false;
 	public bool inTrigger = false;
+	private bool EnteredTriggerForFirstTime = false;
+	private static int numTimesEntered;
 
 	// Use this for initialization
 	void Start () 
 	{
 	  for (int i = 0; i < DisplayDialog.Length; i++)
-			DisplayDialog[i] = false;
+			DisplayDialog[i] = false;		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))) 
+	  if (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))
 	  {
-	    if (!ActivateQuest)
+	    if(EnteredTriggerForFirstTime && !ActivateQuest) 
 		{
-	      DisplayDialog[0] = true;
+		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+		  EnteredTriggerForFirstTime = false;
 		}
 
-		else
+	    if(ActivateQuest)
 		{
 		  DisplayDialog[DisplayDialog.Length - 1] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
-		}
-	  }
+		} 
+	  }	
 	}
 
 	void OnGUI()
@@ -45,7 +48,7 @@ public class NPCDialogScript : MonoBehaviour
 	    if(DisplayDialog[i] && !ActivateQuest)
 	    {
 	      GUILayout.Label(Questions[i]);
-		
+
 		  if (GUILayout.Button(answerButtons[i]))
 	      {
 			if (i == Questions.Length - 2)
@@ -58,8 +61,7 @@ public class NPCDialogScript : MonoBehaviour
 
 			else
 			{
-			  Debug.Log(i);
-			  DisplayDialog[i]     = false;
+			  DisplayDialog[i] = false;
 			  DisplayDialog[i + 1] = true;
 			}
 		  } 
@@ -75,10 +77,10 @@ public class NPCDialogScript : MonoBehaviour
           for (int i = 0; i < DisplayDialog.Length; i++)
 		    DisplayDialog[i] = false;
 
-		ActivateQuest = false;
-		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
+		  ActivateQuest = false;
+		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
+	    }
 	  }
-	}
 
 	  GUILayout.EndArea();
 	}
@@ -86,12 +88,19 @@ public class NPCDialogScript : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D col)
 	{
 	  inTrigger = true;
+
+	  if(numTimesEntered == 0)
+	    EnteredTriggerForFirstTime = true;
+
+	  else
+		EnteredTriggerForFirstTime = false;
+
+	  numTimesEntered++;
 	}
 
 	void OnTriggerExit2D(Collider2D col)
 	{
-		inTrigger = false;
-		//DisplayDialog = false; 
+		inTrigger = false; 
 	    GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 	}
 }
