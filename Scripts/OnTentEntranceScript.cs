@@ -7,7 +7,7 @@ using System.Collections;
 
 public class OnTentEntranceScript : MonoBehaviour 
 {
-	bool hasVisitedTrigger = false;
+	private bool hasVisitedTrigger = false;
 
 	// Use this for initialization
 	void Start () 
@@ -22,7 +22,7 @@ public class OnTentEntranceScript : MonoBehaviour
 	  {
 	    if (!GameObject.FindGameObjectWithTag("NPCPrimary").GetComponentInChildren<NPCDialogScript>().inTrigger)
 	    {
-		  transform.Translate(Vector2.up * Time.deltaTime);
+		  transform.Translate(2.5f * Vector2.up * Time.deltaTime);
 		}
 
 		else
