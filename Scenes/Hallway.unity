@@ -100,7 +100,7 @@ GameObject:
   - 114: {fileID: 13453951}
   - 50: {fileID: 13453953}
   m_Layer: 0
-  m_Name: Bobby Burns
+  m_Name: Bobby
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   right: {fileID: 0}
   x: {fileID: 0}
   xButtonPressed: 0
+  player_controlled: 1
 --- !u!61 &13453952
 BoxCollider2D:
   m_ObjectHideFlags: 0

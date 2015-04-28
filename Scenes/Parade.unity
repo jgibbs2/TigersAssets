@@ -181,7 +181,7 @@ GameObject:
   - 4: {fileID: 88561913}
   - 212: {fileID: 88561912}
   - 61: {fileID: 88561911}
-  - 114: {fileID: 88561910}
+  - 114: {fileID: 88561914}
   m_Layer: 0
   m_Name: Talk Radius
   m_TagString: Untagged
@@ -189,22 +189,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &88561910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 88561909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  answerButtons: []
-  Questions:
-  - Me Kronk.  Such nice day out.
-  DisplayDialog: 
-  inTrigger: 0
 --- !u!61 &88561911
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -256,6 +240,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1066601204}
   m_RootOrder: 0
+--- !u!114 &88561914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 88561909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0362eee042e494e9d15dcaf70bf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FightinWords: Me Kronk. Such nice day out.
+  FightBack: 'It is for now, sucka! '
 --- !u!1001 &142658897
 Prefab:
   m_ObjectHideFlags: 0
