@@ -30,7 +30,8 @@ public class GameData : MonoBehaviour {
 
 
 	Canvas inventory_Display;
-	List<QuestItem> playerInventory;
+	List<QuestItem> playerInventoryDisplay;
+	List<Item> itemList;
 	int nextItemSlot;
 	int emptySlot;
 	const string slotName = "Slot";
@@ -54,25 +55,28 @@ public class GameData : MonoBehaviour {
 			access = this;
 			Load ();
 
-			// Set player inventory to be the Default config
-			inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
-
-			playerInventory = defaultQuestItems();
-
-			int row = 0; int col = 0;
-			foreach(QuestItem item in playerInventory){
-
-				makeNewImage(item, row, col);
-				if (col == 2){row++; col = 0;}else{col++;}
-			}
-
 			nextItemSlot = 0;
 			emptySlot = 0;
-
 
 		} else {
 			// If a GameData already exists, don't make a new one
 			Destroy(gameObject);
+		}
+	}
+
+	void Start()
+	{
+		// Set player inventory to be the Default config
+		inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
+		
+		playerInventoryDisplay = defaultQuestItems();
+		itemList = new List<Item>();
+
+		int row = 0; int col = 0;
+		foreach(QuestItem item in playerInventoryDisplay){
+			
+			makeNewImage(item, row, col);
+			if (col == 2){row++; col = 0;}else{col++;}
 		}
 	}
 
@@ -146,65 +150,57 @@ public class GameData : MonoBehaviour {
 	}
 
 	public void pickUpItem(Item item){
-		switch (item){
-
-		case Item.Apple:
-			addItemToBag ("Apple");
-			break;
-
-		case Item.Bottle:
-			addItemToBag("Bottle");
-			break;
-
-		case Item.Poop:
-			addItemToBag("Poop");
-			break;
+		var name = nameOf (item);
+		Debug.Log(name);
+		if( checkInventoryFor(name) == false)
+		{
+			if(emptySlot == 0){
+				changeInventoryDisplay(name, slotName + nextItemSlot);
+				itemList.Add(item); 
+				nextItemSlot++;
+			} else {
+				changeInventoryDisplay(name,"Empty" + emptySlot);
+				itemList.Add(item);
+				nextItemSlot--;
+			}
 		}
 	}
 
-	private void addItemToBag(string name){
-		Debug.Log (emptySlot);
-		if(emptySlot == 0){
-			GameObject.Find (slotName + nextItemSlot).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
-			GameObject.Find (slotName + nextItemSlot).name = name;
-			nextItemSlot++;
-		} else {
-			GameObject.Find ("Empty" + emptySlot).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
-			GameObject.Find ("Empty" + emptySlot).name = name;
-			nextItemSlot--;
-		}
+	private void changeInventoryDisplay(string name, string objectName)
+	{
+		GameObject.Find (objectName).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
+		GameObject.Find (objectName).name = name;
 	}
 
 	// Used to try and turn in an Item for a quest
 	// Returns true if the item is in player inventory and was returned
 	// Otherwise it returns false
-	public bool turnIn(Item item){
-		switch (item){
-			
-		case Item.Apple:
-			if (playerInventory.Where( a => a.name == "Apple").ToList() != null){
-				removeItem ("Apple");	return true;}
-			 break;
-
-		case Item.Bottle:
-			if (playerInventory.Where( a => a.name == "Bottle").ToList() != null){
-				removeItem ("Bottle");	return true;}
-			break;
-			
-		case Item.Poop:
-			if (playerInventory.Where( a => a.name == "Poop").ToList() != null){
-				removeItem ("Poop");	return true;}
-			break;
+	public void turnIn(Item item){
+		var name = nameOf(item);
+		if (checkInventoryFor(name)){
+			removeIconFromDisplay(name);
+			itemList.Remove(item);
 		}
+	}
 
+	public bool checkInventoryFor(string item)
+	{		
+		if (itemList.Where( a => nameOf (a) == item).ToList().Count != 0)
+			return true;
 		return false; // Item not in inventory
 	}
 
-	private void removeItem(string name){
+	private void removeIconFromDisplay(string name){
 		GameObject.Find (name).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/url");
 		emptySlot++;
 		GameObject.Find (name).name = "Empty"+emptySlot;
 	}
+
+	private string nameOf(Item item)
+	{
+		return Enum.GetName(typeof(Item),item);
+	}
+
 }
 
 public class QuestItem{
