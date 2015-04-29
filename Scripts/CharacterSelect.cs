@@ -21,6 +21,28 @@ public class CharacterSelect : MonoBehaviour {
 
 	void Start () {
 		Instantiate(charSelect, new Vector3(0,0,-1), Quaternion.identity);
+		//bool[] arr = GameObject.Find (GameData).GetComponent<GameData> ().characters;
+		if(GameObject.Find ("GameData").GetComponent<GameData> ().characters[0] == false)
+		{
+			Destroy(GameObject.Find("Orange Character"));
+		}
+		if(GameObject.Find ("GameData").GetComponent<GameData> ().characters[1] == false)
+		{
+			Destroy(GameObject.Find("Yellow Character"));
+		}
+		if(GameObject.Find ("GameData").GetComponent<GameData> ().characters[2] == false)
+		{
+			Destroy(GameObject.Find("Green Character"));
+		}
+		if(GameObject.Find ("GameData").GetComponent<GameData> ().characters[3] == false)
+		{
+			Destroy(GameObject.Find("Blue Character"));
+		}
+		if(GameObject.Find ("GameData").GetComponent<GameData> ().characters[4] == false)
+		{
+			Destroy(GameObject.Find("Pink Character"));
+		}
+
 		//Instantiate (fire, new Vector3 (0, 0, 0), Quaternion.identity);// these initialize each character.
 	}
 
