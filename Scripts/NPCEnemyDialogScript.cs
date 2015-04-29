@@ -3,19 +3,20 @@ using System.Collections;
 
 public class NPCEnemyDialogScript : MonoBehaviour 
 {
-	public string FightinWords;
-	public string FightBack;
 	private bool DisplayEnemyDialog = false;
 	private bool inEnemyTrigger = false;
-	public Texture2D texture = new Texture2D(400, 400);
 	private GUIStyle myStyle;
 	private GUIStyle yourStyle;
+
+	public string FightinWords;
+	public string FightBack;
+	public Texture2D texture;
 
 	// Use this for initialization
 	void Start () 
 	{
 	  myStyle = new GUIStyle();
-	  yourStyle = new GUIStyle();
+	  yourStyle = new GUIStyle(); 
 	}
 	
 	// Update is called once per frame

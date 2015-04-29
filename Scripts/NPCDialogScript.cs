@@ -3,28 +3,32 @@ using System.Collections;
 
 public class NPCDialogScript : MonoBehaviour
 {
-
-	public string[] answerButtons;
-	public string[] Questions;
-	public bool[] DisplayDialog;
-	private bool ActivateQuest = false;
-	public bool inTrigger = false;
-	private bool EnteredTriggerForFirstTime = false;
+	private bool EnteredTriggerForFirstTime;
+	private bool ActivateQuest;
 	private static int numTimesEntered;
+
+	public string[] Questions;
+	public string[] answerButtons;
+	public bool[] DisplayDialog;
+	public bool inTrigger;
 
 	// Use this for initialization
 	void Start () 
 	{
 	  for (int i = 0; i < DisplayDialog.Length; i++)
-			DisplayDialog[i] = false;		
+	    DisplayDialog[i] = false; 
+
+	  EnteredTriggerForFirstTime = false;
+	  ActivateQuest = false;
+	  inTrigger = false;
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame 
 	void Update () 
 	{
 	  if (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))
 	  {
-	    if(EnteredTriggerForFirstTime && !ActivateQuest) 
+	    if(EnteredTriggerForFirstTime && !ActivateQuest)  
 		{
 		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
@@ -54,6 +58,7 @@ public class NPCDialogScript : MonoBehaviour
 		//For loop runs through the characters' lines
       for (int i = 0; i < Questions.Length - 1; i++)
 	  {
+
 	    if(DisplayDialog[i] && !ActivateQuest)
 	    {
 	      GUILayout.Label(Questions[i]);
@@ -99,7 +104,7 @@ public class NPCDialogScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-	  inTrigger = true;
+	  inTrigger = true; 
 
 	  if(numTimesEntered == 0)
 	    EnteredTriggerForFirstTime = true;

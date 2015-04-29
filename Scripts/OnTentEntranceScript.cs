@@ -20,15 +20,15 @@ public class OnTentEntranceScript : MonoBehaviour
 	{
 	  if (!hasVisitedTrigger)
 	  {
-	    if (!GameObject.FindGameObjectWithTag("NPCPrimary").GetComponentInChildren<NPCDialogScript>().inTrigger)
+	    if (!GameObject.FindWithTag("ClanMember").GetComponentInChildren<PCDialogScript>().inClanMemberTrigger) 
 	    {
 		  transform.Translate(2.5f * Vector2.up * Time.deltaTime);
 		}
 
 		else
 		{
-		  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = true;
 		  hasVisitedTrigger = true;
+		  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 	    }
 	  }
