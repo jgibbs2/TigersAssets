@@ -37,12 +37,6 @@ public class GameData : MonoBehaviour {
 	const string slotName = "Slot";
 
 	public bool[] characters;
-	public bool minotaur;
-	public bool satyr;
-	public bool gypsy;
-	public bool brainiac;
-	public bool ghost;
-
 
 	public float getBobbyX_parade(){
 		return bobbyX_parade;
