@@ -31,14 +31,14 @@ public class NPCEnemyDialogScript : MonoBehaviour
 
 	void OnGUI()
 	{ 
-	  GUILayout.BeginArea(new Rect(310, 0, 400, 400)); 
+	  GUILayout.BeginArea(new Rect(0, 0, 1200, 400)); 
 		
-	  myStyle.fontSize = 24;
+	  myStyle.fontSize = 72;
 	  myStyle.normal.textColor = Color.white;
 	  myStyle.fontStyle = FontStyle.Bold;
 	  myStyle.normal.background = texture; 
 
-	  yourStyle.fontSize = 24;
+	  yourStyle.fontSize = 72;
 	  yourStyle.normal.textColor = Color.white; 
 	  yourStyle.normal.background = texture;
 
