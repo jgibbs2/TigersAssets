@@ -7,11 +7,15 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	public string FightBack;
 	private bool DisplayEnemyDialog = false;
 	private bool inEnemyTrigger = false;
+	public Texture2D texture = new Texture2D(400, 400);
+	private GUIStyle myStyle;
+	private GUIStyle yourStyle;
 
 	// Use this for initialization
 	void Start () 
 	{
-	
+	  myStyle = new GUIStyle();
+	  yourStyle = new GUIStyle();
 	}
 	
 	// Update is called once per frame
@@ -27,13 +31,21 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	void OnGUI()
 	{ 
 	  GUILayout.BeginArea(new Rect(310, 0, 400, 400)); 
-	  //GUI.backgroundColor = Color.black; 
+		
+	  myStyle.fontSize = 24;
+	  myStyle.normal.textColor = Color.white;
+	  myStyle.fontStyle = FontStyle.Bold;
+	  myStyle.normal.background = texture; 
+
+	  yourStyle.fontSize = 24;
+	  yourStyle.normal.textColor = Color.white; 
+	  yourStyle.normal.background = texture;
 
 	  if (DisplayEnemyDialog)
 	  {
-		GUILayout.Label(FightinWords);
+		GUILayout.Label(FightinWords, myStyle);
 
-		if (GUILayout.Button(FightBack))
+		if (GUILayout.Button(FightBack, yourStyle))
 		{
 		  Application.LoadLevel("TestScene");
 		}
