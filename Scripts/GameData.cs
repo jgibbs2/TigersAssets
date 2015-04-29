@@ -36,6 +36,7 @@ public class GameData : MonoBehaviour {
 	int emptySlot;
 	const string slotName = "Slot";
 
+	public bool[] characters;
 
 	public float getBobbyX_parade(){
 		return bobbyX_parade;
@@ -66,6 +67,13 @@ public class GameData : MonoBehaviour {
 
 	void Start()
 	{
+		characters = new bool[5];
+		characters [0] = false;
+		characters [1] = false;
+		characters [2] = false;
+		characters [3] = false;
+		characters [4] = false;
+
 		// Set player inventory to be the Default config
 		inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
 		

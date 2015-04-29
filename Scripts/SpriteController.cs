@@ -31,9 +31,6 @@ public class SpriteController : MonoBehaviour
 			transform.Translate(Vector2.right * h * Time.deltaTime);
 			transform.Translate(Vector2.up * v * Time.deltaTime);
 		}
-
-
-
 	}
 
 	void OnGUI()
@@ -64,7 +61,7 @@ public class SpriteController : MonoBehaviour
 			h = 1.0f * speed;
 			}
 		}
-		if (GUI.RepeatButton(new Rect (1000, 725, 200, 200), x, GUIStyle.none)) {
+		if (GUI.RepeatButton(new Rect (1550, 725, 200, 200), x, GUIStyle.none)) {
 			xButtonPressed = true;
 		}
 		transform.Translate(Vector2.right * h * Time.deltaTime);
@@ -88,7 +85,7 @@ public class SpriteController : MonoBehaviour
 		}
 
 		if (t == "Orange_Tent_Collider"){
-			Application.LoadLevel("Orange");
+			Application.LoadLevel("TestScene");
 			GameData.access.Save();
 		}
 
