@@ -1065,6 +1065,10 @@ Prefab:
       propertyPath: word
       value: QuestItem1
       objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: objectName
+      value: QuestItem 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
   m_IsPrefabParent: 0
@@ -1109,6 +1113,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
       propertyPath: word
+      value: QuestItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: objectName
       value: QuestItem
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -3118,6 +3126,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
       propertyPath: word
+      value: QuestItem2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: objectName
       value: QuestItem2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
