@@ -253,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FightinWords: Me Kronk. Such nice day out.
   FightBack: 'It is for now, sucka! '
+  texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
 --- !u!1001 &142658897
 Prefab:
   m_ObjectHideFlags: 0
