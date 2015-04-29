@@ -13,7 +13,7 @@ public class objectPickUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(inTrigger == true && Input.GetKeyDown(KeyCode.Space))
+		if(inTrigger == true && (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.Space)))
 		{
 			GameData.access.pickUpItem(item);
 
