@@ -9,6 +9,10 @@ public class objectPickUp : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		inTrigger = false;
+		var thisObject = GameObject.Find(objectName);
+		thisObject.SetActive(GameData.access.appleQuest);
+		Debug.Log(thisObject.activeSelf.ToString());
+
 	}
 	
 	// Update is called once per frame

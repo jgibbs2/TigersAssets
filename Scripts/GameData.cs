@@ -28,6 +28,7 @@ public class GameData : MonoBehaviour {
 	float bobbyX_parade;
 	float bobbyY_parade;
 
+	public bool appleQuest = false;
 
 	Canvas inventory_Display;
 	List<QuestItem> playerInventoryDisplay;
@@ -204,7 +205,7 @@ public class GameData : MonoBehaviour {
 		GameObject.Find (name).name = "Empty"+emptySlot;
 	}
 
-	private string nameOf(Item item)
+	public string nameOf(Item item)
 	{
 		return Enum.GetName(typeof(Item),item);
 	}

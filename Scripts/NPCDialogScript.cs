@@ -33,16 +33,25 @@ public class NPCDialogScript : MonoBehaviour
 
 	    if(ActivateQuest)
 		{
-		  DisplayDialog[DisplayDialog.Length - 1] = true;
-		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+			if (GameData.access.checkInventoryFor(GameData.access.nameOf(Item.Apple)))
+			{
+				GameData.access.turnIn(Item.Apple);
+				
+				// Goes to the quest done dialog
+		  		DisplayDialog[DisplayDialog.Length - 1] = true;
+		 	 	GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+			}
 		} 
 	  }	
 	}
 
+	//Updates every frame
 	void OnGUI()
 	{
+		//Creates text box
 	  GUILayout.BeginArea(new Rect(310, 0, 400, 400));
 
+		//For loop runs through the characters' lines
       for (int i = 0; i < Questions.Length - 1; i++)
 	  {
 	    if(DisplayDialog[i] && !ActivateQuest)
@@ -51,8 +60,11 @@ public class NPCDialogScript : MonoBehaviour
 
 		  if (GUILayout.Button(answerButtons[i]))
 	      {
+				//When quest starts
 			if (i == Questions.Length - 2)
 			{
+						Debug.Log("The quest has started!");
+			  // Put bool to activate items
 			  DisplayDialog[i] = false;
 			  ActivateQuest = true;
 			  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;

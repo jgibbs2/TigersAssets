@@ -85,7 +85,8 @@ public class SpriteController : MonoBehaviour
 		}
 
 		if (t == "Orange_Tent_Collider"){
-			Application.LoadLevel("TestScene");
+			//Application.LoadLevel("TestScene");
+			Application.LoadLevel ("Orange");
 			GameData.access.Save();
 		}
 
