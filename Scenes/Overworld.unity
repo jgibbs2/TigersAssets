@@ -162,6 +162,7 @@ MonoBehaviour:
   right: {fileID: 0}
   x: {fileID: 0}
   xButtonPressed: 0
+  player_controlled: 1
 --- !u!61 &13453952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -446,15 +447,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerButtons:
-  - Yeah, so? You know where it's at?
-  - Nahw, I got a smoke session to go to doe.
-  - Thanks, but I don't need luck. I got plenty green in my pocket!
   Questions:
   - Hello, I am The Yellow Box.
   - Thank you for the message. Don't you have a fight to get to?
   - Yes. It's up North. The Red Box will take you to it. Good Luck.
+  answerButtons:
+  - Yeah, so? You know where it's at?
+  - Nahw, I got a smoke session to go to doe.
+  - Thanks, but I don't need luck. I got plenty green in my pocket!
+  DisplayDialog: 
   inTrigger: 0
+  texture: {fileID: 0}
 --- !u!61 &292112428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -690,7 +693,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 528133456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8947ae06ca3df4fcc9786140c1d86f15, type: 3}
+  m_Script: {fileID: 11500000, guid: f8b91e56b14f0f84c8c5d6f44f586bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 13453950}
@@ -748,15 +751,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerButtons:
-  - Of course, after I smoke some of this weed first.
-  - Nope, I gotta smoke some of this weeed. Sorry Green Box.
-  - You too, Green Box.
   Questions:
   - Hello, I am The Green Box.
   - Can you deliver this message to The Yellow Box?
   - Thank you for delivering the message. Have a good day, Blue Box.
+  answerButtons:
+  - Of course, after I smoke some of this weed first.
+  - Nope, I gotta smoke some of this weeed. Sorry Green Box.
+  - You too, Green Box.
+  DisplayDialog: 
   inTrigger: 0
+  texture: {fileID: 0}
 --- !u!1 &856330998
 GameObject:
   m_ObjectHideFlags: 0
