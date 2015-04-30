@@ -3,11 +3,11 @@ using System.Collections;
 
 public class PCDialogScript : MonoBehaviour 
 {
-	private bool DisplayPCDialog = false;
+	private bool DisplayPCDialog;
 	private GUIStyle myStyle;
 	private GUIStyle yourStyle;
 
-	public bool inClanMemberTrigger = false;
+	public bool inClanMemberTrigger;
 	public string RequestToJoin;
 	public string Acceptance;
 	public Texture2D texture;
@@ -18,8 +18,10 @@ public class PCDialogScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		DisplayPCDialog = false;
 		myStyle = new GUIStyle();
 		yourStyle = new GUIStyle();
+		inClanMemberTrigger = false;
 	}
 	
 	// Update is called once per frame 
@@ -36,12 +38,12 @@ public class PCDialogScript : MonoBehaviour
 	{ 
 		GUILayout.BeginArea(new Rect(310, 0, 400, 400)); 
 		
-		myStyle.fontSize = 24;
+		myStyle.fontSize = 72;
 		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
 		myStyle.normal.background = texture; 
 		
-		yourStyle.fontSize = 24;
+		yourStyle.fontSize = 72;
 		yourStyle.normal.textColor = Color.white; 
 		yourStyle.normal.background = texture;
 		

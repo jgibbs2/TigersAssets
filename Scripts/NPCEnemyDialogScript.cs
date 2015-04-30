@@ -12,7 +12,7 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	public string FightBack;
 	public Texture2D texture;
 
-	// Use this for initialization
+	// Use this for initialization 
 	void Start () 
 	{
 	  myStyle = new GUIStyle();
