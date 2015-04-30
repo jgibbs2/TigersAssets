@@ -9,7 +9,7 @@ public class initBobby : MonoBehaviour {
 		Debug.Log (GameData.access.getBobbyY_parade ());
 		var player = GameObject.FindWithTag ("Player");
 		if(player != null)
-			player.transform.position.Set(GameData.access.getBobbyX_parade(), GameData.access.getBobbyY_parade(),0);
+			player.transform.position = new Vector2(GameData.access.getBobbyX_parade(),GameData.access.getBobbyY_parade()-0.25f);
 		else
 			Debug.Log ("Cannot find bobby");
 	}
