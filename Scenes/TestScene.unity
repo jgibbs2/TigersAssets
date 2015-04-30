@@ -291,6 +291,8 @@ MonoBehaviour:
   bar: {fileID: 400000, guid: 911a10d98f63ee24bac779a6c307f39d, type: 2}
   DamageDisplay: {fileID: 400000, guid: 915161163a40c5343acafd688394417f, type: 2}
   clicked: 
+  att_sprite: {fileID: 463422, guid: 87ce242a7d06fd146bf585b7ac243080, type: 2}
+  sub_state: 1
 --- !u!82 &1662002792
 AudioSource:
   m_ObjectHideFlags: 0

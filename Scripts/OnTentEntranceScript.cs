@@ -8,19 +8,20 @@ using System.Collections;
 public class OnTentEntranceScript : MonoBehaviour 
 {
 	private bool hasVisitedTrigger = false;
+	public string name_of_party_member;
 
 	// Use this for initialization
 	void Start () 
 	{
-		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+		GetComponent<SpriteController>().player_controlled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-	  if (!hasVisitedTrigger)
+		if (!hasVisitedTrigger && GetComponent<SpriteController>().player_controlled == false)
 	  {
-	    if (!GameObject.FindWithTag("ClanMember").GetComponentInChildren<PCDialogScript>().inClanMemberTrigger) 
+	    if (!GameObject.Find(name_of_party_member).GetComponentInChildren<PCDialogScript>().inClanMemberTrigger) 
 	    {
 		  transform.Translate(2.5f * Vector2.up * Time.deltaTime);
 		}

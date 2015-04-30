@@ -16,6 +16,7 @@ public class DamageDisplayScript : MonoBehaviour {
 		GetComponent<TextMesh> ().text = text;
 		if (Time.time - initial_time >= 1) 
 		{
+			GameObject.Find("Home").GetComponent<PlayerClass>().sub_state = 4;
 			Destroy(gameObject);
 		}
 	}

@@ -10,7 +10,10 @@ public class PCDialogScript : MonoBehaviour
 	public bool inClanMemberTrigger = false;
 	public string RequestToJoin;
 	public string Acceptance;
-	public Texture2D texture; 
+	public Texture2D texture;
+
+	public string name;
+	public int num;
 	
 	// Use this for initialization
 	void Start () 
@@ -50,6 +53,7 @@ public class PCDialogScript : MonoBehaviour
 			{
 				Destroy(GameObject.FindWithTag("ClanMember"));
 				GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
+				GameObject.Find ("GameData").GetComponent<GameData>().characters[0] = true;
 			}
 		}
 		

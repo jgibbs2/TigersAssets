@@ -35,37 +35,43 @@ public class SpriteController : MonoBehaviour
 
 	void OnGUI()
 	{
-		float h = 0;
-		float v = 0;
-		if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
-			if(player_controlled == true)
-			{
-			v = 1.0f * speed;
+		if (GUI.RepeatButton(new Rect (0, 0, 200, 200), up, GUIStyle.none)) {
+			Debug.Log("GUI BUTTON");
+		}
+		if(player_controlled)
+		{
+			float h = 0;
+			float v = 0;
+			if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
+				if(player_controlled == true)
+				{
+				v = 1.0f * speed;
+				}
 			}
-		}
-		if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
-			if(player_controlled == true)
-			{
-			v = -1.0f * speed;
+			if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
+				if(player_controlled == true)
+				{
+				v = -1.0f * speed;
+				}
 			}
-		}
-		if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
-			if(player_controlled == true)
-			{
-			h = -1.0f * speed;
+			if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
+				if(player_controlled == true)
+				{
+				h = -1.0f * speed;
+				}
 			}
-		}
-		if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
-			if(player_controlled == true)
-			{
-			h = 1.0f * speed;
+			if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
+				if(player_controlled == true)
+				{
+				h = 1.0f * speed;
+				}
 			}
+			if (GUI.RepeatButton(new Rect (1550, 725, 200, 200), x, GUIStyle.none)) {
+				xButtonPressed = true;
+			}
+			transform.Translate(Vector2.right * h * Time.deltaTime);
+			transform.Translate(Vector2.up * v * Time.deltaTime);
 		}
-		if (GUI.RepeatButton(new Rect (1550, 725, 200, 200), x, GUIStyle.none)) {
-			xButtonPressed = true;
-		}
-		transform.Translate(Vector2.right * h * Time.deltaTime);
-		transform.Translate(Vector2.up * v * Time.deltaTime);
 	}
 
 	void OnCollisionEnter2D(Collision2D col) 

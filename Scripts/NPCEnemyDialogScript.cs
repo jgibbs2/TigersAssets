@@ -57,13 +57,13 @@ public class NPCEnemyDialogScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-	  if (col.gameObject.tag == "Player")
+	  if (col.gameObject.name == "Bobby")
 	    inEnemyTrigger = true;
 	}
 
 	void OnTriggerExit2D(Collider2D col)
 	{
-      if (col.gameObject.tag == "Player")
+      if (col.gameObject.name == "Bobby")
 	    inEnemyTrigger = false; 
 	}
 }

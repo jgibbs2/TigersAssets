@@ -3131,7 +3131,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
       propertyPath: objectName
-      value: QuestItem2
+      value: QuestItem 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}

@@ -217,6 +217,8 @@ public class PlayerClass : MonoBehaviour {
 	public Transform DamageDisplay;
 	public string clicked;
 
+	public Transform att_sprite;
+
 	int attackStep = 1;
 	CombatData currentAttack = new CombatData();
 
@@ -1024,8 +1026,13 @@ public class PlayerClass : MonoBehaviour {
 
 	}
 
+	public int sub_state = 1;
+	bool once = false;
+	bool once2 = false;
+	int damage = 0;
 	void PerformAttack()
 	{
+		//int damage = -10;
 		//CombatData data = CombatBuffer [0]; absolete, look at current_data
 		//attacking animation ( need carter here )
 
@@ -1042,115 +1049,161 @@ public class PlayerClass : MonoBehaviour {
 
 		}*/
 
-
-			//wait till done
-
-		//actual animation of the attack (not too hard, but the thing should last only as long as the animation of the attack)
-
-		//Debug.Log (current_data.attacker);
-		if(current_data.target_group == "enemies")
+		if(sub_state == 1)
 		{
-			GameObject.Find(current_data.attacker + "Glow").GetComponent<PlatformScript>().on = false;
-			//GameObject.Find(current_data.attacker + "Glow").GetComponent<SpriteRenderer>().sprite = "None";
-		}
-		//calculate damage here
-		int damage = 0;
-		if(current_data.type_of_move == "Attack")
-		{
-			damage = CalculateAttackDamage ();
+				//wait till done
+
+			//actual animation of the attack (not too hard, but the thing should last only as long as the animation of the attack)
+
+			//Debug.Log (current_data.attacker);
 			if(current_data.target_group == "enemies")
 			{
-				GameObject.Find(current_data.attacker + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
-				//yield 
+				GameObject.Find(current_data.attacker + "Glow").GetComponent<PlatformScript>().on = false;
+				//GameObject.Find(current_data.attacker + "Glow").GetComponent<SpriteRenderer>().sprite = "None";
 			}
-			else
+			//calculate damage here
+			if(current_data.type_of_move == "Attack")
 			{
-				//Debug.Log(current_data.attacker);
-				GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
-
-			}
-		}
-		else if(current_data.type_of_move == "Magic")
-		{
-			damage = CalculateMagicDamage();
-			if(current_data.target_group == "enemies")
-			{
-				GameObject.Find(current_data.attacker + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Magic";
-			}
-			else
-			{
-				GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Magic";
-			}
-		}
-		else if(current_data.type_of_move == "Defend")
-		{
-			//Debug.Log("hitting");
-			foreach(Combat_Character c in Characters)
-			{
-				//Debug.Log(c.Name + " == " + current_data.attacker);
-				if(c.Name == current_data.attacker)
+				damage = CalculateAttackDamage ();
+				if(current_data.target_group == "enemies")
 				{
-					//Debug.Log("things");
-					c.defending = true;
-					return;
+					GameObject.Find(current_data.attacker + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
+					//yield 
+				}
+				else
+				{
+					//Debug.Log(current_data.attacker);
+					GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Attack";
+
 				}
 			}
-		}
-		
-
-		//display of damage dealt
-		if( current_data.target_group== "allies")
+			else if(current_data.type_of_move == "Magic")
 			{
+				damage = CalculateMagicDamage();
+				if(current_data.target_group == "enemies")
+				{
+					GameObject.Find(current_data.attacker + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Magic";
+				}
+				else
+				{
+					GameObject.Find(current_data.attacker + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Magic";
+				}
+			}
+			else if(current_data.type_of_move == "Defend")
+			{
+				//Debug.Log("hitting");
 				foreach(Combat_Character c in Characters)
 				{
-					if(current_data.defender==c.Name)
+					//Debug.Log(c.Name + " == " + current_data.attacker);
+					if(c.Name == current_data.attacker)
 					{
-						GameObject go = GameObject.Find(current_data.defender + " Character(Clone)");
-						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
-						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
-						//Debug.Log("health = " + c.Health + " & damage = " + damage);
-						GameObject.Find (c.Name + "_Health(Clone)").GetComponentInChildren<HealthSprite>().HP = c.Health;
-						GameObject.Find (c.Name + "_Health(Clone)").GetComponentInChildren<HealthSprite>().LoseHealth(damage);
-						c.setHP(damage);
-						//Debug.Log("c.health = " + c.Health);
-						if(c.HP<=0)
-						{
-							Characters.Remove(c);
-							Destroy(GameObject.Find(c.Name + " Character(Clone)"));
-							Destroy(GameObject.Find("Small " + c.Name + " Character(Clone)"));
-							Destroy(GameObject.Find (c.Name + "_Health(Clone)"));
-							break;
-						}
+						//Debug.Log("things");
+						c.defending = true;
+						return;
 					}
 				}
 			}
-			else// attack is directed at the enemies
+			sub_state = 2;
+		}
+
+		else if(sub_state == 2)//set the 
+		{
+			if(once == false)
 			{
-				foreach(Enemy_Character e in Enemies)
+				if( current_data.target_group== "allies")
 				{
-					if(current_data.defender==e.Name)
+					foreach(Combat_Character c in Characters)
 					{
-						GameObject go = GameObject.Find(current_data.defender + "(Clone)");
-						Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
-						GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
-						e.Health = e.Health-damage;
-						if(e.Health<=0)
+						if(current_data.defender==c.Name)
 						{
-							Enemies.Remove(e);
-							Destroy(GameObject.Find(e.Name + "(Clone)"));
-							Destroy(GameObject.Find("Small " + e.Name + " Character(Clone)"));
-							break;
+							Instantiate (att_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
 						}
 					}
 				}
-			GameObject.Find("Small " + current_data.attacker + " Character(Clone)").transform.position = new Vector2(-0.8f, -3.5f);
+				else// attack is directed at the enemies
+				{
+					foreach(Enemy_Character e in Enemies)
+					{
+						if(current_data.defender==e.Name)
+						{
+							Instantiate (att_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+						}
+					}
+				}
+				once = true;
+			}
+		}
+
+		else if(sub_state == 3)
+		{
+			if(once2 == false)
+			{
+				//display of damage dealt
+				if( current_data.target_group== "allies")
+				{
+					foreach(Combat_Character c in Characters)
+					{
+						if(current_data.defender==c.Name)
+						{
+							GameObject go = GameObject.Find(current_data.defender + " Character(Clone)");
+							Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
+							GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
+							//Debug.Log("health = " + c.Health + " & damage = " + damage);
+							GameObject.Find (c.Name + "_Health(Clone)").GetComponentInChildren<HealthSprite>().HP = c.Health;
+							GameObject.Find (c.Name + "_Health(Clone)").GetComponentInChildren<HealthSprite>().LoseHealth(damage);
+							c.setHP(damage);
+							//Debug.Log("c.health = " + c.Health);
+							if(c.HP<=0)
+							{
+								Characters.Remove(c);
+								Destroy(GameObject.Find(c.Name + " Character(Clone)"));
+								Destroy(GameObject.Find("Small " + c.Name + " Character(Clone)"));
+								Destroy(GameObject.Find (c.Name + "_Health(Clone)"));
+								break;
+							}
+						}
+					}
+				}
+				else// attack is directed at the enemies
+				{
+					foreach(Enemy_Character e in Enemies)
+					{
+						if(current_data.defender==e.Name)
+						{
+							GameObject go = GameObject.Find(current_data.defender + "(Clone)");
+							Instantiate (DamageDisplay, new Vector3(go.transform.position.x+0.5f, go.transform.position.y+1.0f, 0f), Quaternion.identity);
+							GameObject.Find("DamageDisplay(Clone)").GetComponent<DamageDisplayScript>().text = damage.ToString();
+							e.Health = e.Health-damage;
+							if(e.Health<=0)
+							{
+								Enemies.Remove(e);
+								Destroy(GameObject.Find(e.Name + "(Clone)"));
+								Destroy(GameObject.Find("Small " + e.Name + " Character(Clone)"));
+								break;
+							}
+						}
+					}
+				}
+				once2 = true;
 			}
 
 
+		}
 
-		//finished with this attack
-		//state = 1;
-		//CombatBuffer.Remove(CombatBuffer[0]);
+		else if(sub_state == 4)
+		{
+			once = false;
+			once2 = false;
+			state = 1;
+			if(current_data.target_group!= "allies")
+			{
+				GameObject.Find("Small " + current_data.attacker + " Character(Clone)").transform.position = new Vector2(-0.8f, -3.5f);
+			}
+
+			//Debug.Log (CombatBuffer.FirstOrDefault().attacker);//);+ " is " + CombatBuffer[1].type_of_move + " at " + CombatBuffer[1].defender);
+			CombatBuffer.Remove(CombatBuffer[0]);
+			sub_state = 1;
+		}
 	}
 
 	float timerStart = 0.0f;
@@ -1184,9 +1237,7 @@ public class PlayerClass : MonoBehaviour {
 		{
 			PerformAttack();
 			//Debug.Log(CombatBuffer[0].defender);
-			state = 1;
-			//Debug.Log (CombatBuffer.FirstOrDefault().attacker);//);+ " is " + CombatBuffer[1].type_of_move + " at " + CombatBuffer[1].defender);
-			CombatBuffer.Remove(CombatBuffer[0]);
+
 		}
 		timerStart = Time.time;
 		//timerStart = Time.time;
