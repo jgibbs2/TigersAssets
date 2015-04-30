@@ -26,7 +26,7 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	  {
 	    DisplayEnemyDialog = true;
 		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
-		GameObject.FindWithTag("Enemy").GetComponent<NPCMovement>().talking = true;
+		GameObject.Find("Minotaur").GetComponent<NPCMovement>().talking = true;
 	  }
 
 	  else

@@ -156,6 +156,7 @@ public class PlayerClass : MonoBehaviour {
 		public string defender;
 		public string type_of_move;
 		public string target_group;//allies, enemies
+		public string element;
 	}
 
 	CombatData current_data;
@@ -218,6 +219,11 @@ public class PlayerClass : MonoBehaviour {
 	public string clicked;
 
 	public Transform att_sprite;
+	public Transform fire_sprite;
+	public Transform water_sprite;
+	public Transform wind_sprite;
+	public Transform elec_sprite;
+	public Transform norm_sprite;
 
 	int attackStep = 1;
 	CombatData currentAttack = new CombatData();
@@ -255,6 +261,15 @@ public class PlayerClass : MonoBehaviour {
 			{
 				selected=true;
 				currentAttack.target_group = "enemies";
+				//current_data.attacker = readyClicked;
+				foreach(Combat_Character c in Characters)
+				{
+					Debug.Log(readyClicked);
+					if(c.Name == readyClicked)
+					{
+						current_data.element = c.Element;
+					}
+				}
 			}
 			else if(Input.GetMouseButtonDown(0)&&name=="Defend")
 			{
@@ -596,6 +611,13 @@ public class PlayerClass : MonoBehaviour {
 			currentAttack.defender = Characters[thing].Name;
 			currentAttack.target_group = "allies";
 			currentAttack.type_of_move = "Attack";
+			foreach(Enemy_Character e in Enemies)
+			{
+				if(e.Name == enemyName)
+				{
+					currentAttack.element = e.Element;
+				}
+			}
 			CombatBuffer.Add(currentAttack);
 		}
 		else if(attack_choice == 1)// if we choose magic
@@ -605,6 +627,14 @@ public class PlayerClass : MonoBehaviour {
 			currentAttack.defender = Characters[thing].Name;
 			currentAttack.target_group = "allies";
 			currentAttack.type_of_move = "Magic";
+			foreach(Enemy_Character e in Enemies)
+			{
+				if(e.Name == enemyName)
+				{
+					currentAttack.element = e.Element;
+					//Debug.Log(e.Element + "e.element");
+				}
+			}
 			CombatBuffer.Add(currentAttack);
 		}
 		else // we have chosen defense
@@ -1124,7 +1154,41 @@ public class PlayerClass : MonoBehaviour {
 					{
 						if(current_data.defender==c.Name)
 						{
-							Instantiate (att_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+							if(current_data.type_of_move == "Attack")
+							{
+								Instantiate (att_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+							}
+							else if(current_data.type_of_move == "Magic")
+							{
+								string element = current_data.element;
+
+								if(element == "None")
+								{
+									Instantiate (norm_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Fire")
+								{
+									Instantiate (fire_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Water")
+								{
+									Instantiate (water_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Wind")
+								{
+									Instantiate (wind_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Elec")
+								{
+									Instantiate (elec_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
+								}
+
+							}
+							else{
+							}
+
+
+							//Instantiate (att_sprite, GameObject.Find(c.Name + " Character(Clone)").transform.position, Quaternion.identity);
 						}
 					}
 				}
@@ -1134,7 +1198,38 @@ public class PlayerClass : MonoBehaviour {
 					{
 						if(current_data.defender==e.Name)
 						{
-							Instantiate (att_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+							if(current_data.type_of_move == "Attack")
+							{
+								Instantiate (att_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+							}
+							else if(current_data.type_of_move == "Magic")
+							{
+								string element = current_data.element;
+								
+								if(element == "None")
+								{
+									Instantiate (norm_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Fire")
+								{
+									Instantiate (fire_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Water")
+								{
+									Instantiate (water_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Wind")
+								{
+									Instantiate (wind_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+								}
+								else if(element == "Elec")
+								{
+									Instantiate (elec_sprite, GameObject.Find(e.Name + "(Clone)").transform.position, Quaternion.identity);
+								}
+								
+							}
+							else{
+							}
 						}
 					}
 				}

@@ -56,7 +56,7 @@ public class PCDialogScript : MonoBehaviour
 			
 			if (GUILayout.Button(Acceptance, yourStyle))
 			{
-				Destroy(GameObject.FindWithTag("ClanMember"));
+				Destroy(GameObject.Find("Sprite PC"));
 				GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 				GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 				GameObject.Find ("GameData").GetComponent<GameData>().characters[0] = true;

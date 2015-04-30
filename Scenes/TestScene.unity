@@ -291,7 +291,12 @@ MonoBehaviour:
   bar: {fileID: 400000, guid: 911a10d98f63ee24bac779a6c307f39d, type: 2}
   DamageDisplay: {fileID: 400000, guid: 915161163a40c5343acafd688394417f, type: 2}
   clicked: 
-  att_sprite: {fileID: 463422, guid: 87ce242a7d06fd146bf585b7ac243080, type: 2}
+  att_sprite: {fileID: 416042, guid: bc12f7a57da9d71439866dcd5d091d97, type: 2}
+  fire_sprite: {fileID: 463422, guid: 87ce242a7d06fd146bf585b7ac243080, type: 2}
+  water_sprite: {fileID: 478230, guid: bcd08bf81bc8e9e439e0fb136c2c5fc2, type: 2}
+  wind_sprite: {fileID: 499756, guid: f47dc8a7510d4e5459fbd4bbe1416bad, type: 2}
+  elec_sprite: {fileID: 415654, guid: e4466de31888c2b4ea374aa86ca3d607, type: 2}
+  norm_sprite: {fileID: 425230, guid: 68f3c656cb439644d9bcb113382b0262, type: 2}
   sub_state: 1
 --- !u!82 &1662002792
 AudioSource:
