@@ -58,8 +58,9 @@ public class NPCDialogScript : MonoBehaviour
 	//Updates every frame 
 	void OnGUI()
 	{
-		//Creates text box 
-	  GUILayout.BeginArea(new Rect(310, 0, 400, 400));
+	  //Creates text box 
+	  //GUILayout.BeginArea(new Rect(310, 0, 400, 400));
+		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
 
 		myStyle.fontSize = 72;
 		myStyle.normal.textColor = Color.white;
@@ -83,7 +84,7 @@ public class NPCDialogScript : MonoBehaviour
 				//When quest starts
 			if (i == Questions.Length - 2)
 			{
-						Debug.Log("The quest has started!");
+			  Debug.Log("The quest has started!");
 			  // Put bool to activate items
 			  DisplayDialog[i] = false;
 			  ActivateQuest = true;

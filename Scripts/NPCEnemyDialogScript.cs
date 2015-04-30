@@ -31,8 +31,8 @@ public class NPCEnemyDialogScript : MonoBehaviour
 
 	void OnGUI()
 	{ 
-	  GUILayout.BeginArea(new Rect(0, 0, 1200, 400)); 
-		
+	  //GUILayout.BeginArea(new Rect(0, 0, 1200, 400)); 
+	  GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
 	  myStyle.fontSize = 72;
 	  myStyle.normal.textColor = Color.white;
 	  myStyle.fontStyle = FontStyle.Bold;

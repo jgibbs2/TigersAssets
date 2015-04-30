@@ -30,14 +30,17 @@ public class PCDialogScript : MonoBehaviour
 		if (inClanMemberTrigger)
 		{
 		  if (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed)
+		  {
 			DisplayPCDialog = true;
+			GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+		  }
 		}
 	} 
 	
 	void OnGUI()
 	{ 
-		GUILayout.BeginArea(new Rect(310, 0, 400, 400)); 
-		
+		//GUILayout.BeginArea(new Rect(310, 0, 400, 400)); 
+		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
 		myStyle.fontSize = 72;
 		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
@@ -55,6 +58,7 @@ public class PCDialogScript : MonoBehaviour
 			{
 				Destroy(GameObject.FindWithTag("ClanMember"));
 				GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
+				GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 				GameObject.Find ("GameData").GetComponent<GameData>().characters[0] = true;
 			}
 		}
