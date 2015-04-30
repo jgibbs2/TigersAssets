@@ -14,6 +14,7 @@ public class NPCMovement : MonoBehaviour {
 	private bool moving;
 	private bool pause;
 	private int speed = 3;
+	public bool talking;
 
 	// Use this for initialization
 	void Start () {
@@ -22,56 +23,58 @@ public class NPCMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if(moving)
+		if(talking == false)
 		{
-			transform.Translate(direction_travelling * speed * Time.deltaTime);
-			if(direction_travelling == Vector2.up || direction_travelling == -Vector2.up)
+			if(moving)
 			{
-				distance_travelled = distance_travelled + Mathf.Abs(direction_travelling.y * speed * Time.deltaTime);
+				transform.Translate(direction_travelling * speed * Time.deltaTime);
+				if(direction_travelling == Vector2.up || direction_travelling == -Vector2.up)
+				{
+					distance_travelled = distance_travelled + Mathf.Abs(direction_travelling.y * speed * Time.deltaTime);
+				}
+				else{
+					distance_travelled = distance_travelled + Mathf.Abs(direction_travelling.x * speed * Time.deltaTime);
+				}
+				
+				if(distance_travelled>= total_distance)
+				{
+					moving = false;
+					distance_travelled = 0.0f;
+					total_distance = 0.0f;
+					pause = true;
+					initial_pause_time = Time.time;
+					total_pause_time = Random.Range (1.0f, 3.0f);
+				}
 			}
-			else{
-				distance_travelled = distance_travelled + Mathf.Abs(direction_travelling.x * speed * Time.deltaTime);
-			}
-
-			if(distance_travelled>= total_distance)
+			else if(pause)
 			{
-				moving = false;
-				distance_travelled = 0.0f;
-				total_distance = 0.0f;
-				pause = true;
-				initial_pause_time = Time.time;
-				total_pause_time = Random.Range (1.0f, 3.0f);
+				if(Time.time - initial_pause_time >= total_pause_time)
+				{
+					pause = false;
+				}
 			}
-		}
-		else if(pause)
-		{
-			if(Time.time - initial_pause_time >= total_pause_time)
+			else
 			{
-				pause = false;
+				total_distance = Random.Range(0.5f, 3.0f);
+				int num = Random.Range (0, 4);
+				if(num == 0)
+				{
+					direction_travelling = Vector2.up;
+				}
+				else if(num == 1)
+				{
+					direction_travelling = -Vector2.up;
+				}
+				else if(num == 2)
+				{
+					direction_travelling = Vector2.right;
+				}
+				else if(num == 3)
+				{
+					direction_travelling = -Vector2.right;
+				}
+				moving = true;
 			}
-		}
-		else
-		{
-			total_distance = Random.Range(0.5f, 3.0f);
-			int num = Random.Range (0, 4);
-			if(num == 0)
-			{
-				direction_travelling = Vector2.up;
-			}
-			else if(num == 1)
-			{
-				direction_travelling = -Vector2.up;
-			}
-			else if(num == 2)
-			{
-				direction_travelling = Vector2.right;
-			}
-			else if(num == 3)
-			{
-				direction_travelling = -Vector2.right;
-			}
-			moving = true;
 		}
 		//if moving
 			//continue moving

@@ -12,18 +12,22 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	public string FightBack;
 	public Texture2D texture;
 
-	// Use this for initialization
+	// Use this for initialization 
 	void Start () 
 	{
 	  myStyle = new GUIStyle();
 	  yourStyle = new GUIStyle(); 
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame 
 	void Update () 
 	{
-	  if (inEnemyTrigger)
+	  if (inEnemyTrigger && GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed)
+	  {
 	    DisplayEnemyDialog = true;
+		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
+		GameObject.FindWithTag("Enemy").GetComponent<NPCMovement>().talking = true;
+	  }
 
 	  else
 	    DisplayEnemyDialog = false;
@@ -31,14 +35,14 @@ public class NPCEnemyDialogScript : MonoBehaviour
 
 	void OnGUI()
 	{ 
-	  GUILayout.BeginArea(new Rect(0, 0, 1200, 400)); 
-		
-	  myStyle.fontSize = 72;
+	  //GUILayout.BeginArea(new Rect(0, 0, 1200, 400)); 
+	  GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
+	  myStyle.fontSize = 80;
 	  myStyle.normal.textColor = Color.white;
 	  myStyle.fontStyle = FontStyle.Bold;
 	  myStyle.normal.background = texture; 
 
-	  yourStyle.fontSize = 72;
+	  yourStyle.fontSize = 80;
 	  yourStyle.normal.textColor = Color.white; 
 	  yourStyle.normal.background = texture;
 

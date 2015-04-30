@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NPCDialogScript : MonoBehaviour
 {
+	private GUIStyle myStyle;
+	private GUIStyle yourStyle;
 	private bool EnteredTriggerForFirstTime;
 	private bool ActivateQuest;
 	private static int numTimesEntered;
@@ -11,10 +13,14 @@ public class NPCDialogScript : MonoBehaviour
 	public string[] answerButtons;
 	public bool[] DisplayDialog;
 	public bool inTrigger;
+	public Texture2D texture;
 
 	// Use this for initialization
 	void Start () 
 	{
+	  myStyle = new GUIStyle();
+	  yourStyle = new GUIStyle();
+
 	  for (int i = 0; i < DisplayDialog.Length; i++)
 	    DisplayDialog[i] = false; 
 
@@ -49,11 +55,21 @@ public class NPCDialogScript : MonoBehaviour
 	  }	
 	}
 
-	//Updates every frame
+	//Updates every frame 
 	void OnGUI()
 	{
-		//Creates text box
-	  GUILayout.BeginArea(new Rect(310, 0, 400, 400));
+	  //Creates text box 
+	  //GUILayout.BeginArea(new Rect(310, 0, 400, 400));
+		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
+
+		myStyle.fontSize = 80;
+		myStyle.normal.textColor = Color.white;
+		myStyle.fontStyle = FontStyle.Bold;
+		myStyle.normal.background = texture; 
+		
+		yourStyle.fontSize = 80;
+		yourStyle.normal.textColor = Color.white; 
+		yourStyle.normal.background = texture;
 
 		//For loop runs through the characters' lines
       for (int i = 0; i < Questions.Length - 1; i++)
@@ -61,15 +77,14 @@ public class NPCDialogScript : MonoBehaviour
 
 	    if(DisplayDialog[i] && !ActivateQuest)
 	    {
-	      GUILayout.Label(Questions[i]);
+	      GUILayout.Label(Questions[i], myStyle);
 
-		  if (GUILayout.Button(answerButtons[i]))
+		  if (GUILayout.Button(answerButtons[i], yourStyle))
 	      {
 				//When quest starts
 			if (i == Questions.Length - 2)
 			{
-						Debug.Log("The quest has started!");
-						GameData.access.appleQuest = true;
+			  Debug.Log("The quest has started!");
 			  // Put bool to activate items
 			  DisplayDialog[i] = false;
 			  ActivateQuest = true;
@@ -88,9 +103,9 @@ public class NPCDialogScript : MonoBehaviour
 
 	  if (DisplayDialog[DisplayDialog.Length - 1] && ActivateQuest)
 	  {
-	    GUILayout.Label(Questions[Questions.Length - 1]);
+	    GUILayout.Label(Questions[Questions.Length - 1], myStyle);
 
-		if (GUILayout.Button(answerButtons[answerButtons.Length - 1]))
+		if (GUILayout.Button(answerButtons[answerButtons.Length - 1], yourStyle))
 		{
           for (int i = 0; i < DisplayDialog.Length; i++)
 		    DisplayDialog[i] = false;

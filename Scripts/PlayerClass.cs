@@ -1099,11 +1099,19 @@ public class PlayerClass : MonoBehaviour {
 					{
 						//Debug.Log("things");
 						c.defending = true;
-						return;
+						CombatBuffer.Remove(CombatBuffer[0]);
+						sub_state = 1;
+						once = false;
+						once2 = false;
+						//sub_state = 1;
+						state = 1;
 					}
 				}
 			}
-			sub_state = 2;
+			if(state!=1)
+			{
+				sub_state = 2;
+			}
 		}
 
 		else if(sub_state == 2)//set the 
