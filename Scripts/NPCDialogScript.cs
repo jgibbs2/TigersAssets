@@ -62,12 +62,12 @@ public class NPCDialogScript : MonoBehaviour
 	  //GUILayout.BeginArea(new Rect(310, 0, 400, 400));
 		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
 
-		myStyle.fontSize = 72;
+		myStyle.fontSize = 80;
 		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
 		myStyle.normal.background = texture; 
 		
-		yourStyle.fontSize = 72;
+		yourStyle.fontSize = 80;
 		yourStyle.normal.textColor = Color.white; 
 		yourStyle.normal.background = texture;
 
