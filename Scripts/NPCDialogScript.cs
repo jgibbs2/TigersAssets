@@ -69,6 +69,7 @@ public class NPCDialogScript : MonoBehaviour
 			if (i == Questions.Length - 2)
 			{
 						Debug.Log("The quest has started!");
+						GameData.access.appleQuest = true;
 			  // Put bool to activate items
 			  DisplayDialog[i] = false;
 			  ActivateQuest = true;

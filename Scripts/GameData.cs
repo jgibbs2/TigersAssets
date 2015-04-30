@@ -31,7 +31,7 @@ public class GameData : MonoBehaviour {
 	public bool appleQuest = false;
 
 	Canvas inventory_Display;
-	List<QuestItem> playerInventoryDisplay;
+	QuestItem[] playerInventoryDisplay = new QuestItem[9];
 	List<Item> itemList;
 	int nextItemSlot;
 	int emptySlot;
@@ -64,6 +64,11 @@ public class GameData : MonoBehaviour {
 			// If a GameData already exists, don't make a new one
 			Destroy(gameObject);
 		}
+
+		playerInventoryDisplay = defaultQuestItems();
+		itemList = new List<Item>();
+
+
 	}
 
 	void Start()
@@ -76,11 +81,12 @@ public class GameData : MonoBehaviour {
 		characters [4] = false;
 
 		// Set player inventory to be the Default config
-		inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
-		
-		playerInventoryDisplay = defaultQuestItems();
-		itemList = new List<Item>();
 
+		DrawInventory();
+	}
+
+	public void DrawInventory()
+	{
 		int row = 0; int col = 0;
 		foreach(QuestItem item in playerInventoryDisplay){
 			
@@ -130,22 +136,24 @@ public class GameData : MonoBehaviour {
 		}
 	}
 
-	private List<QuestItem> defaultQuestItems(){
+	private QuestItem[] defaultQuestItems(){
 
-		List<QuestItem> defaultInventory = new List<QuestItem>();
+		QuestItem[] defaultInventory = new QuestItem[9];
 
 		for(int i = 0; i < 9; i++){
-			defaultInventory.Add(new QuestItem(
+			defaultInventory[i] = new QuestItem(
 				slotName + i, 						// Name
 				"This slot is empty", 				// Description
 				Resources.Load<Sprite>("UI/url"),	// Image 
-				false));							// Picked Up?
+				false);							// Picked Up?
 		}
 		return defaultInventory;
 	}
 
 	private void makeNewImage(QuestItem item, int row, int col){
-		
+
+		inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
+
 		// Create a new object from the prefab questItemPic
 		GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
 		newItem.name = item.name;
@@ -164,21 +172,30 @@ public class GameData : MonoBehaviour {
 		if( checkInventoryFor(name) == false)
 		{
 			if(emptySlot == 0){
-				changeInventoryDisplay(name, slotName + nextItemSlot);
+				changeInventoryDisplay(name, slotName + nextItemSlot,nextItemSlot);
 				itemList.Add(item); 
 				nextItemSlot++;
 			} else {
-				changeInventoryDisplay(name,"Empty" + emptySlot);
+				changeInventoryDisplay(name,"Empty" + emptySlot,emptySlot);
 				itemList.Add(item);
 				nextItemSlot--;
 			}
 		}
 	}
 
-	private void changeInventoryDisplay(string name, string objectName)
+	private void changeInventoryDisplay(string name, string objectName, int slot)
 	{
+		Debug.Log ("changeInventoryDisplay:");
+		Debug.Log(name);
+		Debug.Log (objectName);
+
+		//Change current image
 		GameObject.Find (objectName).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/"+name);
 		GameObject.Find (objectName).name = name;
+
+		//Change image in saved data
+		playerInventoryDisplay[slot].image = Resources.Load<Sprite>("UI/"+name);
+		playerInventoryDisplay[slot].name = name;
 	}
 
 	// Used to try and turn in an Item for a quest

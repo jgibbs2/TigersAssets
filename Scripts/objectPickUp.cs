@@ -20,6 +20,7 @@ public class objectPickUp : MonoBehaviour {
 		if(inTrigger == true && (Input.GetKeyDown(KeyCode.Space)||GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed))
 		{
 			GameData.access.pickUpItem(item);
+			GameData.access.appleQuest = false;
 
 			DestroyImmediate(GameObject.Find(objectName));
 
