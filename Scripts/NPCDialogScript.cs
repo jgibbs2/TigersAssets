@@ -32,7 +32,7 @@ public class NPCDialogScript : MonoBehaviour
 	// Update is called once per frame 
 	void Update () 
 	{
-	  if (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space))
+	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
 	  {
 	    if(EnteredTriggerForFirstTime && !ActivateQuest)  
 		{
