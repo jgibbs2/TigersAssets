@@ -612,11 +612,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 443822, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.941963732
+      value: 10.5600004
       objectReference: {fileID: 0}
     - target: {fileID: 443822, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.92430973
+      value: -2.75
       objectReference: {fileID: 0}
     - target: {fileID: 443822, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -658,11 +658,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 443822, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 11.0504894
+      value: -1.07000005
       objectReference: {fileID: 0}
     - target: {fileID: 443822, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.24379754
+      value: 1.82000005
       objectReference: {fileID: 0}
     - target: {fileID: 443822, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -691,6 +691,10 @@ Prefab:
     - target: {fileID: 104334, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
       propertyPath: m_Name
       value: braniac NPC 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437286, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
@@ -856,9 +860,32 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11437286, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1189683497
+GameObject:
+  m_PrefabParentObject: {fileID: 104334, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
+  m_PrefabInternal: {fileID: 1189683496}
+--- !u!50 &1189683498
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1189683497}
+  m_Mass: 999999
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &1286689592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1162,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41524b696fef507498d2ef02ab93ac41, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1660231438
+GameObject:
+  m_PrefabParentObject: {fileID: 104334, guid: aa51ee1110900f44192b04f4bec580b2, type: 2}
+  m_PrefabInternal: {fileID: 868858551}
+--- !u!50 &1660231439
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1660231438}
+  m_Mass: 999999
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &1692569082
 GameObject:
   m_ObjectHideFlags: 0

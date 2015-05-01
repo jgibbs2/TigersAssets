@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: eaddaeeb74b1af04bbea0009c514b1b5
-timeCreated: 1430457074
+guid: 45d9c8f018a4b6145810181d175231d7
+timeCreated: 1430458786
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: satyr_0
-    21300002: satyr_1
+    21300000: enemy_0
+    21300002: enemy_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,7 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: satyr_0
+    - name: enemy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -61,7 +61,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: satyr_1
+    - name: enemy_1
       rect:
         serializedVersion: 2
         x: 200

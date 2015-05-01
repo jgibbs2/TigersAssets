@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: eaddaeeb74b1af04bbea0009c514b1b5
-timeCreated: 1430457074
+guid: d77cc007e31b21843a0cad081d851dbf
+timeCreated: 1430458259
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: satyr_0
-    21300002: satyr_1
+    21300000: mino_0
+    21300002: mino_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,7 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: satyr_0
+    - name: mino_0
       rect:
         serializedVersion: 2
         x: 0
@@ -61,7 +61,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: satyr_1
+    - name: mino_1
       rect:
         serializedVersion: 2
         x: 200

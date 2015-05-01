@@ -13,7 +13,7 @@ public class NPCMovement : MonoBehaviour {
 	private float total_distance;
 	private bool moving;
 	private bool pause;
-	private int speed = 3;
+	public int speed = 3;
 	public bool talking;
 
 	// Use this for initialization
