@@ -22,21 +22,21 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	// Update is called once per frame 
 	void Update () 
 	{
-	  if (inEnemyTrigger && GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed)
+	  if (inEnemyTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
 	  {
 	    DisplayEnemyDialog = true;
 		GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
 		GameObject.Find("Minotaur").GetComponent<NPCMovement>().talking = true;
 	  }
 
-	  else
-	    DisplayEnemyDialog = false;
+	  //else
+	    //DisplayEnemyDialog = false;
 	} 
 
 	void OnGUI()
 	{ 
-	  //GUILayout.BeginArea(new Rect(0, 0, 1200, 400)); 
-	  GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
+		GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
+		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 	  myStyle.fontSize = 80;
 	  myStyle.normal.textColor = Color.white;
 	  myStyle.fontStyle = FontStyle.Bold;
@@ -58,7 +58,6 @@ public class NPCEnemyDialogScript : MonoBehaviour
 
 	  GUILayout.EndArea();
 	}
-
 	void OnTriggerEnter2D(Collider2D col)
 	{
 	  if (col.gameObject.name == "Bobby")

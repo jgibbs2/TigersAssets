@@ -39,8 +39,8 @@ public class PCDialogScript : MonoBehaviour
 	
 	void OnGUI()
 	{ 
-		//GUILayout.BeginArea(new Rect(310, 0, 400, 400)); 
-		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
+		GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
+		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 		myStyle.fontSize = 80;
 		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
@@ -59,7 +59,7 @@ public class PCDialogScript : MonoBehaviour
 				Destroy(GameObject.Find("Sprite PC"));
 				GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 				GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
-				GameObject.Find ("GameData").GetComponent<GameData>().characters[0] = true;
+				GameObject.Find ("GameData").GetComponent<GameData>().characters[num] = true;
 			}
 		}
 		

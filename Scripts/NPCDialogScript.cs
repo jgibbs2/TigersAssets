@@ -59,8 +59,8 @@ public class NPCDialogScript : MonoBehaviour
 	void OnGUI()
 	{
 	  //Creates text box 
-	  //GUILayout.BeginArea(new Rect(310, 0, 400, 400));
-		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));
+	    GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
+		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 
 		myStyle.fontSize = 80;
 		myStyle.normal.textColor = Color.white;
@@ -85,6 +85,7 @@ public class NPCDialogScript : MonoBehaviour
 			if (i == Questions.Length - 2)
 			{
 			  Debug.Log("The quest has started!");
+			  GameObject.Find("GameData").GetComponent<GameData>().appleQuest = true;
 			  // Put bool to activate items
 			  DisplayDialog[i] = false;
 			  ActivateQuest = true;
