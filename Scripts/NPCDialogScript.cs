@@ -6,7 +6,6 @@ public class NPCDialogScript : MonoBehaviour
 	private GUIStyle myStyle;
 	private GUIStyle yourStyle;
 	public bool EnteredTriggerForFirstTime;
-	private bool ActivateQuest;
 	//private bool[] questCompleted;
 	private bool questCompleted;
 	private static int numTimesEntered;
@@ -28,7 +27,6 @@ public class NPCDialogScript : MonoBehaviour
 	    DisplayDialog[i] = false; 
 
 	  EnteredTriggerForFirstTime = false;
-	  ActivateQuest = false;
 	  inTrigger = false;
 	  questCompleted = false;
 	}
@@ -38,15 +36,14 @@ public class NPCDialogScript : MonoBehaviour
 	{
 	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
 	  {
-	    if(EnteredTriggerForFirstTime && !ActivateQuest)  
+	    if(EnteredTriggerForFirstTime && !GameData.access.activeQuests[0])  
 		{
-				Debug.Log ("I should be able to talk to the head minotaur here!"); 
 		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
 		  EnteredTriggerForFirstTime = false;
 		}
 
-	    if(ActivateQuest)
+		if(GameData.access.activeQuests[0])
 		{
 			if (GameData.access.checkInventoryFor(GameData.access.nameOf(Item.Apple)))
 			{
@@ -80,7 +77,7 @@ public class NPCDialogScript : MonoBehaviour
       for (int i = 0; i < Questions.Length - 1; i++)
 	  {
 
-	    if(DisplayDialog[i] && !ActivateQuest)
+		if(DisplayDialog[i] && !GameData.access.activeQuests[0])
 	    {
 	      GUILayout.Label(Questions[i], myStyle);
 
@@ -93,7 +90,7 @@ public class NPCDialogScript : MonoBehaviour
 			  GameData.access.displayedItems[0] = true;
 			  // Put bool to activate items
 			  DisplayDialog[i] = false;
-			  ActivateQuest = true;
+			  GameData.access.activeQuests[0] = true;
 			  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 			  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 			}
@@ -107,7 +104,7 @@ public class NPCDialogScript : MonoBehaviour
 		}	  
 	  }
 
-	  if (DisplayDialog[DisplayDialog.Length - 1] && ActivateQuest)
+	  if (DisplayDialog[DisplayDialog.Length - 1] && GameData.access.activeQuests[0])
 	  {
 	    GUILayout.Label(Questions[Questions.Length - 1], myStyle);
 
@@ -116,7 +113,7 @@ public class NPCDialogScript : MonoBehaviour
           for (int i = 0; i < DisplayDialog.Length; i++)
 		    DisplayDialog[i] = false;
 
-		  ActivateQuest = false;
+		  GameData.access.activeQuests[0] = false;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 		  questCompleted = true; // Quest is resolved here (To be scaled via an array once we have multiple quests)
 	    }
