@@ -447,7 +447,7 @@ Transform:
   m_Children:
   - {fileID: 2046696317}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!1 &126491997
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,6 +3360,7 @@ MonoBehaviour:
   - '...'
   DisplayDialog: 0000000000
   inTrigger: 0
+  questNum: 1
   texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
 --- !u!61 &2046696319
 BoxCollider2D:

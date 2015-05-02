@@ -6,15 +6,13 @@ public class NPCDialogScript : MonoBehaviour
 	private GUIStyle myStyle;
 	private GUIStyle yourStyle;
 	public bool EnteredTriggerForFirstTime;
-	//private bool[] questCompleted;
-	private bool questCompleted;
 	private static int numTimesEntered;
 
 	public string[] Questions;
 	public string[] answerButtons;
 	public bool[] DisplayDialog;
 	public bool inTrigger;
-	//public int questNum;
+	public int questNum;
 	public Texture2D texture;
 
 	// Use this for initialization
@@ -28,7 +26,6 @@ public class NPCDialogScript : MonoBehaviour
 
 	  EnteredTriggerForFirstTime = false;
 	  inTrigger = false;
-	  questCompleted = false;
 	}
 	
 	// Update is called once per frame 
@@ -115,7 +112,6 @@ public class NPCDialogScript : MonoBehaviour
 
 		  GameData.access.activeQuests[0] = false;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
-		  questCompleted = true; // Quest is resolved here (To be scaled via an array once we have multiple quests)
 	    }
 	  }
 

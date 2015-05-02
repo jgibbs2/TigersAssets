@@ -814,6 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnteredTriggerForFirstTime: 0
   Questions:
   - Hello, I am the Head Minotaur. Welcome to the Minotaur Tent, Bobby.
   - Around here, we like to keep it nice and warm, hence that fireplace in the corner.
@@ -828,6 +829,7 @@ MonoBehaviour:
   - '...'
   DisplayDialog: 0000000000
   inTrigger: 0
+  questNum: 0
   texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
 --- !u!61 &512470254
 BoxCollider2D:
@@ -2683,6 +2685,7 @@ MonoBehaviour:
   x: {fileID: 2800000, guid: 5030c517521bfe44eb644743e0ba1a10, type: 3}
   xButtonPressed: 0
   player_controlled: 1
+  enemies: 
 --- !u!61 &1544999372
 BoxCollider2D:
   m_ObjectHideFlags: 0
