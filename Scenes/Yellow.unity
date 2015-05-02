@@ -479,7 +479,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458264, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 187278, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_Name
@@ -1072,7 +1072,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458264, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
@@ -1758,7 +1758,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458264, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 187278, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_Name
@@ -1804,7 +1804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458264, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 187278, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_Name
@@ -1813,6 +1813,111 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1286617773
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5.76999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.68000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490668, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: word
+      value: QuestItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: objectName
+      value: QuestItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: item
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: questIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 21285242, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b08c8da13905a28419317e54b1917616,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 5862416, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1286617774 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 174546, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+  m_PrefabInternal: {fileID: 1286617773}
+--- !u!60 &1286617775
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1286617774}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: .535000026, y: .0500000007}
+      - {x: .474999994, y: .170000002}
+      - {x: .405000001, y: .25999999}
+      - {x: .395000011, y: .560000002}
+      - {x: .305000007, y: .689999998}
+      - {x: .174999997, y: .639999986}
+      - {x: .155000001, y: .720000029}
+      - {x: .0350000001, y: .720000029}
+      - {x: -.0549999997, y: .569999993}
+      - {x: -.264999986, y: .349999994}
+      - {x: -.405000001, y: .270000011}
+      - {x: -.495000005, y: .189999998}
+      - {x: -.564999998, y: .00999999978}
+      - {x: -.564999998, y: -.330000013}
+      - {x: -.485000014, y: -.479999989}
+      - {x: -.344999999, y: -.610000014}
+      - {x: .314999998, y: -.610000014}
+      - {x: .38499999, y: -.569999993}
+      - {x: .474999994, y: -.449999988}
+      - {x: .535000026, y: -.289999992}
+    - - {x: .0850000009, y: .519999981}
+      - {x: .115000002, y: .519999981}
+      - {x: .115000002, y: .5}
+      - {x: .0850000009, y: .5}
 --- !u!1 &1380578515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,7 +2345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnteredTriggerForFirstTime: 0
   Questions:
   - Hello, I am the Head Satyr. Welcome to the Satyr Tent, Bobby.
   - Around here, we brew beer. All day. Every day. Did I mention we brew beer?
@@ -2257,6 +2361,7 @@ MonoBehaviour:
   inTrigger: 0
   questNum: 3
   texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
+  questItemReturn: 0
 --- !u!61 &1792643812
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 
-public enum Item {Bottle, Apple, Poop, SprayBottle};
+public enum Item {Bottle, Apple, Poop, SprayBottle, SpellBook};
 
 /*
  * Maintains data across scene transitions
