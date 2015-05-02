@@ -772,7 +772,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d263b7f4353f084ba55ed9eba715398, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &633156986
+--- !u!1 &633156986 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 183820, guid: 8d263b7f4353f084ba55ed9eba715398, type: 2}
   m_PrefabInternal: {fileID: 633156985}
@@ -2045,7 +2045,7 @@ PolygonCollider2D:
       - {x: 1.97000003, y: -.0700000003}
       - {x: 1.98000002, y: -.0599999987}
       - {x: 1.98000002, y: -.00999999978}
---- !u!1 &1245665218
+--- !u!1 &1245665218 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 106830, guid: 60cb8178487419444b4c6fa63b6ef71a, type: 2}
   m_PrefabInternal: {fileID: 708212144}
@@ -2064,7 +2064,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!1 &1287251484
+--- !u!1 &1287251484 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 174546, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
   m_PrefabInternal: {fileID: 897880685}

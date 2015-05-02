@@ -447,7 +447,7 @@ Transform:
   m_Children:
   - {fileID: 2046696317}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!1 &126491997
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,7 +3345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeca1f14c647b4d83811b57523312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnteredTriggerForFirstTime: 0
   Questions:
   - Greetings young one
   - I am he who stands upon the garbage
@@ -3362,6 +3361,7 @@ MonoBehaviour:
   inTrigger: 0
   questNum: 1
   texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
+  questItemReturn: 3
 --- !u!61 &2046696319
 BoxCollider2D:
   m_ObjectHideFlags: 0

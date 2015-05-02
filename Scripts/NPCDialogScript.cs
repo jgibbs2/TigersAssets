@@ -12,6 +12,8 @@ public class NPCDialogScript : MonoBehaviour
 	public bool inTrigger;
 	public int questNum;
 	public Texture2D texture;
+	public Item questItemReturn;
+
 
 	// Use this for initialization
 	void Start () 
@@ -39,9 +41,9 @@ public class NPCDialogScript : MonoBehaviour
 
 		if(GameData.access.activeQuests[questNum])
 		{
-			if (GameData.access.checkInventoryFor(GameData.access.nameOf(Item.Apple)))
+				if (GameData.access.checkInventoryFor(GameData.access.nameOf(questItemReturn)))
 			{
-				GameData.access.turnIn(Item.Apple);
+					GameData.access.turnIn(questItemReturn);
 				
 				// Goes to the quest done dialog
 		  		DisplayDialog[DisplayDialog.Length - 1] = true;
