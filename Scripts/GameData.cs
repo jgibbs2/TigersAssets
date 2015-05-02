@@ -29,6 +29,7 @@ public class GameData : MonoBehaviour {
 	float bobbyY_parade;
 
 	public bool appleQuest = false;
+	public bool appleQuestActive = false;
 
 	Canvas inventory_Display;
 	QuestItem[] playerInventoryDisplay = new QuestItem[9];
