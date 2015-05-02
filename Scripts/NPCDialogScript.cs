@@ -5,8 +5,6 @@ public class NPCDialogScript : MonoBehaviour
 {
 	private GUIStyle myStyle;
 	private GUIStyle yourStyle;
-	public bool EnteredTriggerForFirstTime;
-	private static int numTimesEntered;
 
 	public string[] Questions;
 	public string[] answerButtons;
@@ -24,7 +22,6 @@ public class NPCDialogScript : MonoBehaviour
 	  for (int i = 0; i < DisplayDialog.Length; i++)
 	    DisplayDialog[i] = false; 
 
-	  EnteredTriggerForFirstTime = false;
 	  inTrigger = false;
 	}
 	
@@ -33,11 +30,11 @@ public class NPCDialogScript : MonoBehaviour
 	{
 	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
 	  {
-		if(EnteredTriggerForFirstTime && !GameData.access.activeQuests[questNum])  
+		if(GameData.access.EnteredTriggerForFirstTime[questNum] && !GameData.access.activeQuests[questNum])  
 		{
 		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
-		  EnteredTriggerForFirstTime = false;
+		  GameData.access.EnteredTriggerForFirstTime[questNum] = false;
 		}
 
 		if(GameData.access.activeQuests[questNum])
@@ -124,13 +121,13 @@ public class NPCDialogScript : MonoBehaviour
 	  {
 	    inTrigger = true; 
 
-        if (numTimesEntered == 0)
-	      EnteredTriggerForFirstTime = true;
+		if (GameData.access.numTimesEntered[questNum] == 0)
+		  GameData.access.EnteredTriggerForFirstTime[questNum] = true;
 
 	    else
-		  EnteredTriggerForFirstTime = false;
+		  GameData.access.EnteredTriggerForFirstTime[questNum] = false;
 
-	    numTimesEntered++;
+		GameData.access.numTimesEntered[questNum]++;
 	  }
 	}
 

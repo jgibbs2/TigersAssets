@@ -30,6 +30,8 @@ public class GameData : MonoBehaviour {
 
 	public bool[] displayedItems = new bool[5];
 	public bool[] activeQuests = new bool[5];
+	public bool[] EnteredTriggerForFirstTime = new bool[5];
+	public int[] numTimesEntered = new int[5]; 
 
 	Canvas inventory_Display;
 	QuestItem[] playerInventoryDisplay = new QuestItem[9];
@@ -93,6 +95,12 @@ public class GameData : MonoBehaviour {
 		enemies [3] = false;
 		enemies [4] = false;
 		enemies [5] = false;
+
+		for(int i = 0; i < EnteredTriggerForFirstTime.Length; i++)
+		{
+			EnteredTriggerForFirstTime[i] = false;
+			numTimesEntered[i] = 0;
+		}
 
 		// Set player inventory to be the Default config
 
