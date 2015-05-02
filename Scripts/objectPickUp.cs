@@ -4,13 +4,14 @@ using System.Collections;
 public class objectPickUp : MonoBehaviour {
 	public string objectName;
 	public Item item;
+	public int questIndex;
 
 	bool inTrigger;
 	// Use this for initialization
 	void Start () {
 		inTrigger = false;
 		var thisObject = GameObject.Find(objectName);
-		thisObject.SetActive(GameData.access.appleQuest);
+		thisObject.SetActive(GameData.access.displayedItems[questIndex]);
 		Debug.Log(thisObject.activeSelf.ToString());
 
 	}
@@ -20,7 +21,7 @@ public class objectPickUp : MonoBehaviour {
 		if(inTrigger == true && (Input.GetKeyDown(KeyCode.Space)||GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed))
 		{
 			GameData.access.pickUpItem(item);
-			GameData.access.appleQuest = false;
+			GameData.access.displayedItems[0]= false;
 
 			DestroyImmediate(GameObject.Find(objectName));
 

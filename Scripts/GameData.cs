@@ -28,8 +28,8 @@ public class GameData : MonoBehaviour {
 	float bobbyX_parade;
 	float bobbyY_parade;
 
-	public bool appleQuest = false;
-	public bool appleQuestActive = false;
+	public bool[] displayedItems = new bool[5];
+	public bool[] activeQuests = new bool[5];
 
 	Canvas inventory_Display;
 	QuestItem[] playerInventoryDisplay = new QuestItem[9];
@@ -69,7 +69,11 @@ public class GameData : MonoBehaviour {
 		playerInventoryDisplay = defaultQuestItems();
 		itemList = new List<Item>();
 
+		foreach(bool item in displayedItems)
+		{item.Equals(false);}
 
+		foreach(bool item in activeQuests)
+		{item.Equals(false);}
 	}
 
 	void Start()
