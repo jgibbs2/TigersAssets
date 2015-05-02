@@ -120,7 +120,7 @@ public class GameData : MonoBehaviour {
 	public void Load()
 	{
 		if (File.Exists (Application.persistentDataPath + saveLocation)) {
-		
+		/*
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + saveLocation, FileMode.Open);
 
@@ -129,7 +129,7 @@ public class GameData : MonoBehaviour {
 			bobbyX_parade = saved.bobbyX_parade;
 			bobbyY_parade = saved.bobbyY_parade;
 
-			file.Close ();
+			file.Close ();*/
 		} else {
 			bobbyX_parade = 0;
 			bobbyY_parade = 0;																
