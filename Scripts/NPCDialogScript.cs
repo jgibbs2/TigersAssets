@@ -57,8 +57,8 @@ public class NPCDialogScript : MonoBehaviour
 	void OnGUI()
 	{
 	  //Creates text box 
-	    GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
-		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
+	    //GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
+		GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 
 		myStyle.fontSize = 80;
 		myStyle.normal.textColor = Color.white;

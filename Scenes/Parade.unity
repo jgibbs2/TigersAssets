@@ -405,6 +405,10 @@ Prefab:
       propertyPath: members
       value: rgb
       objectReference: {fileID: 0}
+    - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
+      propertyPath: FightBack
+      value: You're out in the open...
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88a509b19f99fb04d81152df26307589, type: 2}
   m_IsPrefabParent: 0
@@ -453,7 +457,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
       propertyPath: members
-      value: py
+      value: rg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88a509b19f99fb04d81152df26307589, type: 2}
@@ -723,6 +727,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11490544, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
+      propertyPath: FightinWords
+      value: It's too cold outside, and that green guy smells.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
   m_IsPrefabParent: 0
@@ -769,10 +777,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11403998, guid: 8d263b7f4353f084ba55ed9eba715398, type: 2}
+      propertyPath: FightinWords
+      value: Ain't nobody can stop me and my music!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d263b7f4353f084ba55ed9eba715398, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &633156986 stripped
+--- !u!1 &633156986
 GameObject:
   m_PrefabParentObject: {fileID: 183820, guid: 8d263b7f4353f084ba55ed9eba715398, type: 2}
   m_PrefabInternal: {fileID: 633156985}
@@ -890,6 +902,10 @@ Prefab:
     - target: {fileID: 11472150, guid: 60cb8178487419444b4c6fa63b6ef71a, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479646, guid: 60cb8178487419444b4c6fa63b6ef71a, type: 2}
+      propertyPath: FightinWords
+      value: To be, or not to be...
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60cb8178487419444b4c6fa63b6ef71a, type: 2}
@@ -1134,7 +1150,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
       propertyPath: members
-      value: rgp
+      value: r
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
+      propertyPath: FightinWords
+      value: Do you smell that?
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
+      propertyPath: FightBack
+      value: That's the smell of an ass whuppin!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88a509b19f99fb04d81152df26307589, type: 2}
@@ -1348,6 +1372,7 @@ GameObject:
   - 61: {fileID: 1041869256}
   - 50: {fileID: 1041869255}
   - 114: {fileID: 1041869257}
+  - 95: {fileID: 1041869258}
   m_Layer: 0
   m_Name: Bobby
   m_TagString: Player
@@ -1379,7 +1404,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 7d0aa8af97c67c447a87d568dc51c0e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5e127066ebf9fd44b02cd83cf1f490c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1041869253
 Transform:
@@ -1404,7 +1429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cf2709dc2abd44298a61d437fe8baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7
   up: {fileID: 2800000, guid: b97d8c5035f3b2348bd30eed6f57d181, type: 3}
   down: {fileID: 2800000, guid: e0005b9e15a65034e97890ed73b34b11, type: 3}
   left: {fileID: 2800000, guid: b0482ec9f33a24a498e072793d3cc584, type: 3}
@@ -1452,6 +1477,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397703e85754c324594c929fedf9b17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1041869258
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1041869251}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55b169b9bcc230d4788748318df7fbe8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1090905982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2159,7 @@ PolygonCollider2D:
       - {x: 1.97000003, y: -.0700000003}
       - {x: 1.98000002, y: -.0599999987}
       - {x: 1.98000002, y: -.00999999978}
---- !u!1 &1245665218 stripped
+--- !u!1 &1245665218
 GameObject:
   m_PrefabParentObject: {fileID: 106830, guid: 60cb8178487419444b4c6fa63b6ef71a, type: 2}
   m_PrefabInternal: {fileID: 708212144}
@@ -2136,7 +2178,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!1 &1287251484 stripped
+--- !u!1 &1287251484
 GameObject:
   m_PrefabParentObject: {fileID: 174546, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
   m_PrefabInternal: {fileID: 897880685}
@@ -2177,7 +2219,7 @@ PolygonCollider2D:
       - {x: .115000002, y: .519999981}
       - {x: .115000002, y: .5}
       - {x: .0850000009, y: .5}
---- !u!1 &1384937498 stripped
+--- !u!1 &1384937498
 GameObject:
   m_PrefabParentObject: {fileID: 174546, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
   m_PrefabInternal: {fileID: 1099396515}
@@ -2905,7 +2947,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
       propertyPath: members
-      value: bo
+      value: g
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
+      propertyPath: FightinWords
+      value: You shouldn't be out this far.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441600, guid: 88a509b19f99fb04d81152df26307589, type: 2}
+      propertyPath: FightBack
+      value: '*put your foot in his butt*'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88a509b19f99fb04d81152df26307589, type: 2}
@@ -2948,6 +2998,10 @@ Prefab:
     - target: {fileID: 458264, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445502, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}
+      propertyPath: FightinWords
+      value: Want to come try some fresh hops?
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80c310fbf9b1463408f3eacdb7992a02, type: 2}

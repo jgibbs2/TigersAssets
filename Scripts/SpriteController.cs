@@ -17,7 +17,7 @@ public class SpriteController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
+		animator = this.GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -37,39 +37,46 @@ public class SpriteController : MonoBehaviour
 
 	void OnGUI()
 	{
+		animator.speed = .01f;
+
 		/*if (GUI.RepeatButton(new Rect (0, 0, 200, 200), up, GUIStyle.none)) {
 			Debug.Log("GUI BUTTON");
 		}*/ //dont need this anymore
 		if(player_controlled)
 		{
+			xButtonPressed = false;
 			float h = 0;
 			float v = 0;
 			if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
 					v = 1.0f * speed;
-					//animator.SetInteger("State", 1);
+					animator.speed = Mathf.Abs(v)/25;
+					animator.SetInteger("State", 3);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
-				v = -1.0f * speed;
-					//animator.SetInteger("State", 2);
+					v = -1.0f * speed;
+					animator.speed = Mathf.Abs(v)/25;
+					animator.SetInteger("State", 0);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
-				h = -1.0f * speed;
-					//animator.SetInteger("State", 3);
+					h = -1.0f * speed;
+					animator.speed = Mathf.Abs(h)/25;
+					animator.SetInteger("State", 1);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
-				h = 1.0f * speed;
-					//animator.SetInteger("State", 4);
+					h = 1.0f * speed;
+					animator.speed = Mathf.Abs(h)/25;
+					animator.SetInteger("State", 2);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (1550, 725, 200, 200), x, GUIStyle.none)) {

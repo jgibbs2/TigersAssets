@@ -35,7 +35,7 @@ public class OnTentEntranceScript : MonoBehaviour
 								} else {
 										hasVisitedTrigger = true;
 										GameObject.Find ("Bobby").GetComponent<SpriteController> ().xButtonPressed = true;
-										GameObject.Find ("Bobby").GetComponent<SpriteController> ().player_controlled = true;
+										//GameObject.Find ("Bobby").GetComponent<SpriteController> ().player_controlled = true;
 								}
 						}
 				}
