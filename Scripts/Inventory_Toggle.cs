@@ -13,6 +13,7 @@ public class Inventory_Toggle : MonoBehaviour, IPointerClickHandler {
 		inventoryButton = GameObject.Find("Inventory_Toggle").GetComponent<Button>();
 		inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
 
+		Debug.Log("Setting up the inventory button!");
 		inventory_Display.enabled = false;
 	}
 	
@@ -25,7 +26,7 @@ public class Inventory_Toggle : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick (PointerEventData e){
 		var curState = inventory_Display.enabled;
 		inventory_Display.enabled = !curState;
-		//Debug.Log("Button Clicked! Previous state was now " + curState.ToString());
+		Debug.Log("Button Clicked! Previous state was now " + curState.ToString());
 
 		var playerMove = GameObject.Find ("Bobby").GetComponent<SpriteController> ().player_controlled;
 		GameObject.Find ("Bobby").GetComponent<SpriteController>().player_controlled = !playerMove;
