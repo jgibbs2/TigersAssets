@@ -447,7 +447,7 @@ Transform:
   m_Children:
   - {fileID: 2046696317}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!1 &126491997
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,11 +3347,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnteredTriggerForFirstTime: 0
   Questions:
-  - Hello, I am the Head Minotaur. Welcome to the Minotaur Tent, Bobby.
-  - Around here, we like to keep it nice and warm, hence that fireplace in the corner.
-  - I can join you in your quest, but first, you have to do something for me.
-  - Can you deliver this message to the Minotaur in the corner?
-  - Thank you for delivering the message. Have a good day, Bobby Buuuurns.
+  - Greetings young one
+  - I am he who stands upon the garbage
+  - leader of the gypsies
+  - Can you fetch me a spray bottle from the blue tent?
+  - Thank you, with this we can water our rugs!
   answerButtons:
   - '...'
   - '...'

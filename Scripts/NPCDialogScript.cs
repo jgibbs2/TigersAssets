@@ -33,14 +33,14 @@ public class NPCDialogScript : MonoBehaviour
 	{
 	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
 	  {
-	    if(EnteredTriggerForFirstTime && !GameData.access.activeQuests[0])  
+			if(EnteredTriggerForFirstTime && !GameData.access.activeQuests[questNum])  
 		{
 		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
 		  EnteredTriggerForFirstTime = false;
 		}
 
-		if(GameData.access.activeQuests[0])
+			if(GameData.access.activeQuests[questNum])
 		{
 			if (GameData.access.checkInventoryFor(GameData.access.nameOf(Item.Apple)))
 			{

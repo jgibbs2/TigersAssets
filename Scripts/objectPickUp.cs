@@ -21,7 +21,7 @@ public class objectPickUp : MonoBehaviour {
 		if(inTrigger == true && (Input.GetKeyDown(KeyCode.Space)||GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed))
 		{
 			GameData.access.pickUpItem(item);
-			GameData.access.displayedItems[0]= false;
+			GameData.access.displayedItems[questIndex]= false;
 
 			DestroyImmediate(GameObject.Find(objectName));
 
