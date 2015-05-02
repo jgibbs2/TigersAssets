@@ -67,7 +67,7 @@ public class NPCDialogScript : MonoBehaviour
 		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 
 		myStyle.fontSize = 80;
-		myStyle.normal.textColor = Color.white;
+		myStyle.normal.textColor = Color.red;
 		myStyle.fontStyle = FontStyle.Bold;
 		myStyle.normal.background = texture; 
 		
