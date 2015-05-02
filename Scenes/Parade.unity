@@ -1186,6 +1186,10 @@ Prefab:
       propertyPath: objectName
       value: QuestItem
       objectReference: {fileID: 0}
+    - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
+      propertyPath: item
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5862416, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
