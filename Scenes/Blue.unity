@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11426858, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
       propertyPath: questIndex
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5862416, guid: e85524ec59c350c478700e7b8a160ef8, type: 2}
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   inTrigger: 0
   questNum: 4
   texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
-  questItemReturn: 0
+  questItemReturn: 1
 --- !u!61 &1895799165
 BoxCollider2D:
   m_ObjectHideFlags: 0

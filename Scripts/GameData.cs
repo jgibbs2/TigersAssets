@@ -242,6 +242,16 @@ public class GameData : MonoBehaviour {
 		GameObject.Find (name).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/url");
 		emptySlot++;
 		GameObject.Find (name).name = "Empty"+emptySlot;
+
+		foreach(QuestItem item in playerInventoryDisplay)
+		{
+			if (item.name == name)
+			{
+				item.name = "Empty"+emptySlot;
+				item.image = Resources.Load<Sprite>("UI/url");
+			}
+		}
+
 	}
 
 	public string nameOf(Item item)
