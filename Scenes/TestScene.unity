@@ -284,8 +284,16 @@ MonoBehaviour:
   Pink_Platform: {fileID: 478796, guid: 9e9db2b814206794087229cd50f018e4, type: 2}
   red_enemy: {fileID: 449158, guid: e160fa03f29715445b3d35d32507838c, type: 2}
   green_enemy: {fileID: 453428, guid: c7777a3a6f454e04da7b81ee92433dde, type: 2}
-  small_john: {fileID: 431562, guid: a6e1094606d2c9a4689fbfbd6f4c740c, type: 2}
-  small_enemy: {fileID: 400000, guid: c8427a050b036c440956be604f884766, type: 2}
+  orange_enemy: {fileID: 0}
+  yellow_enemy: {fileID: 0}
+  blue_enemy: {fileID: 0}
+  pink_enemy: {fileID: 0}
+  small_red_enemy: {fileID: 442298, guid: 33052c19e1bdfcb468644b7b9c15119c, type: 2}
+  small_green_enemy: {fileID: 493374, guid: 81beccf275a561b46be6f176a00d7730, type: 2}
+  small_orange_enemy: {fileID: 425452, guid: 132458bebcf58e34ca6d0fc7b34d24c2, type: 2}
+  small_yellow_enemy: {fileID: 400000, guid: b8ea29496718f27408ef99daa481cdfa, type: 2}
+  small_blue_enemy: {fileID: 448114, guid: 49f401b72b7ee834ea33fc9a584991e7, type: 2}
+  small_pink_enemy: {fileID: 474378, guid: e7ffa2a926d0bb74181708818a1723ef, type: 2}
   attack_select: {fileID: 400006, guid: 2602b15cb9b8ab240b9e929390b9b064, type: 2}
   background: {fileID: 498364, guid: a6d45a940dfc7ae4db47e556b1f60975, type: 2}
   bar: {fileID: 400000, guid: 911a10d98f63ee24bac779a6c307f39d, type: 2}

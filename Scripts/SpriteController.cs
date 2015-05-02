@@ -12,6 +12,7 @@ public class SpriteController : MonoBehaviour
 	public bool xButtonPressed = false;
 	public bool player_controlled = true;
 	private Animator animator;
+	public string enemies;
 
 	// Use this for initialization
 	void Start () 

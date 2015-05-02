@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -39,6 +39,7 @@ public class GameData : MonoBehaviour {
 	const string slotName = "Slot";
 
 	public bool[] characters;
+	public bool[] enemies;
 
 	public float getBobbyX_parade(){
 		return bobbyX_parade;
@@ -84,6 +85,14 @@ public class GameData : MonoBehaviour {
 		characters [2] = false;
 		characters [3] = false;
 		characters [4] = false;
+
+		enemies = new bool[6];
+		enemies [0] = false;
+		enemies [1] = false;
+		enemies [2] = false;
+		enemies [3] = false;
+		enemies [4] = false;
+		enemies [5] = false;
 
 		// Set player inventory to be the Default config
 

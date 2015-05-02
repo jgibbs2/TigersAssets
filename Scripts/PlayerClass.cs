@@ -210,8 +210,17 @@ public class PlayerClass : MonoBehaviour {
 
 	public Transform red_enemy;
 	public Transform green_enemy;
-	public Transform small_john;
-	public Transform small_enemy;
+	public Transform orange_enemy;
+	public Transform yellow_enemy;
+	public Transform blue_enemy;
+	public Transform pink_enemy;
+	public Transform small_red_enemy;
+	public Transform small_green_enemy;
+	public Transform small_orange_enemy;
+	public Transform small_yellow_enemy;
+	public Transform small_blue_enemy;
+	public Transform small_pink_enemy;
+
 	public Transform attack_select;
 	public Transform background;
 	public Transform bar;
@@ -354,6 +363,8 @@ public class PlayerClass : MonoBehaviour {
 	#region initialize and start
 	public void initialize(List<string> list_of_characters)
 	{
+
+		//foreach(string s in GameObject.Find("GameData").GetComponent<GameData>().enemies;
 		//This is where we need to instantiate the enemies
 		//Instantiate(enemy, new Vector3(5, 0, 0), Quaternion.identity);
 		//Instantiate (small_enemy, new Vector3(5, 0, 0), Quaternion.identity);
@@ -366,10 +377,10 @@ public class PlayerClass : MonoBehaviour {
 		Red_Enemy.Speed = 5.0f;
 		Red_Enemy.Ready = false;
 		Red_Enemy.Health = 100;
-		Red_Enemy.Element = "Water";
+		Red_Enemy.Element = "Fire";
 		Red_Enemy.down = false;
 
-		Enemies.Add (Red_Enemy);
+		//Enemies.Add (Red_Enemy);
 
 		//Instantiate(john, new Vector3(5, 3, 0), Quaternion.identity);
 		//Instantiate(small_john, new Vector3 (5, 0, 0), Quaternion.identity);
@@ -385,6 +396,79 @@ public class PlayerClass : MonoBehaviour {
 		Green_Enemy.Element = "Wind";
 		Green_Enemy.down = false;
 
+		Enemy_Character Orange_Enemy = new Enemy_Character ();
+		Orange_Enemy.Name = "Orange_Enemy";
+		Orange_Enemy.Defense = 40;
+		Orange_Enemy.Attack = 55;
+		Orange_Enemy.Magic = 45;
+		Orange_Enemy.defending = false;
+		Orange_Enemy.Speed = 3.0f;
+		Orange_Enemy.Ready = false;
+		Orange_Enemy.Health = 100;
+		Orange_Enemy.Element = "None";
+		Orange_Enemy.down = false;
+
+		Enemy_Character Yellow_Enemy = new Enemy_Character ();
+		Yellow_Enemy.Name = "Yellow_Enemy";
+		Yellow_Enemy.Defense = 35;
+		Yellow_Enemy.Attack = 50;
+		Yellow_Enemy.Magic = 50;
+		Yellow_Enemy.defending = false;
+		Yellow_Enemy.Speed = 3.0f;
+		Yellow_Enemy.Ready = false;
+		Yellow_Enemy.Health = 100;
+		Yellow_Enemy.Element = "Water";
+		Yellow_Enemy.down = false;
+
+		Enemy_Character Blue_Enemy = new Enemy_Character ();
+		Blue_Enemy.Name = "Blue_Enemy";
+		Blue_Enemy.Defense = 35;
+		Blue_Enemy.Attack = 50;
+		Blue_Enemy.Magic = 50;
+		Blue_Enemy.defending = false;
+		Blue_Enemy.Speed = 3.0f;
+		Blue_Enemy.Ready = false;
+		Blue_Enemy.Health = 100;
+		Blue_Enemy.Element = "Elec";
+		Blue_Enemy.down = false;
+
+		Enemy_Character Pink_Enemy = new Enemy_Character ();
+		Pink_Enemy.Name = "Pink_Enemy";
+		Pink_Enemy.Defense = 35;
+		Pink_Enemy.Attack = 50;
+		Pink_Enemy.Magic = 50;
+		Pink_Enemy.defending = false;
+		Pink_Enemy.Speed = 3.0f;
+		Pink_Enemy.Ready = false;
+		Pink_Enemy.Health = 100;
+		Pink_Enemy.Element = "Elec";
+		Pink_Enemy.down = false;
+
+
+		if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[0] == true)
+		{
+			Enemies.Add (Red_Enemy);
+		}
+		/*if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[1] == true)
+		{
+			Enemies.Add (Orange_Enemy);
+		}
+		if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[2] == true)
+		{
+			Enemies.Add (Yellow_Enemy);
+		}*/
+		if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[3] == true)
+		{
+			Enemies.Add (Green_Enemy);
+		}
+		/*if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[4] == true)
+		{
+			Enemies.Add (Blue_Enemy);
+		}
+		if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[5] == true)
+		{
+			Enemies.Add (Pink_Enemy);
+		}*/
 		//Enemies.Add (Green_Enemy);
 
 		// enemies here ( or after )
@@ -496,11 +580,11 @@ public class PlayerClass : MonoBehaviour {
 			
 			if(character_number ==1)
 			{
-				location = new Vector3(6,1,0);
+				location = new Vector3 (3.77f, -1.17f, 0);
 			}
 			else if(character_number == 2)
 			{
-				location = new Vector3 (3.77f, -1.17f, 0);
+				location = new Vector3(6,1,0);
 			}
 			else{
 				location = new Vector3 (5, -3, 0);
@@ -511,12 +595,28 @@ public class PlayerClass : MonoBehaviour {
 			{
 			case "Green_Enemy":
 				Instantiate(green_enemy, location, Quaternion.identity);
-				Instantiate(small_john, new Vector3(0.8f, -3.5f, 0.0f), Quaternion.identity);
+				Instantiate(small_green_enemy, new Vector3(0.8f, 3.5f, 0.0f), Quaternion.identity);
 				break;
 			case "Red_Enemy":
 				Instantiate(red_enemy, location, Quaternion.identity);
-				Instantiate(small_enemy, new Vector3(0.8f, -3.5f, 0.0f), Quaternion.identity);
+				Instantiate(small_red_enemy, new Vector3(0.8f, 3.5f, 0.0f), Quaternion.identity);
 	            break;
+			case "Orange_Enemy":
+				Instantiate(orange_enemy, location, Quaternion.identity);
+				Instantiate(small_orange_enemy, new Vector3(0.8f, 3.5f, 0.0f), Quaternion.identity);
+				break;
+			case "Yellow_Enemy":
+				Instantiate(yellow_enemy, location, Quaternion.identity);
+				Instantiate(small_yellow_enemy, new Vector3(0.8f, 3.5f, 0.0f), Quaternion.identity);
+				break;
+			case "Blue_Enemy":
+				Instantiate(blue_enemy, location, Quaternion.identity);
+				Instantiate(small_blue_enemy, new Vector3(0.8f, 3.5f, 0.0f), Quaternion.identity);
+				break;
+			case "Pink_Enemy":
+				Instantiate(pink_enemy, location, Quaternion.identity);
+				Instantiate(small_pink_enemy, new Vector3(0.8f, 3.5f, 0.0f), Quaternion.identity);
+				break;
 			}
             character_number++;
 		}
@@ -527,11 +627,11 @@ public class PlayerClass : MonoBehaviour {
 		{
 			if(character_number ==1)
 			{
-				location = new Vector3(-5.58f,1.32f,0);
+				location = new Vector3 (-3.08f, -0.72f, 0);
 			}
 			else if(character_number == 2)
 			{
-				location = new Vector3 (-3.08f, -0.72f, 0);
+				location = new Vector3(-5.58f,1.32f,0);
 			}
 			else{
 				location = new Vector3 (-5.35f, -2.79f, 0);

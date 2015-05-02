@@ -11,6 +11,8 @@ public class NPCEnemyDialogScript : MonoBehaviour
 	public string FightinWords;
 	public string FightBack;
 	public Texture2D texture;
+	public string members;
+	
 
 	// Use this for initialization 
 	void Start () 
@@ -52,6 +54,41 @@ public class NPCEnemyDialogScript : MonoBehaviour
 
 		if (GUILayout.Button(FightBack, yourStyle))
 		{
+				GameObject.Find("GameData").GetComponent<GameData>().enemies[0] = false;
+				GameObject.Find("GameData").GetComponent<GameData>().enemies[1] = false;
+				GameObject.Find("GameData").GetComponent<GameData>().enemies[2] = false;
+				GameObject.Find("GameData").GetComponent<GameData>().enemies[3] = false;
+				GameObject.Find("GameData").GetComponent<GameData>().enemies[4] = false;
+				GameObject.Find("GameData").GetComponent<GameData>().enemies[5] = false;
+
+			foreach(char c in members)
+			{
+					Debug.Log(c);
+					if(c == 'r')
+					{
+						GameObject.Find("GameData").GetComponent<GameData>().enemies[0] = true;
+					}
+					else if (c== 'o')
+					{
+						GameObject.Find("GameData").GetComponent<GameData>().enemies[1] = true;
+					}
+					else if(c == 'y')
+					{
+						GameObject.Find("GameData").GetComponent<GameData>().enemies[2] = true;
+					}
+					else if (c == 'g')
+					{
+						GameObject.Find("GameData").GetComponent<GameData>().enemies[3] = true;
+					}
+					else if(c == 'b')
+					{
+						GameObject.Find("GameData").GetComponent<GameData>().enemies[4] = true;
+					}
+					else if(c == 'p')
+					{
+						GameObject.Find("GameData").GetComponent<GameData>().enemies[5] = true;
+					}
+			}
 		  Application.LoadLevel("TestScene");
 		}
 	  }
