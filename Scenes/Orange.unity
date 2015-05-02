@@ -700,6 +700,10 @@ Prefab:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[53].y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6187656, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
   m_IsPrefabParent: 0
@@ -990,6 +994,10 @@ Prefab:
     - target: {fileID: 166180, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
       propertyPath: m_Name
       value: mino NPC 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187656, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
@@ -1472,6 +1480,10 @@ Prefab:
     - target: {fileID: 6018580, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[53].y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187656, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
@@ -3473,6 +3485,10 @@ Prefab:
     - target: {fileID: 6018580, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[53].y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187656, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
