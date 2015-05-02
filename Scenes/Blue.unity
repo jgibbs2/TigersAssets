@@ -1957,11 +1957,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnteredTriggerForFirstTime: 0
   Questions:
-  - Hello, I am the Head Minotaur. Welcome to the Minotaur Tent, Bobby.
-  - Around here, we like to keep it nice and warm, hence that fireplace in the corner.
-  - I can join you in your quest, but first, you have to do something for me.
-  - Can you deliver this message to the Minotaur in the corner?
-  - Thank you for delivering the message. Have a good day, Bobby Buuuurns.
+  - Hello, I am the Head Brainiac. Welcome to the Brainiac Tent, Bobby.
+  - Around here, we like to invent things. We're something like Engineers.
+  - If you want to earn my trust, you have to do something for me.
+  - Can you go pick up that thing outside?
+  - Thank you for completing this quest. Have a good day, Bobby Buuuurns.
   answerButtons:
   - '...'
   - '...'

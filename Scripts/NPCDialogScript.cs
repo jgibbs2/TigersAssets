@@ -33,14 +33,14 @@ public class NPCDialogScript : MonoBehaviour
 	{
 	  if (inTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
 	  {
-			if(EnteredTriggerForFirstTime && !GameData.access.activeQuests[questNum])  
+		if(EnteredTriggerForFirstTime && !GameData.access.activeQuests[questNum])  
 		{
 		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
 		  EnteredTriggerForFirstTime = false;
 		}
 
-			if(GameData.access.activeQuests[questNum])
+		if(GameData.access.activeQuests[questNum])
 		{
 			if (GameData.access.checkInventoryFor(GameData.access.nameOf(Item.Apple)))
 			{
@@ -74,7 +74,7 @@ public class NPCDialogScript : MonoBehaviour
       for (int i = 0; i < Questions.Length - 1; i++)
 	  {
 
-		if(DisplayDialog[i] && !GameData.access.activeQuests[0])
+		if(DisplayDialog[i] && !GameData.access.activeQuests[questNum])
 	    {
 	      GUILayout.Label(Questions[i], myStyle);
 
@@ -84,10 +84,10 @@ public class NPCDialogScript : MonoBehaviour
 			if (i == Questions.Length - 2)
 			{
 			  Debug.Log("The quest has started!");
-			  GameData.access.displayedItems[0] = true;
+			  GameData.access.displayedItems[questNum] = true;
 			  // Put bool to activate items
 			  DisplayDialog[i] = false;
-			  GameData.access.activeQuests[0] = true;
+			  GameData.access.activeQuests[questNum] = true;
 			  GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 			  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 			}
@@ -101,7 +101,7 @@ public class NPCDialogScript : MonoBehaviour
 		}	  
 	  }
 
-	  if (DisplayDialog[DisplayDialog.Length - 1] && GameData.access.activeQuests[0])
+	  if (DisplayDialog[DisplayDialog.Length - 1] && GameData.access.activeQuests[questNum])
 	  {
 	    GUILayout.Label(Questions[Questions.Length - 1], myStyle);
 
@@ -110,7 +110,7 @@ public class NPCDialogScript : MonoBehaviour
           for (int i = 0; i < DisplayDialog.Length; i++)
 		    DisplayDialog[i] = false;
 
-		  GameData.access.activeQuests[0] = false;
+		  GameData.access.activeQuests[questNum] = false;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
 	    }
 	  }
