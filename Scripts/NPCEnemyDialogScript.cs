@@ -38,12 +38,12 @@ public class NPCEnemyDialogScript : MonoBehaviour
 		GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
 		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 	  myStyle.fontSize = 80;
-	  myStyle.normal.textColor = Color.red;
+	  myStyle.normal.textColor = Color.white;
 	  myStyle.fontStyle = FontStyle.Bold;
 	  myStyle.normal.background = texture; 
 
 	  yourStyle.fontSize = 80;
-	  yourStyle.normal.textColor = Color.white; 
+	  yourStyle.normal.textColor = Color.red; 
 	  yourStyle.normal.background = texture;
 
 	  if (DisplayEnemyDialog)

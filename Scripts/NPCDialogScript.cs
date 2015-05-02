@@ -5,7 +5,7 @@ public class NPCDialogScript : MonoBehaviour
 {
 	private GUIStyle myStyle;
 	private GUIStyle yourStyle;
-	private bool EnteredTriggerForFirstTime;
+	public bool EnteredTriggerForFirstTime;
 	private bool ActivateQuest;
 	//private bool[] questCompleted;
 	private bool questCompleted;
@@ -40,6 +40,7 @@ public class NPCDialogScript : MonoBehaviour
 	  {
 	    if(EnteredTriggerForFirstTime && !ActivateQuest)  
 		{
+				Debug.Log ("I should be able to talk to the head minotaur here!"); 
 		  DisplayDialog[0] = true;
 		  GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
 		  EnteredTriggerForFirstTime = false;
@@ -67,12 +68,12 @@ public class NPCDialogScript : MonoBehaviour
 		//GUILayout.BeginArea(new Rect(0, 900, 2000, 400));  //Phone
 
 		myStyle.fontSize = 80;
-		myStyle.normal.textColor = Color.red;
+		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
 		myStyle.normal.background = texture; 
 		
 		yourStyle.fontSize = 80;
-		yourStyle.normal.textColor = Color.white; 
+		yourStyle.normal.textColor = Color.red; 
 		yourStyle.normal.background = texture;
 
 		//For loop runs through the characters' lines
@@ -126,20 +127,24 @@ public class NPCDialogScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-	  inTrigger = true; 
+	  if (col.gameObject.name == "Bobby")
+	  {
+	    inTrigger = true; 
 
-	  if(numTimesEntered == 0)
-	    EnteredTriggerForFirstTime = true;
+        if (numTimesEntered == 0)
+	      EnteredTriggerForFirstTime = true;
 
-	  else
-		EnteredTriggerForFirstTime = false;
+	    else
+		  EnteredTriggerForFirstTime = false;
 
-	  numTimesEntered++;
+	    numTimesEntered++;
+	  }
 	}
 
 	void OnTriggerExit2D(Collider2D col)
 	{
-		inTrigger = false; 
+		if (col.gameObject.name == "Bobby")
+		  inTrigger = false; 
 	    GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
 	}
 }
