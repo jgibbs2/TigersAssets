@@ -11,6 +11,7 @@ public class SpriteController : MonoBehaviour
 	public Texture2D x;
 	public bool xButtonPressed = false;
 	public bool player_controlled = true;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () 
@@ -35,9 +36,9 @@ public class SpriteController : MonoBehaviour
 
 	void OnGUI()
 	{
-		if (GUI.RepeatButton(new Rect (0, 0, 200, 200), up, GUIStyle.none)) {
+		/*if (GUI.RepeatButton(new Rect (0, 0, 200, 200), up, GUIStyle.none)) {
 			Debug.Log("GUI BUTTON");
-		}
+		}*/ //dont need this anymore
 		if(player_controlled)
 		{
 			float h = 0;
@@ -45,25 +46,29 @@ public class SpriteController : MonoBehaviour
 			if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
-				v = 1.0f * speed;
+					v = 1.0f * speed;
+					//animator.SetInteger("State", 1);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
 				v = -1.0f * speed;
+					//animator.SetInteger("State", 2);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
 				h = -1.0f * speed;
+					//animator.SetInteger("State", 3);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
 				if(player_controlled == true)
 				{
 				h = 1.0f * speed;
+					//animator.SetInteger("State", 4);
 				}
 			}
 			if (GUI.RepeatButton(new Rect (1550, 725, 200, 200), x, GUIStyle.none)) {

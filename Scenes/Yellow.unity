@@ -811,7 +811,7 @@ MonoBehaviour:
   down: {fileID: 2800000, guid: e0005b9e15a65034e97890ed73b34b11, type: 3}
   left: {fileID: 2800000, guid: b0482ec9f33a24a498e072793d3cc584, type: 3}
   right: {fileID: 2800000, guid: 57208857756e6df429274e466e08c909, type: 3}
-  x: {fileID: 2800000, guid: 940c82601f41e3a40acfc16657c9c358, type: 3}
+  x: {fileID: 2800000, guid: 5030c517521bfe44eb644743e0ba1a10, type: 3}
   xButtonPressed: 0
   player_controlled: 1
 --- !u!61 &559851801
