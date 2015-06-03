@@ -301,7 +301,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27e3c60a9a9eb640b68e1e4c936dc59, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1211043560
+--- !u!1 &1211043560 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 4c3ab00487b7bb243ac3a4b4a1bc91bf, type: 2}
   m_PrefabInternal: {fileID: 926902739}
@@ -331,3 +331,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 0da72cd8991bf6043ad51a2688bcd4bf, type: 3}
   characterImage: {fileID: 2800000, guid: 7d0aa8af97c67c447a87d568dc51c0e5, type: 3}
+  left: 0
+  top: 350
