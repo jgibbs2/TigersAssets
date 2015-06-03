@@ -13,6 +13,10 @@ public class SpriteController : MonoBehaviour
 	public bool player_controlled = true;
 	private Animator animator;
 	public string enemies;
+	public bool something_up = false;
+	public bool something_down = false;
+	public bool something_left = false;
+	public bool something_right = false;
 
 	// Use this for initialization
 	void Start () 
@@ -29,9 +33,43 @@ public class SpriteController : MonoBehaviour
 		if(player_controlled == true)
 		{
 			float h = Input.GetAxis("Horizontal") * speed;
+
 			float v = Input.GetAxis("Vertical") * speed;
-			transform.Translate(Vector2.right * h * Time.deltaTime);
-			transform.Translate(Vector2.up * v * Time.deltaTime);
+
+			//transform.Translate(Vector2.right * h * Time.deltaTime);
+
+			if(h>0)
+			{
+
+				if(!something_right)
+				{
+					Debug.Log("should not be moving right");
+					transform.Translate(Vector2.right * h * Time.deltaTime);
+				}
+			}
+			else if(h<0)
+			{
+				if(!something_left)
+				{
+					transform.Translate(Vector2.right * h * Time.deltaTime);
+				}
+			}
+
+			else if(v>0)
+			{
+				if(!something_up)
+				{
+					transform.Translate(Vector2.up * v * Time.deltaTime);
+				}
+			}
+			else if(v<0)
+			{
+				if(!something_down)
+				{
+					transform.Translate(Vector2.up * v * Time.deltaTime);
+				}
+			}
+
 		}
 	}
 
@@ -48,7 +86,7 @@ public class SpriteController : MonoBehaviour
 			float h = 0;
 			float v = 0;
 			if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
-				if(player_controlled == true)
+				if(!something_up)
 				{
 					v = 1.0f * speed;
 					animator.speed = Mathf.Abs(v)/25;
@@ -56,7 +94,7 @@ public class SpriteController : MonoBehaviour
 				}
 			}
 			if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
-				if(player_controlled == true)
+				if(!something_down)
 				{
 					v = -1.0f * speed;
 					animator.speed = Mathf.Abs(v)/25;
@@ -64,7 +102,7 @@ public class SpriteController : MonoBehaviour
 				}
 			}
 			if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
-				if(player_controlled == true)
+				if(!something_left)
 				{
 					h = -1.0f * speed;
 					animator.speed = Mathf.Abs(h)/25;
@@ -72,7 +110,7 @@ public class SpriteController : MonoBehaviour
 				}
 			}
 			if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
-				if(player_controlled == true)
+				if(!something_right)
 				{
 					h = 1.0f * speed;
 					animator.speed = Mathf.Abs(h)/25;
