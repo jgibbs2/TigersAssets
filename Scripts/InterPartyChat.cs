@@ -16,7 +16,6 @@ public class InterPartyChat : MonoBehaviour {
 	void Start () {
 		num = 0;
 		talking = false;
-
 		myStyle = new GUIStyle();
 		myStyle.fontSize = 30;
 		myStyle.normal.textColor = Color.white;
@@ -25,19 +24,20 @@ public class InterPartyChat : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.Space)) 
+	void Update () 
+	{  
+	  if(Input.GetMouseButtonDown(0) && talking) 
+	  {
+	    //We'll increment num to go to the next thing in the list
+		num++;
+		if(num == Questions.Length)
 		{
-			//We'll increment num to go to the next thing in the list
-			num++;
-			if(num == Questions.Length)
-			{
-				Destroy(gameObject);
-				GameObject.Find ("Bobby").GetComponent<SpriteController> ().player_controlled = true;
-			}
+		  Destroy(gameObject);
+		  GameObject.Find ("Bobby").GetComponent<SpriteController> ().player_controlled = true;
+		  talking = false;
 		}
-
-	}
+	  }
+	}  
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
@@ -47,7 +47,7 @@ public class InterPartyChat : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if(talking)
+		if (talking)
 		{
 			sentence = Questions[num];
 			if(sentence.Contains("Bobby:"))
@@ -62,6 +62,6 @@ public class InterPartyChat : MonoBehaviour {
 
 			//If we're in dialogue and the player taps the screen to advance the dialogue
 
-		}
+         }
 	}
 }
