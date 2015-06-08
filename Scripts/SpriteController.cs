@@ -43,7 +43,6 @@ public class SpriteController : MonoBehaviour
 
 				if(!something_right)
 				{
-					Debug.Log("should not be moving right");
 					transform.Translate(Vector2.right * h * Time.deltaTime);
 				}
 			}
