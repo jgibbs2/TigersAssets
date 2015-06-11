@@ -17,6 +17,8 @@ public class SpriteController : MonoBehaviour
 	public bool something_down = false;
 	public bool something_left = false;
 	public bool something_right = false;
+	private Vector2 touch_one = new Vector2(0, 0);
+	private Vector2 touch_two = new Vector2(0, 0);
 
 	// Use this for initialization
 	void Start () 
@@ -27,6 +29,34 @@ public class SpriteController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		int nbTouches = Input.touchCount;
+		if(nbTouches > 0)
+		{
+
+			for (int i = 0; i < nbTouches; i++)
+			{
+
+				if(i==0)
+				{
+					touch_one = Input.GetTouch(0).position;
+					touch_one.y = Screen.height - touch_one.y;
+				}
+				else if(i==1)
+				{
+					touch_two = Input.GetTouch(1).position;
+					touch_two.y = Screen.height - touch_two.y;
+				}
+				Touch touch = Input.GetTouch(i);
+				GameObject.Find("New Text").GetComponent<TextMesh>().text = "@ " +touch.position;
+			}
+		}
+		else
+		{
+			touch_one = new Vector2(0, 0);
+			touch_two = new Vector2(0, 0);
+			GameObject.Find("New Text").GetComponent<TextMesh>().text = "Anus";
+		}
+
 		//float hor = Input.GetAxis ("Horizontal");
 		//float ver = Input.GetAxis ("Vertical");
 		//Debug.Log ("hor = " + hor + ", ver = " + ver);
@@ -84,7 +114,17 @@ public class SpriteController : MonoBehaviour
 			xButtonPressed = false;
 			float h = 0;
 			float v = 0;
-			if (GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none)) {
+
+			//GUI.RepeatButton(new Rect (150, 575, 200, 200), up, GUIStyle.none);
+
+			GUI.DrawTexture(new Rect (150, 575, 200, 200), up);
+			GUI.DrawTexture(new Rect (150, 875, 200, 200), down);
+			GUI.DrawTexture(new Rect (0, 725, 200, 200), left);
+			GUI.DrawTexture(new Rect (300, 725, 200, 200), right);
+			GUI.DrawTexture(new Rect (1550, 725, 200, 200), x);
+		
+
+			if (new Rect (150, 575, 200, 200).Contains(touch_one)|| new Rect (150, 575, 200, 200).Contains(touch_two)) {
 				if(!something_up)
 				{
 					v = 1.0f * speed;
@@ -92,7 +132,8 @@ public class SpriteController : MonoBehaviour
 					animator.SetInteger("State", 3);
 				}
 			}
-			if (GUI.RepeatButton(new Rect (150, 875, 200, 200), down, GUIStyle.none)) {
+
+			if (new Rect (150, 875, 200, 200).Contains(touch_one)|| new Rect (150, 875, 200, 200).Contains(touch_two)) {
 				if(!something_down)
 				{
 					v = -1.0f * speed;
@@ -100,7 +141,8 @@ public class SpriteController : MonoBehaviour
 					animator.SetInteger("State", 0);
 				}
 			}
-			if (GUI.RepeatButton(new Rect (0, 725, 200, 200), left, GUIStyle.none)) {
+
+			if (new Rect (0, 725, 200, 200).Contains(touch_one)|| new Rect (0, 725, 200, 200).Contains(touch_two)) {
 				if(!something_left)
 				{
 					h = -1.0f * speed;
@@ -108,7 +150,8 @@ public class SpriteController : MonoBehaviour
 					animator.SetInteger("State", 1);
 				}
 			}
-			if (GUI.RepeatButton(new Rect (300, 725, 200, 200), right, GUIStyle.none)) {
+
+			if (new Rect (300, 725, 200, 200).Contains(touch_one)|| new Rect (300, 725, 200, 200).Contains(touch_two)) {
 				if(!something_right)
 				{
 					h = 1.0f * speed;
@@ -116,8 +159,13 @@ public class SpriteController : MonoBehaviour
 					animator.SetInteger("State", 2);
 				}
 			}
-			if (GUI.RepeatButton(new Rect (1550, 725, 200, 200), x, GUIStyle.none)) {
+
+			if (new Rect (1550, 725, 200, 200).Contains(touch_one)|| new Rect (1550, 725, 200, 200).Contains(touch_two)) {
 				xButtonPressed = true;
+			}
+			else
+			{
+				xButtonPressed = false;
 			}
 			transform.Translate(Vector2.right * h * Time.deltaTime);
 			transform.Translate(Vector2.up * v * Time.deltaTime);
