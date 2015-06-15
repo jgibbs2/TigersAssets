@@ -82,11 +82,11 @@ public class GameData : MonoBehaviour {
 	void Start()
 	{
 		characters = new bool[5];
-		characters [0] = false;
-		characters [1] = false;
-		characters [2] = false;
-		characters [3] = false;
-		characters [4] = false;
+		characters [0] = false; // orange
+		characters [1] = false; // yellow
+		characters [2] = false; // green
+		characters [3] = false; // blue
+		characters [4] = false; // indigo
 
 		enemies = new bool[6];
 		enemies [0] = false;
