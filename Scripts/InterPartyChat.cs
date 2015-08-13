@@ -12,12 +12,33 @@ public class InterPartyChat : MonoBehaviour {
 	public Texture2D OtherImage;
 	public Texture2D background;
 
+	private Rect display_position_a;
+	private Rect display_position_b;
+	private Rect display_box;
+
 	// Use this for initialization
 	void Start () {
+
+		myStyle = new GUIStyle();
+		if(Application.platform == RuntimePlatform.Android)
+		{
+			display_position_a = new Rect(1300, 370, 400, 400);
+			display_position_b = new Rect(200, 400, 400, 400);
+			display_box = new Rect(0,750,Screen.width,Screen.height);
+			myStyle.fontSize = 64;
+		}
+		else
+		{
+			display_position_a = new Rect(450, 100, 300, 300);
+			display_position_b = new Rect(100, 100, 300, 300);
+			display_box = new Rect(0,350,Screen.width,Screen.height);
+			myStyle.fontSize = 30;
+		}
+
+
 		num = 0;
 		talking = false;
-		myStyle = new GUIStyle();
-		myStyle.fontSize = 30;
+
 		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
 		myStyle.normal.background = background;
@@ -52,13 +73,13 @@ public class InterPartyChat : MonoBehaviour {
 			sentence = Questions[num];
 			if(sentence.Contains("Bobby:"))
 			{
-				GUI.DrawTexture(new Rect(450, 100, 300, 300), BobbyImage);
+				GUI.DrawTexture(display_position_a, BobbyImage);
 			}
 			else
 			{
-				GUI.DrawTexture(new Rect(100, 100, 300, 300), OtherImage);
+				GUI.DrawTexture(display_position_b, OtherImage);
 			}
-			GUI.Label(new Rect(0,350,Screen.width,Screen.height), sentence, myStyle);
+			GUI.Label(display_box, sentence, myStyle);
 
 			//If we're in dialogue and the player taps the screen to advance the dialogue
 

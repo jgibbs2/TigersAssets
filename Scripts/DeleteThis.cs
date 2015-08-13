@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class DeleteThis : MonoBehaviour {
@@ -7,7 +7,7 @@ public class DeleteThis : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startTime = Time.time;
-		endTime = 2 * 0.417f;
+		//endTime = 2 * 0.417f;
 	}
 	
 	// Update is called once per frame
@@ -15,7 +15,7 @@ public class DeleteThis : MonoBehaviour {
 
 		if(Time.time - startTime >= endTime)
 		{
-			GameObject.Find("Home").GetComponent<PlayerClass>().sub_state = 3;
+			GameObject.Find("Combat").GetComponent<Combat>().substate = 2;
 			Destroy(gameObject);
 		}
 	}

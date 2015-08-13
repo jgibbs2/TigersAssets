@@ -17,7 +17,8 @@ public class EntranceScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if(col.gameObject.name == "up")
+		//Debug.Log (col.gameObject.name);
+		if(col.gameObject.name == "Bobby")// && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed == true || Input.GetKeyDown(KeyCode.Space)))
 		{
 			Application.LoadLevel (Scene);
 		}

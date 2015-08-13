@@ -18,7 +18,7 @@ public class PlatformScript : MonoBehaviour {
 		{
 			GetComponent<Animator> ().enabled = true;
 		}
-		else if(on == false && GetComponent<Animator>().enabled == true)
+		else if(on == false)
 		{
 			GetComponent<Animator> ().enabled = false;
 			GetComponent<SpriteRenderer>().sprite = clear;

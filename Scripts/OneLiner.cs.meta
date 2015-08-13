@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: b2abaf2692c646e419118dcf11a7b254
-timeCreated: 1433353362
+timeCreated: 1435084602
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MattyImage: {fileID: 2800000, guid: ebcfa6b5ea1fffa469e4ec3de0772a06, type: 3}
+  - OtherImage: {fileID: 2800000, guid: ee58fa974eb2b374393e81d7fac9174e, type: 3}
+  - characterImage: {instanceID: 0}
+  - background: {fileID: 2800000, guid: 75ae110b463f5cf45a442b408be02530, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -3,12 +3,11 @@ using System.Collections;
 
 public class OneLiner : MonoBehaviour 
 {
-
+	public GameObject battle;
 	public Texture2D MattyImage;
 	public Texture2D OtherImage;
 	public Texture2D characterImage;
 	public Texture2D background;
-
 
 	public string[] first_strings;
 	public string[] second_strings;
@@ -16,9 +15,9 @@ public class OneLiner : MonoBehaviour
 
 	public bool change_state;
 	public int what_state_do_we_change;
+	public bool fight;
 
 	private GUIStyle myStyle;
-	private GUIStyle yourStyle;
 
 	private int num = 0;
 	private bool inTrigger = false;
@@ -26,23 +25,37 @@ public class OneLiner : MonoBehaviour
 	private string second;
 
 	private bool speech = false;
+
+	private Rect display_position_a;
+	private Rect display_position_b;
+	private Rect display_box;
+
 	// Use this for initialization
 	void Start () 
 	{
 		first = first_strings[0];
 		second = second_strings [0];
 
+
 		myStyle = new GUIStyle();
-		myStyle.fontSize = 30;
+		if(Application.platform == RuntimePlatform.Android)
+		{
+			display_position_a = new Rect(1300, 370, 400, 400);
+			display_position_b = new Rect(200, 400, 400, 400);
+			display_box = new Rect(0,750,Screen.width,Screen.height);
+			myStyle.fontSize = 64;
+		}
+		else
+		{
+			display_position_a = new Rect(450, 100, 300, 300);
+			display_position_b = new Rect(100, 100, 300, 300);
+			display_box = new Rect(0,350,Screen.width,Screen.height);
+			myStyle.fontSize = 30;
+		}
+		
 		myStyle.normal.textColor = Color.white;
 		myStyle.fontStyle = FontStyle.Bold;
 		myStyle.normal.background = background;
-
-		yourStyle = new GUIStyle();
-		yourStyle.fontSize = 30;
-		yourStyle.normal.textColor = Color.red;
-		//yourStyle.fontStyle = FontStyle.Bold;  
-		yourStyle.normal.background = background;
 	}
 	
 	// Update is called once per frame 
@@ -65,9 +78,16 @@ public class OneLiner : MonoBehaviour
 				num++;
 			}
 			else{
+				if(fight)
+				{
+					Instantiate(battle, new Vector2(GameObject.Find("Bobby").transform.position.x, GameObject.Find("Bobby").transform.position.y), Quaternion.identity);
+					//Application.LoadLevel("TestScene");
+					Destroy(transform.parent.gameObject);
+				}
 				//if that's the last thing in the dialogue, give control back to bobby and let the NPC move again
 				speech = false;
 				GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
+
 				GetComponentInParent<NPCMovement>().talking = false;
 
 				if(change_state == true && GameObject.Find("OWorld").GetComponent<OWorld>().state == what_state_do_we_change)
@@ -84,20 +104,27 @@ public class OneLiner : MonoBehaviour
 	{
 		if(speech)
 		{
-			int temp = GameObject.Find("OWorld").GetComponent<OWorld>().state;
-			if(temp == state_change_numbers[0])
+			if(state_change_numbers.Length>0)
 			{
-				first = first_strings[0];
-				second = second_strings[0];
-			}
-			else if(temp == state_change_numbers[1])
-			{
-				first = first_strings[1];
-				second = second_strings[1];
+				int temp = GameObject.Find("OWorld").GetComponent<OWorld>().state;
+				if(temp == state_change_numbers[0])
+				{
+					first = first_strings[0];
+					second = second_strings[0];
+				}
+				else if(temp == state_change_numbers[1])
+				{
+					first = first_strings[1];
+					second = second_strings[1];
+				}
+				else{
+					first = first_strings[2];
+					second = second_strings[2];
+				}
 			}
 			else{
-				first = first_strings[2];
-				second = second_strings[2];
+				first = first_strings[0];
+				second = second_strings[0];
 			}
 
 
@@ -106,22 +133,30 @@ public class OneLiner : MonoBehaviour
 				//display the first text item
 				if(first.Contains("Bobby:"))
 				{
-					GUI.DrawTexture(new Rect(450, 100, 300, 300), characterImage);
+					GUI.DrawTexture(display_position_a, characterImage);
+				}
+				else if(first.Contains("Matty:"))
+				{
+					GUI.DrawTexture(display_position_a, OtherImage);
 				}
 				else{
-					GUI.DrawTexture(new Rect(100, 100, 300, 300), OtherImage);
+					GUI.DrawTexture(display_position_b, OtherImage);
 				}
-				GUI.Label(new Rect(0,700,Screen.width,Screen.height),first, myStyle);
+				GUI.Label(display_box, first, myStyle);
 			}
 			else{
 				if(second.Contains("Bobby:"))
 				{
-					GUI.DrawTexture(new Rect(450, 100, 300, 300), characterImage);
+					GUI.DrawTexture(display_position_a, characterImage);
+				}
+				else if(second.Contains("Matty:"))
+				{
+					GUI.DrawTexture(display_position_a, OtherImage);
 				}
 				else{
-					GUI.DrawTexture(new Rect(100, 100, 300, 300), OtherImage);
+					GUI.DrawTexture(display_position_b, OtherImage);
 				}
-				GUI.Label(new Rect(0,700,Screen.width,Screen.height),second, myStyle);
+				GUI.Label(display_box, second, myStyle);
 			}
 		}
 	}

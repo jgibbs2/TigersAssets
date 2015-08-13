@@ -2,76 +2,30 @@
 using System.Collections;
 
 public class OneLine : MonoBehaviour {
-	private bool DisplayEnemyDialog = false;
-	private bool inEnemyTrigger = false;
-	private GUIStyle myStyle;
-	private GUIStyle yourStyle;
-	
-	public string FightinWords;
-	public string FightBack;
-	public Texture2D texture;
-	
-	// Use this for initialization 
+
+	public string[] enemies;
+
+
+	bool once;
 	void Start () 
 	{
-		myStyle = new GUIStyle();
-		yourStyle = new GUIStyle(); 
+		once = false;
 	}
 	
 	// Update is called once per frame 
 	void Update () 
 	{
-		if (inEnemyTrigger && (GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed || Input.GetKeyDown(KeyCode.Space)))
+		if(!once)
 		{
-			DisplayEnemyDialog = true;
-			GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = false;
-			GetComponentInParent<NPCMovement>().talking = true;
-		}
-		
-		//else
-		//DisplayEnemyDialog = false;
-	} 
-	
-	void OnGUI()
-	{ 
-		//GUILayout.BeginArea(new Rect(0, 0, 2000, 400)); //Computer
-		GUILayout.BeginArea(new Rect(0, 900, 2000, 2000));  //Phone (last value was 400)
-		myStyle.fontSize = 80;
-		myStyle.normal.textColor = Color.white;
-		myStyle.fontStyle = FontStyle.Bold;
-		myStyle.normal.background = texture; 
-		
-		yourStyle.fontSize = 80;
-		yourStyle.normal.textColor = Color.red; 
-		yourStyle.normal.background = texture;
-		
-		if (DisplayEnemyDialog)
-		{
-			GUILayout.Label(FightinWords, myStyle);
-			
-			if (GUILayout.Button(FightBack, yourStyle))
+			Debug.Log("getting in?");
+			if(Input.GetMouseButtonDown(0))
 			{
-				DisplayEnemyDialog = false;
-				GameObject.Find("Bobby").GetComponent<SpriteController>().xButtonPressed = false;
-				GameObject.Find("Bobby").GetComponent<SpriteController>().player_controlled = true;
-				//Application.LoadLevel("TestScene");
+				GameObject c = (GameObject)Instantiate (Resources.Load ("Combat/Combat")as GameObject, new Vector2 (0, 0), Quaternion.identity);
+				c.GetComponent<Combat>().enemies_to_instantiate = enemies;
+				once = true;
 			}
+
 		}
-		
-		GUILayout.EndArea();
-	}
-	void OnTriggerEnter2D(Collider2D col)
-	{
-		if (col.gameObject.name == "Bobby")
-			inEnemyTrigger = true;
-	}
-	
-	void OnTriggerExit2D(Collider2D col)
-	{
-		if (col.gameObject.name == "Bobby") {
-			inEnemyTrigger = false; 
-			GetComponentInParent<NPCMovement>().talking = false;
-				}
-			
-	}
+	} 
+
 }

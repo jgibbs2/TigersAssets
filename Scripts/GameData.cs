@@ -33,7 +33,7 @@ public class GameData : MonoBehaviour {
 	public bool[] EnteredTriggerForFirstTime = new bool[5];
 	public int[] numTimesEntered = new int[5]; 
 
-	Canvas inventory_Display;
+	GameObject inventory_Display;
 	QuestItem[] playerInventoryDisplay = new QuestItem[9];
 	List<Item> itemList;
 	int nextItemSlot;
@@ -174,18 +174,18 @@ public class GameData : MonoBehaviour {
 
 	private void makeNewImage(QuestItem item, int row, int col){
 
-		inventory_Display = GameObject.Find("Inventory_Display").GetComponent<Canvas>();
+		inventory_Display = GameObject.Find("Inventory");
 
 		// Create a new object from the prefab questItemPic
-		GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"));
+		GameObject newItem = (GameObject)Instantiate(Resources.Load("UI/questItemPic"), GameObject.Find("Bobby").transform.position, Quaternion.identity);
 		newItem.name = item.name;
 		var image = newItem.GetComponent<Image>();
 		
 		// Set the properties of the image
 		image.sprite = item.image;
-		image.transform.SetParent(inventory_Display.transform);
+		//image.transform.SetParent(inventory_Display.transform);
 		image.transform.localScale = new Vector3(1,1,1);
-		image.transform.localPosition = new Vector3(col * 100, row * 100, 1);
+		//image.transform.localPosition = new Vector3(col * 100, row * 100, 1);
 	}
 
 	public void pickUpItem(Item item){

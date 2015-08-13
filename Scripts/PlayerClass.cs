@@ -445,10 +445,12 @@ public class PlayerClass : MonoBehaviour {
 		Pink_Enemy.down = false;
 
 
-		if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[0] == true)
+		if(GameObject.Find("GameData")!=null)
 		{
-			Enemies.Add (Red_Enemy);
-		}
+			if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[0] == true)
+			{
+				Enemies.Add (Red_Enemy);
+			}
 		/*if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[1] == true)
 		{
 			Enemies.Add (Orange_Enemy);
@@ -459,6 +461,12 @@ public class PlayerClass : MonoBehaviour {
 		}*/
 		if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[3] == true)
 		{
+			Enemies.Add (Green_Enemy);
+		}
+		}
+		else
+		{
+			Enemies.Add (Red_Enemy);
 			Enemies.Add (Green_Enemy);
 		}
 		/*if(GameObject.Find ("GameData").GetComponent<GameData>().enemies[4] == true)
@@ -811,9 +819,9 @@ public class PlayerClass : MonoBehaviour {
 					GameObject.Find(i.Name + "(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 				}
 				EnemyAttackSelect(i.Name);//  i.select
-				i.time_passed = 0.0f;
-				i.startTime = timeElapsed;
-				i.Ready = false;
+				i.time_passed = 0.0f; // this is irrelevant
+				i.startTime = timeElapsed; // this is also irrelevant
+				i.Ready = false; // this can be done in the attack select
 
 
 			}
@@ -826,7 +834,7 @@ public class PlayerClass : MonoBehaviour {
 			//GameObject.Find(i.Name + " Character(Clone)").GetComponent<CharacterAnimationScript>().action = "Up";
 			if(i.Ready == false) //if//(i.Ready==false)
 			{
-				i.time_passed=(t-i.startTime);
+				i.time_passed=(timeElapsed-i.startTime);
 
 				/*if(Mathf.Floor(i.time_passed)>=i.getSpeed())
 				{
@@ -1426,8 +1434,8 @@ public class PlayerClass : MonoBehaviour {
 			{
 				Application.LoadLevel("Parade");
 			}
-			timer = Time.time;
-			timeElapsed += (timer-timerStart);
+			//timer = Time.time;
+			timeElapsed += (Time.time-lastTime);
 			countDown ();
 
 			//Debug.Log(timeElapsed);
@@ -1442,7 +1450,7 @@ public class PlayerClass : MonoBehaviour {
 			//Debug.Log(CombatBuffer[0].defender);
 
 		}
-		timerStart = Time.time;
+		//timerStart = Time.time;
 		//timerStart = Time.time;
 		//timer = Time.time;
 		lastTime = Time.time;

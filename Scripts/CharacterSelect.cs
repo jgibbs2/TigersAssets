@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,11 +16,13 @@ public class CharacterSelect : MonoBehaviour {
 	// Use this for initialization
 
 	int numSelected = 0;
-	List<string> characterList = new List<string>();
+	GameObject[] character_list = new GameObject[3];
 	bool done = false;
+	int place;
 
 	void Start () {
-		Instantiate(charSelect, new Vector3(0,0,-1), Quaternion.identity);
+		place = 0;
+		//Instantiate(charSelect, new Vector3(0,0,-1), Quaternion.identity);
 		//bool[] arr = GameObject.Find (GameData).GetComponent<GameData> ().characters;
 		if(GameObject.Find ("GameData").GetComponent<GameData> ().characters[0] == false)
 		{
@@ -46,195 +48,82 @@ public class CharacterSelect : MonoBehaviour {
 		//Instantiate (fire, new Vector3 (0, 0, 0), Quaternion.identity);// these initialize each character.
 	}
 
-	void AddCharacter(string color)
+	void RemoveCharacter(GameObject selected_avatar)
 	{
-		int place;
-		if (numSelected < 3) // ensure that we haven't already selected our three characters.
-		{
-			GameObject.Find(color + " Character").GetComponent<SpriteRenderer>().enabled = false;
-			GameObject.Find(color + " Character").transform.GetComponent<Collider2D>().enabled = false;//.GetComponent<t>().enabled = false;
+		place--;
+		character_list [place] = null;
 
-			if(characterList.Contains("Empty"))
-			{
-				place = characterList.IndexOf("Empty");
-				characterList[place] = color;
-			}
-			else
-			{
-				characterList.Add(color); // add it to the list
-				place = characterList.IndexOf(color);
-			}
-
-
-
-			//below we are actually creating the prefab of the smaller version before we move onto the next screen.
-			switch(place){
-				case 0:
-					switch(color){
-						case "Red":
-							Instantiate(small_red, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
-							break;
-						case "Orange":
-							Instantiate(small_orange, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
-							break;
-						case "Yellow":
-							Instantiate(small_yellow, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
-							break;
-						case "Green":
-							Instantiate(small_green, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
-							break;
-						case "Blue":
-							Instantiate(small_blue, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
-							break;
-						case "Pink":
-							Instantiate(small_pink, new Vector3(5.3f,-3.75f,0f), Quaternion.identity);
-							break;
-					}
-					break;
-				case 1:
-					switch(color){
-					case "Red":
-						Instantiate(small_red, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Orange":
-						Instantiate(small_orange, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Yellow":
-						Instantiate(small_yellow, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Green":
-						Instantiate(small_green, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Blue":
-						Instantiate(small_blue, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Pink":
-						Instantiate(small_pink, new Vector3(6.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					}
-					break;
-				case 2:
-					switch(color){
-					case "Red":
-						Instantiate(small_red, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Orange":
-						Instantiate(small_orange, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Yellow":
-						Instantiate(small_yellow, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Green":
-						Instantiate(small_green, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Blue":
-						Instantiate(small_blue, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					case "Pink":
-						Instantiate(small_pink, new Vector3(7.3f,-3.75f,0f), Quaternion.identity);
-						break;
-					}
-					break;
-				}
-			numSelected++;
-		}
-	}
-
-	void RemoveCharacter(string color)
-	{
-		int place;
-		if (numSelected > 0)
-		{
-			place = characterList.IndexOf(color);
-			characterList[place] = "Empty";
-
-			Destroy(GameObject.Find("Small " + color + " Character(Clone)"));
-			GameObject.Find(color + " Character").GetComponent<SpriteRenderer>().enabled = true;
-			GameObject.Find(color + " Character").transform.GetComponent<Collider2D>().enabled = true;
-			numSelected--;
-		}
+		GameObject parent_character = selected_avatar.transform.parent.gameObject;//.position = location;
+		selected_avatar.GetComponent<SpriteRenderer> ().enabled = false;
+		selected_avatar.GetComponent<BoxCollider2D> ().enabled = false;
+		parent_character.GetComponent<SpriteRenderer> ().enabled = true;
+		parent_character.GetComponent<BoxCollider2D> ().enabled = true;
 	}
 
 	void GoToCombat()
 	{
-		if(numSelected!=0)
+		if(place>0)
 		{
-			while (numSelected<3) {
-				characterList.Add("Empty");
-				numSelected++;
-					}
-
-			/*foreach (string s in characterList)
-			{
-				Debug.Log (s);
-				Destroy(GameObject.Find("Small " + s + " Character(Clone)"));
-			}*/
-			GameObject.Find ("Home").GetComponent<PlayerClass> ().initialize (characterList);
-
-			done = true;
+			GameObject.Find ("Combat").GetComponent<Combat>().Initialize(character_list);
 		}
+	}
+
+	void AddCharacter(GameObject selected_character)
+	{
+		Vector2 location;
+		if(place == 1)
+		{
+			location = new Vector2(5.3f,-3.75f);
+		}
+		else if(place == 2)
+		{
+			location = new Vector2(6.3f,-3.75f);
+		}
+		else{
+			location = new Vector2(7.3f,-3.75f);
+		}
+
+		GameObject av = selected_character.transform.FindChild ("Avatar").gameObject;//.position = location;
+		av.transform.position = location;
+		av.GetComponent<SpriteRenderer> ().enabled = true;
+		av.GetComponent<BoxCollider2D> ().enabled = true;
+		selected_character.GetComponent<SpriteRenderer> ().enabled = false;
+		selected_character.GetComponent<BoxCollider2D> ().enabled = false;
+		character_list [place] = selected_character;
+
+		place++;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if ( done == false)
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			GameObject mouse_over_character = null;
 
-			if(Physics2D.Raycast(ray.origin, ray.direction))
+			if(Input.GetMouseButtonDown(0))
 			{
-			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
-			//	Debug.Log (hit.collider.name);
-
-			string objectName = hit.collider.gameObject.name;
-			if (Input.GetMouseButtonDown (0) && objectName != null) {
-				//objectName = hit.collider.gameObject.name;
-			switch(objectName){
-				case "Red Character":
-					AddCharacter("Red");
-					break;
-				case "Small Red Character(Clone)":
-					RemoveCharacter("Red");
-					break;
-				case "Orange Character":
-					AddCharacter("Orange");
-					break;
-				case "Small Orange Character(Clone)":
-					RemoveCharacter("Orange");
-					break;
-				case "Yellow Character":
-					AddCharacter("Yellow");
-					break;
-				case "Small Yellow Character(Clone)":
-					RemoveCharacter("Yellow");
-					break;
-				case "Green Character":
-					AddCharacter("Green");
-					break;
-				case "Small Green Character(Clone)":
-					RemoveCharacter("Green");
-					break;
-				case "Blue Character":
-					AddCharacter("Blue");
-					break;
-				case "Small Blue Character(Clone)":
-					RemoveCharacter("Blue");
-					break;
-				case "Pink Character":
-					AddCharacter("Pink");
-					break;
-				case "Small Pink Character(Clone)":
-					RemoveCharacter("Pink");
-					break;
-				case "Arrow":
-					GoToCombat();
-					break;
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				if (Physics2D.Raycast(ray.origin, ray.direction))
+				{					
+					mouse_over_character = Physics2D.Raycast (ray.origin, ray.direction).collider.gameObject;
+					if(mouse_over_character.name == null)
+					{
+						mouse_over_character = null;
+					}
 				}
 			}
+			if(mouse_over_character!=null)
+			{
+				if(mouse_over_character.name.Contains("Arrow"))
+			  	{
+					GoToCombat();
+				}
+				else if(mouse_over_character.name.Contains("Avatar"))
+				{
+					RemoveCharacter(mouse_over_character);
+				}
+				else if(place < 2)
+				{
+					AddCharacter(mouse_over_character);
+				}
 			}
-
-		}
-		   
 	}
 }
